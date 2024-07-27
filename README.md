@@ -111,12 +111,13 @@ git checkout branch1
 # Edit Code in your Local Repository
 git add .
 git commit -m "Commit message describing changes"
-# Pull updates from branch1
+# Pull updates from branch1 (from Remote Repository)
 git pull origin branch1
 # Resolve conflicts if any
 git add .
 git commit -m "Resolved merge conflicts"
-git push origin branch1
+# Push to Remote Repository
+git push origin branch1 
 ```
 3. **Push Changes:** Push changes to GitHub.
 4. **Open PR:** Open a pull request against the target branch.
