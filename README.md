@@ -149,12 +149,12 @@ git commit -m "Commit message describing changes"
 ```sh
 git pull origin branch1
 ```
-6. **Resolve Any Conflicts:** If there are conflicts between your changes in "branch1" and the updates from "main", Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
+6. **Resolve Any Conflicts:** If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "branch1" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
 ```diff
 <<<<<<< HEAD
 Your changes in branch1
 =======
-Changes from the main branch
+Changes from the branch1 branch
 >>>>>>> main
 ```
 - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
