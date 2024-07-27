@@ -110,3 +110,21 @@ pro-chauffeurs/
 5. **Update:** Make changes based on feedback and push updates to the branch.
 6. **Approval:** Once approved, merge the PR into the target branch.
 7. **Close PR:** Close the PR and delete the feature branch if no longer needed.
+
+
+### Workflow for the Group Project
+
+1. Each **team member** creates a feature branch:
+   ```sh
+   git checkout -b feature-username-task
+   ```
+2. **Team members** make changes, commit, and push their branch:
+   ```sh
+   git add .
+   git commit -m "Description of changes"
+   git push origin feature-username-task
+   ```
+3. **Create a PR** on GitHub and assign reviewers.
+4. **Reviewers** review the PR, suggest changes or approve it.
+5. **Resolve conflicts** if any, and **merge the PR** into `develop` branch.
+6. **Finally merge** merge `develop` branch into `main` branch.
