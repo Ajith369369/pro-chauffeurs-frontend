@@ -14,22 +14,22 @@ Currently, two official plugins are available:
 pro-chauffeurs/
 ├── pro-chauffeurs-frontend/
 │   ├── public/
-│    ├── src/
-│    │   ├── components/
-│    │   │   ├── Dashboard/
-│    │   │   ├── Repair/
-│    │   │   ├── Refueling/
-│    │   │   ├── Towing/
-│    │   │   ├── Winching/
-│    │   │   └── Admin/
-│    │   ├── pages/
-│    │   │   ├── Home/
-│    │   ├── redux/
-│    │   │   ├── slices/
-│    │   │   │   ├── Slice.js
-│    │   │   │   └── Slice.js
-│    │   │   └── store.js
-│    │   ├── services/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Dashboard/
+│   │   │   ├── Repair/
+│   │   │   ├── Refueling/
+│   │   │   ├── Towing/
+│   │   │   ├── Winching/
+│   │   │   └── Admin/
+│   │   ├── pages/
+│   │   │   ├── Home/
+│   │   ├── redux/
+│   │   │   ├── slices/
+│   │   │   │   ├── Slice.js
+│   │   │   │   └── Slice.js
+│   │   │   └── store.js
+│   │   ├── services/
     │   ├── App.js
     │   ├── index.js
     │   ├── routes.js
@@ -37,6 +37,7 @@ pro-chauffeurs/
     └── package.json
 ├── pro-chauffeurs-backend/
 
+```
 pro-chauffeurs-frontend/
 ├── public/
 ├── src/
