@@ -104,25 +104,27 @@ pro-chauffeurs/
 ### **Example Pull Request Workflow**
 
 1. **Branch Creation:** Create a feature branch and work on it.
-2. **Edit Code in your Local Repository:** Edit Code in your Local Repository. The process:
+2. **Edit Code in your Local Repository:** The process:
 ```sh
-# Pull changes for branch1
+# Select your branch, i.e., branch1
 git checkout branch1
 # Edit Code in your Local Repository
 git add .
 git commit -m "Commit message describing changes"
+# Pull updates from branch1 (from Remote Repository)
 git pull origin branch1
 # Resolve conflicts if any
 git add .
 git commit -m "Resolved merge conflicts"
-git push origin branch1
+# Push to Remote Repository
+git push origin branch1 
 ```
-2. **Push Changes:** Push changes to GitHub.
-3. **Open PR:** Open a pull request against the target branch.
-4. **Review:** Team members review the PR, provide feedback, and suggest changes.
-5. **Update:** Make changes based on feedback and push updates to the branch.
-6. **Approval:** Once approved, merge the PR into the target branch.
-7. **Close PR:** Close the PR and delete the feature branch if no longer needed.
+3. **Push Changes:** Push changes to GitHub.
+4. **Open PR:** Open a pull request against the target branch.
+5. **Review:** Team members review the PR, provide feedback, and suggest changes.
+6. **Update:** Make changes based on feedback and push updates to the branch.
+7. **Approval:** Once approved, merge the PR into the target branch.
+8. **Close PR:** Close the PR and delete the feature branch if no longer needed.
 
 
 ### Workflow for the Group Project
