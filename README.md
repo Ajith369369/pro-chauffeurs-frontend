@@ -117,12 +117,12 @@ git add .
 git commit -m "Resolved merge conflicts"
 git push origin branch1
 ```
-2. **Push Changes:** Push changes to GitHub.
-3. **Open PR:** Open a pull request against the target branch.
-4. **Review:** Team members review the PR, provide feedback, and suggest changes.
-5. **Update:** Make changes based on feedback and push updates to the branch.
-6. **Approval:** Once approved, merge the PR into the target branch.
-7. **Close PR:** Close the PR and delete the feature branch if no longer needed.
+3. **Push Changes:** Push changes to GitHub.
+4. **Open PR:** Open a pull request against the target branch.
+5. **Review:** Team members review the PR, provide feedback, and suggest changes.
+6. **Update:** Make changes based on feedback and push updates to the branch.
+7. **Approval:** Once approved, merge the PR into the target branch.
+8. **Close PR:** Close the PR and delete the feature branch if no longer needed.
 
 
 ### Workflow for the Group Project
