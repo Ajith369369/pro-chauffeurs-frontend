@@ -106,6 +106,7 @@ pro-chauffeurs/
 1. **Branch Creation:** Create a feature branch and work on it.
 2. **Edit Code in your Local Repository:** The process:
 ```sh
+# Select your branch, i.e., branch1
 git checkout branch1
 # Edit Code in your Local Repository
 git add .
