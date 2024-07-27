@@ -104,6 +104,19 @@ pro-chauffeurs/
 ### **Example Pull Request Workflow**
 
 1. **Branch Creation:** Create a feature branch and work on it.
+2. **Edit Code in your Local Repository:** Edit Code in your Local Repository. The process:
+```sh
+# Pull changes for branch1
+git checkout branch1
+# Edit Code in your Local Repository
+git add .
+git commit -m "Commit message describing changes"
+git pull origin branch1
+# Resolve conflicts if any
+git add .
+git commit -m "Resolved merge conflicts"
+git push origin branch1
+```
 2. **Push Changes:** Push changes to GitHub.
 3. **Open PR:** Open a pull request against the target branch.
 4. **Review:** Team members review the PR, provide feedback, and suggest changes.
