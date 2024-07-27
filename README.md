@@ -169,6 +169,11 @@ git commit -m "Commit message describing changes"
 git push origin branch1
 ```
 9. **Open PR:** Open a pull request against the target branch.
+- Click on "Pull Requests".
+- Click on "New Pull Request".
+- Select "base" as "develop" branch and "compare" as "branch1" (your working branch).
+- Add Title and Description.
+- Click on "Create Pull Request"
 10. **Review:** Team members review the PR, provide feedback, and suggest changes.
 11. **Update:** Make changes based on feedback and push updates to the branch.
 12. **Approval:** Once approved, merge the PR into the target branch.
