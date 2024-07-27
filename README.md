@@ -175,10 +175,10 @@ git push origin branch1
 - Select "base" as "develop" branch and "compare" as "branch1" (your working branch).
 - Add Title and Description.
 - Click on "Create Pull Request"
-10. **Review:** Team members review the PR, provide feedback, and suggest changes.
+10. **Review:** Team members review the Pull Request, provide feedback, and suggest changes.
 11. **Update:** Make changes based on feedback and push updates to the branch.
-12. **Approval:** Once approved, merge the PR into the target branch.
-13. **Close PR:** Close the PR and delete the feature branch if no longer needed.
+12. **Approval:** Once approved, merge the Pull Request into the target branch.
+13. **Close Pull Request:** Close the Pull Request and delete the feature branch if no longer needed.
 
 
 ### Workflow for the Group Project
