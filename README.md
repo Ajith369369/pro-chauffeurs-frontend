@@ -8,7 +8,8 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-### Project Structure
+
+### I. **Project Structure**
 
 ```plaintext
 .
@@ -46,7 +47,7 @@ pro-chauffeurs/
 ```
 
 
-### I. **General Guidelines**
+### II. **General Guidelines**
 
 1. **Frequent Commits and Pulls:**
    - Commit changes frequently and pull updates regularly to avoid conflicts.
@@ -67,7 +68,7 @@ pro-chauffeurs/
    - Configure branch protection rules in GitHub to require reviews before merging and enforce status checks.
 
 
-### **Guidelines for Pull Requests**
+### III. **Guidelines for Pull Requests**
 
 1. **Clear and Descriptive Titles:**
    - Use a descriptive title that summarizes the purpose of the PR.
