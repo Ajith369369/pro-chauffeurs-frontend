@@ -30,16 +30,16 @@ pro-chauffeurs/
 │   │   │   ├── BookRide.jsx
 │   │   │   ├── DriverList.jsx
 │   │   │   └── HirerDetails.jsx
-│   │   ├── redux/
-│   │   │   ├── slices/
-│   │   │   │   ├── Slice.js
-│   │   │   │   └── Slice.js
-│   │   │   └── store.js
-│   │   ├── services/
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   ├── routes.js
-│   │   ├── store.js
+│   │   └── redux/
+│   │       ├── slices/
+│   │       │   ├── Slice.js
+│   │       │   └── Slice.js
+│   │       └── store.js
+│   ├── .gitignore
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
 │   └── package.json
 ├── pro-chauffeurs-backend/
 
