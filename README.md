@@ -104,13 +104,13 @@ pro-chauffeurs/
 ### **Example Pull Request Workflow**
 
 1. **Branch Creation:** Create a feature branch and work on it.
-2. **Edit Code in your Local Repository:** Edit Code in your Local Repository. The process:
+2. **Edit Code in your Local Repository:** The process:
 ```sh
-# Pull changes for branch1
 git checkout branch1
 # Edit Code in your Local Repository
 git add .
 git commit -m "Commit message describing changes"
+# Pull updates from branch1
 git pull origin branch1
 # Resolve conflicts if any
 git add .
