@@ -26,21 +26,20 @@ pro-chauffeurs/
 │   │   │   ├── Reasons.jsx
 │   │   │   └── Services.jsx
 │   │   ├── pages/
-│   │   │   ├── Admin.jsx
 │   │   │   ├── Home.jsx
 │   │   │   ├── BookRide.jsx
 │   │   │   ├── DriverList.jsx
 │   │   │   └── HirerDetails.jsx
-│   │   ├── redux/
-│   │   │   ├── slices/
-│   │   │   │   ├── Slice.js
-│   │   │   │   └── Slice.js
-│   │   │   └── store.js
-│   │   ├── services/
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   ├── routes.js
-│   │   ├── store.js
+│   │   └── redux/
+│   │       ├── slices/
+│   │       │   ├── Slice.js
+│   │       │   └── Slice.js
+│   │       └── store.js
+│   ├── .gitignore
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
 │   └── package.json
 ├── pro-chauffeurs-backend/
 
@@ -116,10 +115,11 @@ git pull origin branch1
 # Resolve conflicts if any
 git add .
 git commit -m "Resolved merge conflicts"
-# Push to Remote Repository
-git push origin branch1 
 ```
 3. **Push Changes:** Push changes to GitHub.
+```sh
+git push origin branch1
+```
 4. **Open PR:** Open a pull request against the target branch.
 5. **Review:** Team members review the PR, provide feedback, and suggest changes.
 6. **Update:** Make changes based on feedback and push updates to the branch.
@@ -142,4 +142,4 @@ git push origin branch1
 3. **Create a PR** on GitHub and assign reviewers.
 4. **Reviewers** review the PR, suggest changes or approve it.
 5. **Resolve conflicts** if any, and **merge the PR** into `develop` branch.
-6. **Finally merge** merge `develop` branch into `main` branch.
+6. **Finally merge** `develop` branch into `main` branch.
