@@ -169,6 +169,7 @@ git commit -m "Commit message describing changes"
 git push origin branch1
 ```
 9. **Open PR:** Open a pull request against the target branch.
+- Go to the project's repository.
 - Click on "Pull Requests".
 - Click on "New Pull Request".
 - Select "base" as "develop" branch and "compare" as "branch1" (your working branch).
