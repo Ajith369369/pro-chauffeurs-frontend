@@ -9,6 +9,8 @@ Currently, two official plugins are available:
 
 ### Project Structure
 
+```plaintext
+.
 pro-chauffeurs/
 ├── pro-chauffeurs-frontend/
 │   ├── public/
