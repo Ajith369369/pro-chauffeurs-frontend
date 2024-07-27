@@ -111,7 +111,7 @@ git checkout branch1
 git pull origin main
 ```
 3. **Resolve Any Conflicts** If there are conflicts between your changes in "branch1" and the updates from "main", Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
-```sh
+```diff
 <<<<<<< HEAD
 Your changes in branch1
 =======
@@ -120,6 +120,7 @@ Changes from the main branch
 ```
 - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
 - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
+
 4. **Commit the Merged Changes**
 ```sh
 git add .
