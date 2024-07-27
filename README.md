@@ -26,7 +26,6 @@ pro-chauffeurs/
 │   │   │   ├── Reasons.jsx
 │   │   │   └── Services.jsx
 │   │   ├── pages/
-│   │   │   ├── Admin.jsx
 │   │   │   ├── Home.jsx
 │   │   │   ├── BookRide.jsx
 │   │   │   ├── DriverList.jsx
