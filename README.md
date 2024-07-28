@@ -75,23 +75,23 @@ pro-chauffeurs/
 2. **Detailed Description:**
    - Provide a thorough description of what changes were made, why they were made, and how to test them.
 
-3. **Keep PRs Small:**
+3. **Keep Pull Requests Small:**
    - Make pull requests small and focused on a single task or feature. This makes them easier to review and less likely to introduce conflicts.
 
 4. **Add Context and References:**
-   - Link to relevant issues or tasks that the PR addresses. This helps reviewers understand the context and importance of the changes.
+   - Link to relevant issues or tasks that the Pull Request addresses. This helps reviewers understand the context and importance of the changes.
 
 5. **Request Reviews Early:**
    - Request reviews as soon as possible to get feedback early and avoid delays in the development process.
 
 6. **Address Feedback Promptly:**
-   - Act on feedback quickly and update the PR accordingly. Communicate any challenges or questions you have during the review process.
+   - Act on feedback quickly and update the Pull Request accordingly. Communicate any challenges or questions you have during the review process.
 
 7. **Test Thoroughly:**
-   - Ensure that changes are thoroughly tested before submitting the PR. Include automated tests if possible.
+   - Ensure that changes are thoroughly tested before submitting the Pull Request. Include automated tests if possible.
 
 8. **Follow Contribution Guidelines:**
-   - Adhere to the project’s contribution guidelines and coding standards. Check for any specific PR guidelines outlined in the repository.
+   - Adhere to the project’s contribution guidelines and coding standards. Check for any specific Pull Request guidelines outlined in the repository.
 
 9. **Use Branch Protection Rules:**
    - Configure branch protection rules to enforce required reviews, status checks, and other quality controls before merging.
