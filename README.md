@@ -105,7 +105,7 @@ pro-chauffeurs/
 9. **Use Branch Protection Rules:**
    - Configure branch protection rules to enforce required reviews, status checks, and other quality controls before merging.
 
-10. **Close or Archive Old PRs:**
+10. **Close or Archive Old Pull Requests:**
    - Close or archive pull requests that are no longer relevant or have become stale.
 
 
