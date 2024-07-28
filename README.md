@@ -181,7 +181,7 @@ git push origin branch1
 - Go to the project's repository.
 - Click on "Pull Requests".
 - Click on "New Pull Request".
-- Select "base" as "develop" branch and "compare" as "branch1" (your working branch).
+- Select "base" as "develop" branch and "compare" as "branch1" branch (your working branch).
 - Add Title and Description.
 - Click on "Create Pull Request"
 10. **Review:** Team members review the Pull Request, provide feedback, and suggest changes.
