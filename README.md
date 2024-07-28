@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 
 
-### I. **Project Structure**
+## I. **Project Structure**
 
 ```plaintext
 .
@@ -55,7 +55,7 @@ pro-chauffeurs/
 ```
 
 
-### II. **General Guidelines**
+## II. **General Guidelines**
 
 1. **Frequent Commits and Pulls:**
    - Commit changes frequently and pull updates regularly to avoid conflicts.
@@ -76,7 +76,7 @@ pro-chauffeurs/
    - Configure branch protection rules in GitHub to require reviews before merging and enforce status checks.
 
 
-### III. **Guidelines for Pull Requests**
+## III. **Guidelines for Pull Requests**
 
 1. **Clear and Descriptive Titles:**
    - Use a descriptive title that summarizes the purpose of the PR.
@@ -109,7 +109,7 @@ pro-chauffeurs/
    - Close or archive pull requests that are no longer relevant or have become stale.
 
 
-### Workflow to get the latest updates from the "main" branch into your working branch "branch1"
+## IV. **Workflow to get the latest updates from the "main" branch into your working branch "branch1"**
 
 1. **Switch to "branch1"**
 ```sh
@@ -142,7 +142,7 @@ git push origin branch1
 ```
 
 
-### **Workflow for Pull Request**
+## V. **Workflow for Pull Request**
 
 1. **Branch Creation:**
   - Create a feature branch and work on it.
@@ -194,7 +194,7 @@ git push origin branch1
 13. **Close Pull Request:** Close the Pull Request and delete the feature branch (branch1) if no longer needed.
 
 
-### Workflow for the Group Project
+## VI. **Workflow for the Group Project**
 
 1. Each **team member** creates a feature branch:
    ```sh
