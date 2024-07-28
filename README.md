@@ -32,8 +32,9 @@ pro-chauffeurs/
 │   │   │   └── HirerDetails.jsx
 │   │   └── redux/
 │   │       ├── slices/
-│   │       │   ├── Slice.js
-│   │       │   └── Slice.js
+│   │       │   ├── bookRideSlice.js
+│   │       │   ├── driverListSlice.js
+│   │       │   └── hirerDetailsSlice.js
 │   │       └── store.js
 │   ├── .gitignore
 │   ├── index.html
