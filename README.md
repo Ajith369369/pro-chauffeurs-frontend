@@ -119,7 +119,8 @@ git checkout branch1
 ```sh
 git pull origin main
 ```
-3. **Resolve Any Conflicts:** If there are conflicts between your changes in "branch1" and the updates from "main", Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
+3. **Resolve Any Conflicts:**
+  - If there are conflicts between your changes in "branch1" and the updates from "main", Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
 ```diff
 <<<<<<< HEAD
 Your changes in branch1
@@ -127,8 +128,8 @@ Your changes in branch1
 Changes from the main branch
 >>>>>>> main
 ```
-- Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
-- Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
+  - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
+  - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
 
 4. **Commit the Merged Changes**
 ```sh
@@ -143,7 +144,8 @@ git push origin branch1
 
 ### **Workflow for Pull Request**
 
-1. **Branch Creation:** Create a feature branch and work on it.
+1. **Branch Creation:**
+  - Create a feature branch and work on it.
 2. **Select your branch**
 ```sh
 git checkout branch1
@@ -158,7 +160,8 @@ git commit -m "Commit message describing changes"
 ```sh
 git pull origin branch1
 ```
-6. **Resolve Any Conflicts:** If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "branch1" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
+6. **Resolve Any Conflicts:**
+  - If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "branch1" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
 ```diff
 <<<<<<< HEAD
 Your changes in branch1
@@ -166,24 +169,25 @@ Your changes in branch1
 Changes from the branch1 branch
 >>>>>>> main
 ```
-- Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
-- Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
+  - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
+  - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
 7. **Commit the Merged Changes**
 ```sh
 git add .
 git commit -m "Commit message describing changes"
 ```
-8. **Push Changes:** Push changes to "branch1" (to Remote Repository).
+8. **Push Changes:**
+  - Push changes to "branch1" (to Remote Repository).
 ```sh
 git push origin branch1
 ```
-9. **Open PR:** Open a pull request against the target (develop) branch.
-- Go to the project's repository.
-- Click on "Pull Requests".
-- Click on "New Pull Request".
-- Select "base" as "develop" branch and "compare" as "branch1" branch (your working branch).
-- Add Title and Description.
-- Click on "Create Pull Request"
+9. **Open Pull Request:** Open a pull request against the target (develop) branch.
+  - Go to the project's repository.
+  - Click on "Pull Requests".
+  - Click on "New Pull Request".
+  - Select "base" as "develop" branch and "compare" as "branch1" branch (your working branch).
+  - Add Title and Description.
+  - Click on "Create Pull Request"
 10. **Review:** Team members review the Pull Request, provide feedback, and suggest changes.
 11. **Update:** Make changes based on feedback and push updates to the branch (branch1).
 12. **Approval:** Once approved, merge the Pull Request into the target (develop) branch.
