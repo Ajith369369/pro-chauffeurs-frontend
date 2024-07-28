@@ -168,7 +168,7 @@ git commit -m "Commit message describing changes"
 ```sh
 git push origin branch1
 ```
-9. **Open PR:** Open a pull request against the target branch.
+9. **Open PR:** Open a pull request against the target (develop) branch.
 - Go to the project's repository.
 - Click on "Pull Requests".
 - Click on "New Pull Request".
@@ -176,8 +176,8 @@ git push origin branch1
 - Add Title and Description.
 - Click on "Create Pull Request"
 10. **Review:** Team members review the Pull Request, provide feedback, and suggest changes.
-11. **Update:** Make changes based on feedback and push updates to the branch.
-12. **Approval:** Once approved, merge the Pull Request into the target branch.
+11. **Update:** Make changes based on feedback and push updates to the branch (branch1).
+12. **Approval:** Once approved, merge the Pull Request into the target (develop) branch.
 13. **Close Pull Request:** Close the Pull Request and delete the feature branch if no longer needed.
 
 
