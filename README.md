@@ -17,6 +17,7 @@ pro-chauffeurs/
 ├── pro-chauffeurs-frontend/
 │   ├── public/
 │   ├── src/
+│   │   ├── assets/
 │   │   ├── components/
 │   │   │   ├── About.jsx
 │   │   │   ├── ClientRating.jsx
