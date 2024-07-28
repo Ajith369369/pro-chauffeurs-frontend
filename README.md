@@ -193,7 +193,7 @@ git push origin branch1
    git commit -m "Description of changes"
    git push origin feature-username-task
    ```
-3. **Create a PR** on GitHub and assign reviewers.
+3. **Create a Pull Request** on GitHub and assign reviewers.
 4. **Reviewers** review the Pull Request, suggest changes or approve it.
 5. **Resolve conflicts** if any, and **merge the Pull Request** into `develop` branch.
 6. **Finally merge** `develop` branch into `main` branch.
