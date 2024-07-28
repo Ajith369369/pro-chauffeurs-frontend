@@ -25,23 +25,30 @@ pro-chauffeurs/
 │   │   │   ├── Header.jsx
 │   │   │   ├── Reasons.jsx
 │   │   │   └── Services.jsx
+│   │   ├── hooks/
+│   │   │   └── driverFetch.js
 │   │   ├── pages/
 │   │   │   ├── Home.jsx
 │   │   │   ├── BookRide.jsx
 │   │   │   ├── DriverList.jsx
 │   │   │   └── HirerDetails.jsx
-│   │   └── redux/
-│   │       ├── slices/
-│   │       │   ├── bookRideSlice.js
-│   │       │   ├── driverListSlice.js
-│   │       │   └── hirerDetailsSlice.js
-│   │       └── store.js
+│   │   ├── redux/
+│   │   │   ├── slices/
+│   │   │   │   ├── bookRideSlice.js
+│   │   │   │   ├── driverListSlice.js
+│   │   │   │   └── hirerDetailsSlice.js
+│   │   │   └── store.js
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── bootstrap.min.css
+│   │   ├── index.css
+│   │   └── main.jsx
 │   ├── .gitignore
 │   ├── index.html
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── README.md
-│   └── package.json
+│   └── vite.config.js
 ├── pro-chauffeurs-backend/
 
 ```
