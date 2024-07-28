@@ -182,7 +182,7 @@ git commit -m "Commit message describing changes"
 git push origin branch1
 ```
 9. **Open Pull Request:** Open a pull request against the target (develop) branch.
-  - Go to the project's repository.
+  - Go to the [project's repository](https://github.com/Ajith369369/pro-chauffeurs-frontend).
   - Click on "Pull Requests".
   - Click on "New Pull Request".
   - Select "base" as "develop" branch and "compare" as "branch1" branch (your working branch).
