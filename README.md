@@ -109,7 +109,7 @@ pro-chauffeurs/
    - Close or archive pull requests that are no longer relevant or have become stale.
 
 
-### Workflow to get the latest updates from the "main" branch into your working branch "branch1".
+### Workflow to get the latest updates from the "main" branch into your working branch "branch1"
 
 1. **Switch to "branch1"**
 ```sh
