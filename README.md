@@ -110,7 +110,7 @@ pro-chauffeurs/
 
 
 ## IV. **Workflow to get the latest updates from the "main" branch into your working branch "branch1"**
-   - Before making any changes in the project, create/select your working branch.
+   - Before making any changes in the project, create/select your working branch. Then pull the latest updates from "main" branch into it.
 
 1. **Switch to "branch1"**
 ```sh
