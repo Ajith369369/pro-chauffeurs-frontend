@@ -160,7 +160,7 @@ git add .
 git commit -m "Commit message describing changes"
 ```
 5. **Pull updates from "main" (from Remote Repository)**
-   - "main" branch contains only approved code. This will be aded to you working branch (branch1).
+   - "main" branch contains only the approved code. This will be aded to you working branch (branch1).
 ```sh
 git pull origin main
 ```
@@ -185,7 +185,7 @@ git commit -m "Commit message describing changes"
 ```sh
 git push origin branch1
 ```
-9. **Open Pull Request:** Open a pull request against the target (develop) branch.
+9. **Open Pull Request:** Open a pull request against the target (develop) branch. The "develop" branch is created to check code before adding to "main" branch.
    - Go to the [project's repository](https://github.com/Ajith369369/pro-chauffeurs-frontend).
    - Click on "Pull Requests".
    - Click on "New Pull Request".
