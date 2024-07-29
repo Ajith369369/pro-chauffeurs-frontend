@@ -146,6 +146,9 @@ git push origin branch1
 
 1. **Branch Creation:**
    - Create a feature branch and work on it.
+```sh
+git branch branch1
+```  
 2. **Select your branch**
 ```sh
 git checkout branch1
@@ -156,17 +159,18 @@ git checkout branch1
 git add .
 git commit -m "Commit message describing changes"
 ```
-5. **Pull updates from "branch1" (from Remote Repository)**
+5. **Pull updates from "main" (from Remote Repository)**
+   - "main" branch contains only approved code. This will be aded to you working branch (branch1).
 ```sh
-git pull origin branch1
+git pull origin main
 ```
 6. **Resolve Any Conflicts:**
-   - If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "branch1" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
+   - If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "main" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
 ```diff
 <<<<<<< HEAD
 Your changes in branch1
 =======
-Changes from the branch1 branch
+Changes from the main branch
 >>>>>>> main
 ```
    - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
