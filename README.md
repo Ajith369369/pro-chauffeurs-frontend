@@ -128,8 +128,8 @@ Your changes in branch1
 Changes from the main branch
 >>>>>>> main
 ```
-   - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
-   - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
+    - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
+    - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
 
 4. **Commit the Merged Changes**
 ```sh
@@ -169,8 +169,8 @@ Your changes in branch1
 Changes from the branch1 branch
 >>>>>>> main
 ```
-   - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
-   - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
+    - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
+    - Remove the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
 7. **Commit the Merged Changes**
 ```sh
 git add .
