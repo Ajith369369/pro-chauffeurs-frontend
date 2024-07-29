@@ -106,7 +106,7 @@ pro-chauffeurs/
    - Configure branch protection rules to enforce required reviews, status checks, and other quality controls before merging.
 
 10. **Close or Archive Old Pull Requests:**
-   - Close or archive pull requests that are no longer relevant or have become stale.
+    - Close or archive pull requests that are no longer relevant or have become stale.
 
 
 ## IV. **Workflow to get the latest updates from the "main" branch into your working branch "branch1"**
