@@ -22,11 +22,11 @@ function HirerDetails() {
               <form action="">
                 <div className="form-group">
                   <TextField
-                    name="weight"
+                    name="passenger_name"
                     value={formState.passenger_name || ""}
                     className="w-100"
                     id="outlined-basic"
-                    label="Weight (kg):"
+                    label="Passenger Name"
                     variant="outlined"
                     sx={{
                       // Root class for the input field
