@@ -110,6 +110,7 @@ pro-chauffeurs/
 
 
 ## IV. **Workflow to get the latest updates from the "main" branch into your working branch "branch1"**
+   - Before making any changes in the project, create/select your working branch. Then pull the latest updates from "main" branch into it.
 
 1. **Switch to "branch1"**
 ```sh
@@ -146,6 +147,9 @@ git push origin branch1
 
 1. **Branch Creation:**
    - Create a feature branch and work on it.
+```sh
+git branch branch1
+```  
 2. **Select your branch**
 ```sh
 git checkout branch1
@@ -156,17 +160,18 @@ git checkout branch1
 git add .
 git commit -m "Commit message describing changes"
 ```
-5. **Pull updates from "branch1" (from Remote Repository)**
+5. **Pull updates from "main" (from Remote Repository)**
+   - "main" branch contains only the approved code. This will be aded to you working branch (branch1).
 ```sh
-git pull origin branch1
+git pull origin main
 ```
 6. **Resolve Any Conflicts:**
-   - If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "branch1" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
+   - If there are conflicts between your changes in "branch1" (Local Repository) and the updates from "main" (Remote Repository), Git will highlight them. You need to manually resolve these conflicts. Open these files in your code editor to resolve the conflicts. The conflict markers will look like this:
 ```diff
 <<<<<<< HEAD
 Your changes in branch1
 =======
-Changes from the branch1 branch
+Changes from the main branch
 >>>>>>> main
 ```
    - Edit the file to resolve the conflicts, deciding which changes to keep or how to combine them.
@@ -181,7 +186,7 @@ git commit -m "Commit message describing changes"
 ```sh
 git push origin branch1
 ```
-9. **Open Pull Request:** Open a pull request against the target (develop) branch.
+9. **Open Pull Request:** Open a pull request against the target (develop) branch. The "develop" branch is created to check code before adding to "main" branch.
    - Go to the [project's repository](https://github.com/Ajith369369/pro-chauffeurs-frontend).
    - Click on "Pull Requests".
    - Click on "New Pull Request".
