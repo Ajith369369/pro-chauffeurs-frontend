@@ -27,7 +27,6 @@ function App() {
         <Route path="/driverlist" element={<DriverList />} />
         <Route path="/drivercard" element={<DriverCard />} />
         <Route path="/hirerdetails" element={<HirerDetails />} />
-        <h1 className="bg-success">Hello</h1>
       </Routes>
     </>
   );
