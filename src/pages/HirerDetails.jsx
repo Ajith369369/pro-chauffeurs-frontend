@@ -235,10 +235,10 @@ function HirerDetails() {
                   </div>
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
-                  <Button variant="light" size="lg">
+                  <Button variant="light" size="lg" className="mb-5">
                     Back
                   </Button>
-                  <Button variant="light" size="lg">
+                  <Button variant="light" size="lg"  className="mb-5">
                     Book Now
                   </Button>
                 </div>
