@@ -46,7 +46,7 @@ function HirerDetails() {
                       },
                       // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "black",
+                        color: "white",
                         fontSize: "16px",
                       },
                     }}
