@@ -1,5 +1,5 @@
-import { commonAPI } from "./commonApi";
-import { serverUrl } from "./serverUrl";
+import { commonAPI } from "./pro_commonApi";
+import { serverUrl } from "./pro_serverUrl";
 
 // API (on button click) to upload/add Booking Details (HirerDetails.jsx)
 export const addBookingDetailsOfAUserApi = async (reqBody) => {
