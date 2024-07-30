@@ -124,7 +124,7 @@ function HirerDetails() {
                   />
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-center align-items-center">
-                  <div>
+                  <div className="me-2">
                     {/* <TextField
                     name="passenger_name"
                     value={formState.passenger_name || ""}
@@ -167,7 +167,7 @@ function HirerDetails() {
                       <option value="truck">Truck</option>
                     </Form.Select>
                   </div>
-                  <div>
+                  <div className="ms-2">
                     <TextField
                       name="car_number"
                       value={formState.car_number || ""}
