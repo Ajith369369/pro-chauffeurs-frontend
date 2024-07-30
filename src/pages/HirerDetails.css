@@ -1,10 +1,10 @@
 #hirer_details {
   width: 100vw;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background-color: black;
   color: white;
   font-family: "Lora", serif;

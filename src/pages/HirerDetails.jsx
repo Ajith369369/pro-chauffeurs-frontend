@@ -2,6 +2,7 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./HirerDetails.css";
 
@@ -23,10 +24,11 @@ function HirerDetails() {
 
   return (
     <>
+    <Header/>
       <div id="hirer_details" className="container-fluid w-100">
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-          <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h4 className="text-center my-5">Hirer Details</h4>
               <form action="">
