@@ -1,5 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import "./HirerDetails.css";
 
 function HirerDetails() {
   // State Initialization
@@ -13,7 +14,7 @@ function HirerDetails() {
 
   return (
     <>
-      <div className="container-fluid w-100">
+      <div id="hirer_details" className="container-fluid w-100">
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
           <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-center align-items-center">
