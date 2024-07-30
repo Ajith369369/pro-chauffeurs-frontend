@@ -179,7 +179,7 @@ function HirerDetails() {
                   />
                   </div>
                 </div>
-                <div className="form-group ps-3 pe-3 my-4 d-flex flex-wrap justify-content-between align-items-center">
+                <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
                 <Button variant="light" sx={{ padding: '50px' }}>Back</Button>
                 <Button variant="light">Book Now</Button>
                 </div>
