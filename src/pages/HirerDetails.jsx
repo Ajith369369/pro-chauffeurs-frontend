@@ -2,8 +2,8 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./HirerDetails.css";
 import Footer from "../components/Footer";
+import "./HirerDetails.css";
 
 function HirerDetails() {
   // State Initialization
@@ -52,6 +52,10 @@ function HirerDetails() {
                           borderColor: "#000000",
                           borderWidth: "1px",
                         },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
                       },
                       // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
@@ -83,6 +87,10 @@ function HirerDetails() {
                           borderColor: "#000000",
                           borderWidth: "1px",
                         },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
                       },
                       // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
@@ -113,6 +121,10 @@ function HirerDetails() {
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
                           borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
                         },
                       },
                       // Class for the label of the input field
@@ -189,6 +201,10 @@ function HirerDetails() {
                             borderColor: "#000000",
                             borderWidth: "1px",
                           },
+                          // Change border color when focused
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#ffffff",
+                          },
                         },
                         // Class for the label of the input field
                         "& .MuiInputLabel-outlined": {
@@ -213,7 +229,7 @@ function HirerDetails() {
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
