@@ -1,6 +1,7 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import "./HirerDetails.css";
+import Button from 'react-bootstrap/Button';
 
 function HirerDetails() {
   // State Initialization
@@ -21,7 +22,7 @@ function HirerDetails() {
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h4 className="text-center my-5">Hirer Details</h4>
               <form action="">
-                <div className="form-group">
+                <div className="form-group my-4">
                   <TextField
                     name="passenger_name"
                     value={formState.passenger_name || ""}
@@ -52,7 +53,7 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group my-4">
                 <TextField
                     name="email"
                     value={formState.email || ""}
@@ -83,7 +84,7 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group my-4">
                 <TextField
                     name="mobile_number"
                     value={formState.mobile_number || ""}
@@ -114,7 +115,7 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group d-flex flex-wrap justify-content-center align-items-center">
+                <div className="form-group my-4 d-flex flex-wrap justify-content-center align-items-center">
                   <div>
                   <TextField
                     name="passenger_name"
@@ -178,8 +179,9 @@ function HirerDetails() {
                   />
                   </div>
                 </div>
-                <div>
-                  
+                <div className="form-group ps-3 pe-3 my-4 d-flex flex-wrap justify-content-between align-items-center">
+                <Button variant="light" sx={{ padding: '50px' }}>Back</Button>
+                <Button variant="light">Book Now</Button>
                 </div>
               </form>
             </div>
