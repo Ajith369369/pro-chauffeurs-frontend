@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./HirerDetails.css";
+import Footer from "../components/Footer";
 
 function HirerDetails() {
   // State Initialization
@@ -212,6 +213,7 @@ function HirerDetails() {
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
