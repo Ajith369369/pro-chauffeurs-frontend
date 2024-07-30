@@ -1,10 +1,10 @@
 #hirer_details {
   width: 100vw;
-  min-height: auto;
+  min-height: 100vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   background-color: black;
   color: white;
   font-family: "Lora", serif;
@@ -22,7 +22,7 @@
 }
 
 .custom-form-select option {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   font-family: "Inter", sans-serif;
 }
