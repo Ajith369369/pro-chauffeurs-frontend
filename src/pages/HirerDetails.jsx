@@ -54,8 +54,8 @@ function HirerDetails() {
                 </div>
                 <div className="form-group">
                 <TextField
-                    name="passenger_name"
-                    value={formState.passenger_name || ""}
+                    name="email"
+                    value={formState.email || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="EMAIL"
@@ -77,7 +77,7 @@ function HirerDetails() {
                       },
                       // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "black",
+                        color: "white",
                         fontSize: "16px",
                       },
                     }}
@@ -85,8 +85,8 @@ function HirerDetails() {
                 </div>
                 <div className="form-group">
                 <TextField
-                    name="passenger_name"
-                    value={formState.passenger_name || ""}
+                    name="mobile_number"
+                    value={formState.mobile_number || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="MOBILE NUMBER"
@@ -108,7 +108,7 @@ function HirerDetails() {
                       },
                       // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "black",
+                        color: "white",
                         fontSize: "16px",
                       },
                     }}
