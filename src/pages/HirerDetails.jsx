@@ -149,7 +149,7 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-center align-items-center">
+                <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
                     {/* <TextField
                     name="passenger_name"
@@ -235,10 +235,10 @@ function HirerDetails() {
                   </div>
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
-                  <Button variant="light" size="lg" className="mb-5">
+                  <Button variant="light" size="lg" className="mb-5" style={{ width: '150px' }}>
                     Back
                   </Button>
-                  <Button variant="light" size="lg"  className="mb-5">
+                  <Button variant="light" size="lg"  className="mb-5" style={{ width: '150px' }}>
                     Book Now
                   </Button>
                 </div>
