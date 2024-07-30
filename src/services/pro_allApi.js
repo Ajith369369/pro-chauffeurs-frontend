@@ -1,7 +1,7 @@
 import { commonAPI } from "./commonApi";
 import { serverUrl } from "./serverUrl";
 
-// API (from button) to upload (add) Booking Details (HirerDetails.jsx)
+// API (on button click) to upload/add Booking Details (HirerDetails.jsx)
 export const addBookingDetailsOfAUserApi = async (reqBody) => {
   return await commonAPI("POST", `${serverUrl}/allUsersBookingDetails`, reqBody);
 };
