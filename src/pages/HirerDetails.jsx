@@ -184,13 +184,14 @@ function HirerDetails() {
                       value={selectedCarType}
                       onChange={handleCarTypeChange}
                       aria-label="Select car type"
+                      className="custom-form-select"
                     >
                       <option>CAR TYPE</option>
-                      <option value="convertible">Convertible</option>
-                      <option value="hatchback">Hatchback</option>
-                      <option value="sedan">Sedan</option>
+                      <option value="convertible">CONVERTIBLE</option>
+                      <option value="hatchback">HATCHBACK</option>
+                      <option value="sedan">SEDAN</option>
                       <option value="suv">SUV</option>
-                      <option value="truck">Truck</option>
+                      <option value="truck">TRUCK</option>
                     </Form.Select>
                   </div>
                   <div className="ms-2">
