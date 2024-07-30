@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import "./HirerDetails.css";
 
 function HirerDetails() {
@@ -14,12 +14,11 @@ function HirerDetails() {
     car_number: "",
   });
 
-  const CarTypeSelector = () => {
-    const [selectedCarType, setSelectedCarType] = useState('');
-  
-    const handleCarTypeChange = (event) => {
-      setSelectedCarType(event.target.value);
-    };
+  const [selectedCarType, setSelectedCarType] = useState("");
+
+  const handleCarTypeChange = (event) => {
+    setSelectedCarType(event.target.value);
+  };
 
   return (
     <>
@@ -154,8 +153,11 @@ function HirerDetails() {
                       },
                     }}
                   /> */}
-                    <Form.Select value={selectedCarType}
-                onChange={handleCarTypeChange} aria-label="Select car type">
+                    <Form.Select
+                      value={selectedCarType}
+                      onChange={handleCarTypeChange}
+                      aria-label="Select car type"
+                    >
                       <option>CAR TYPE</option>
                       <option value="convertible">Convertible</option>
                       <option value="hatchback">Hatchback</option>
