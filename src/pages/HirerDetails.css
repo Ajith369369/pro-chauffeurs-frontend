@@ -5,8 +5,12 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  background-color: black;
+  color: white;
+  font-family: "Lora", serif;
+  /* font-family: "Inter", sans-serif; */
 }
-
+  
 #hirer_details > div {
   width: 100vw;
 }
