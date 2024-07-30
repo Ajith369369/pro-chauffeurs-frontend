@@ -1,5 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import "./HirerDetails.css";
 
 function HirerDetails() {
   // State Initialization
@@ -13,7 +14,7 @@ function HirerDetails() {
 
   return (
     <>
-      <div className="container-fluid w-100">
+      <div id="hirer_details" className="container-fluid w-100">
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
           <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-center align-items-center">
@@ -26,7 +27,38 @@ function HirerDetails() {
                     value={formState.passenger_name || ""}
                     className="w-100"
                     id="outlined-basic"
-                    label="Passenger Name"
+                    label="PASSENGER NAME"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                <TextField
+                    name="passenger_name"
+                    value={formState.passenger_name || ""}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="EMAIL"
                     variant="outlined"
                     sx={{
                       // Root class for the input field
@@ -51,11 +83,103 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group"></div>
-                <div className="form-group"></div>
                 <div className="form-group">
-                  <div></div>
-                  <div></div>
+                <TextField
+                    name="passenger_name"
+                    value={formState.passenger_name || ""}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="MOBILE NUMBER"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "black",
+                        fontSize: "16px",
+                      },
+                    }}
+                  />
+                </div>
+                <div className="form-group d-flex flex-wrap justify-content-center align-items-center">
+                  <div>
+                  <TextField
+                    name="passenger_name"
+                    value={formState.passenger_name || ""}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR TYPE"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "black",
+                        fontSize: "16px",
+                      },
+                    }}
+                  />
+                  </div>
+                  <div>
+                  <TextField
+                    name="passenger_name"
+                    value={formState.passenger_name || ""}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR NUMBER"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "black",
+                        fontSize: "16px",
+                      },
+                    }}
+                  />
+                  </div>
+                </div>
+                <div>
+                  
                 </div>
               </form>
             </div>
