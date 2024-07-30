@@ -14,3 +14,15 @@
 #hirer_details > div {
   width: 100vw;
 }
+
+.custom-form-select {
+  background-color: black;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.custom-form-select option {
+  background-color: black;
+  color: white;
+  font-family: "Inter", sans-serif;
+}

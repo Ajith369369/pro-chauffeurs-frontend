@@ -2,8 +2,8 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import "./HirerDetails.css";
 
 function HirerDetails() {
@@ -24,7 +24,7 @@ function HirerDetails() {
 
   return (
     <>
-    <Header/>
+      <Header />
       <div id="hirer_details" className="container-fluid w-100">
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
@@ -64,6 +64,10 @@ function HirerDetails() {
                         color: "white",
                         fontSize: "16px",
                       },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
                     }}
                   />
                 </div>
@@ -99,6 +103,10 @@ function HirerDetails() {
                         color: "white",
                         fontSize: "16px",
                       },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
                     }}
                   />
                 </div>
@@ -133,6 +141,10 @@ function HirerDetails() {
                       "& .MuiInputLabel-outlined": {
                         color: "white",
                         fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
                       },
                     }}
                   />
@@ -212,6 +224,10 @@ function HirerDetails() {
                         "& .MuiInputLabel-outlined": {
                           color: "white",
                           fontSize: "16px",
+                        },
+                        // Change label color when focused
+                        "& .MuiInputLabel-outlined.Mui-focused": {
+                          color: "white",
                         },
                       }}
                     />
