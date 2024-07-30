@@ -1,7 +1,8 @@
 import TextField from "@mui/material/TextField";
+import Form from 'react-bootstrap/Form';
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import "./HirerDetails.css";
-import Button from 'react-bootstrap/Button';
 
 function HirerDetails() {
   // State Initialization
@@ -54,7 +55,7 @@ function HirerDetails() {
                   />
                 </div>
                 <div className="form-group my-4">
-                <TextField
+                  <TextField
                     name="email"
                     value={formState.email || ""}
                     className="w-100"
@@ -85,7 +86,7 @@ function HirerDetails() {
                   />
                 </div>
                 <div className="form-group my-4">
-                <TextField
+                  <TextField
                     name="mobile_number"
                     value={formState.mobile_number || ""}
                     className="w-100"
@@ -117,7 +118,7 @@ function HirerDetails() {
                 </div>
                 <div className="form-group my-4 d-flex flex-wrap justify-content-center align-items-center">
                   <div>
-                  <TextField
+                    {/* <TextField
                     name="passenger_name"
                     value={formState.passenger_name || ""}
                     className="w-100"
@@ -145,43 +146,55 @@ function HirerDetails() {
                         fontSize: "16px",
                       },
                     }}
-                  />
+                  /> */}
+                    <Form.Select aria-label="Default select example">
+                      <option>CAR TYPE</option>
+                      <option value="convertible">Convertible</option>
+                      <option value="hatchback">Hatchback</option>
+                      <option value="sedan">Sedan</option>
+                      <option value="suv">SUV</option>
+                      <option value="truck">Truck</option>
+                    </Form.Select>
                   </div>
                   <div>
-                  <TextField
-                    name="car_number"
-                    value={formState.car_number || ""}
-                    className="w-100"
-                    id="outlined-basic"
-                    label="CAR NUMBER"
-                    variant="outlined"
-                    sx={{
-                      // Root class for the input field
-                      "& .MuiOutlinedInput-root": {
-                        color: "#000000",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Class for the border around the input field
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                    <TextField
+                      name="car_number"
+                      value={formState.car_number || ""}
+                      className="w-100"
+                      id="outlined-basic"
+                      label="CAR NUMBER"
+                      variant="outlined"
+                      sx={{
+                        // Root class for the input field
+                        "& .MuiOutlinedInput-root": {
+                          color: "#000000",
+                          fontFamily: "Arial",
+                          fontWeight: "bold",
+                          height: "60px",
+                          alignItems: "center",
+                          paddingLeft: "5px",
+                          // Class for the border around the input field
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#000000",
+                            borderWidth: "1px",
+                          },
                         },
-                      },
-                      // Class for the label of the input field
-                      "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
-                      },
-                    }}
-                  />
+                        // Class for the label of the input field
+                        "& .MuiInputLabel-outlined": {
+                          color: "white",
+                          fontSize: "16px",
+                        },
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
-                <Button variant="light" sx={{ padding: '50px' }}>Back</Button>
-                <Button variant="light">Book Now</Button>
+                  <Button variant="light" size="lg">
+                    Back
+                  </Button>
+                  <Button variant="light" size="lg">
+                    Book Now
+                  </Button>
                 </div>
               </form>
             </div>
