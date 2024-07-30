@@ -122,7 +122,7 @@ function HirerDetails() {
                     }}
                   />
                 </div>
-                <div className="form-group my-4 d-flex flex-wrap justify-content-center align-items-center">
+                <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-center align-items-center">
                   <div>
                     {/* <TextField
                     name="passenger_name"
