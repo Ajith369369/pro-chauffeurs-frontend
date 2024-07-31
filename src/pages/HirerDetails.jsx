@@ -16,11 +16,60 @@ function HirerDetails() {
     car_number: "",
   });
 
-  const [selectedCarType, setSelectedCarType] = useState("");
-
-  const handleCarTypeChange = (event) => {
-    setSelectedCarType(event.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+
+  const validate = (e) => {
+    const data = e.target.value;
+    const name = e.target.name;
+
+    /* !!data.match(/^[0-9]*$/) ? (
+      setWeight(data),
+      setIsweight(true)
+    ) : name === 'height' ? (
+      setHeight(data),
+      setIsheight(true)
+    ) : null; */
+
+    if (data.match(/^[0-9]*$/)) {
+      if (name == "mobile_number") {
+        handleChange(e);
+        setFormState((prevState) => ({
+          ...prevState,
+          isweight: true,
+        }));
+      } else {
+        handleChange(e);
+        setFormState((prevState) => ({
+          ...prevState,
+          isheight: true,
+        }));
+      }
+    } else {
+      if (name == "mobile_number") {
+        handleChange(e);
+        setFormState((prevState) => ({
+          ...prevState,
+          isweight: false,
+        }));
+      } else {
+        handleChange(e);
+        setFormState((prevState) => ({
+          ...prevState,
+          isheight: false,
+        }));
+      }
+    }
+  };
+
+  /* const handleCarTypeChange = (event) => {
+    setSelectedCarType(event.target.value);
+  }; */
 
   return (
     <>
@@ -31,7 +80,7 @@ function HirerDetails() {
           <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h4 className="text-center my-5">Hirer Details</h4>
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="form-group my-4">
                   <TextField
                     name="passenger_name"
