@@ -66,7 +66,7 @@ const Login = () => {
               Back Home
             </h4>
           </Link>
-          <div className="bg-success p-3">
+          <div className="bg-dark p-3 border border-light">
             <Row>
               <Col
                 md={6}
@@ -79,7 +79,7 @@ const Login = () => {
                 className="p-5 d-flex justify-content-center text-light"
               >
                 <form className="w-100">
-                  <h4 className="text-center text-light">ProChauffeurs</h4>
+                  <h3 className="text-center text-light">ProChauffeurs</h3>
                   <h5 className="text-center">Sign In to Your Account</h5>
 
                   <div className="mb-3">
