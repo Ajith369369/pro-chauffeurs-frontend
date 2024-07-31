@@ -200,6 +200,11 @@ function HirerDetails() {
                       },
                     }}
                   />
+                  {!formState.ismobile_number && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
@@ -233,7 +238,7 @@ function HirerDetails() {
                     }}
                   /> */}
                     <Form.Select
-                    name="car_type"
+                      name="car_type"
                       value={formState.car_type || ""}
                       onChange={handleChange}
                       aria-label="Select car type"
@@ -286,6 +291,11 @@ function HirerDetails() {
                         },
                       }}
                     />
+                    {!formState.iscar_number && (
+                      <p className="text-danger fw-bold fs-5 me-auto">
+                        *Invalid Input
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
