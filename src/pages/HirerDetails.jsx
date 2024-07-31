@@ -69,9 +69,23 @@ function HirerDetails() {
     }
   };
 
-  /* const handleCarTypeChange = (event) => {
-    setSelectedCarType(event.target.value);
-  }; */
+  const handleSubmit = (e) => {
+    // Prevents form from reloading the page
+    e.preventDefault();
+    console.log(formState);
+
+    // Check if weight or height is zero
+    // if (formState.weight === "" || formState.height === "") {
+    if (!formState.passenger_name || !formState.email || !formState.mobile_number || !formState.car_type || !formState.car_number ) {
+      alert("Please fill the form completely.");
+    } /* else if (formState.weight === 0 || formState.height === 0){
+      alert("Please fill the form completely.");
+    } */
+    /* else {
+      // Calls the parent function to calculate BMI
+      onCalculate(formState.weight, formState.height);
+    } */
+  };
 
   return (
     <>
