@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ADMIN_USER } from '../constants';
+import { ADMIN_USER } from './constants';
 
 const Login = () => {
   const [username, setUsername] = useState('');
