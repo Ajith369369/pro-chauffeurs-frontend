@@ -181,7 +181,8 @@ function HirerDetails() {
                     }}
                   /> */}
                     <Form.Select
-                      value={selectedCarType}
+                    name="car_type"
+                      value={formState.car_type || ""}
                       onChange={handleCarTypeChange}
                       aria-label="Select car type"
                       className="custom-form-select"
