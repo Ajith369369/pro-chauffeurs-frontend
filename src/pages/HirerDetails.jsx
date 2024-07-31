@@ -208,35 +208,6 @@ function HirerDetails() {
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
-                    {/* <TextField
-                    name="passenger_name"
-                    value={formState.passenger_name || ""}
-                    className="w-100"
-                    id="outlined-basic"
-                    label="CAR TYPE"
-                    variant="outlined"
-                    sx={{
-                      // Root class for the input field
-                      "& .MuiOutlinedInput-root": {
-                        color: "#000000",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Class for the border around the input field
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
-                        },
-                      },
-                      // Class for the label of the input field
-                      "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
-                      },
-                    }}
-                  /> */}
                     <Form.Select
                       name="car_type"
                       value={formState.car_type || ""}
