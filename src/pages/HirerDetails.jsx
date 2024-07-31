@@ -14,6 +14,8 @@ function HirerDetails() {
     mobile_number: "",
     car_type: "",
     car_number: "",
+    ismobile_number: true,
+    iscar_number: true,
   });
 
   const handleChange = (e) => {
@@ -41,13 +43,13 @@ function HirerDetails() {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          isweight: true,
+          ismobile_number: true,
         }));
       } else {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          isheight: true,
+          iscar_number: true,
         }));
       }
     } else {
@@ -55,13 +57,13 @@ function HirerDetails() {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          isweight: false,
+          ismobile_number: false,
         }));
       } else {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          isheight: false,
+          iscar_number: false,
         }));
       }
     }
@@ -163,6 +165,7 @@ function HirerDetails() {
                   <TextField
                     name="mobile_number"
                     value={formState.mobile_number || ""}
+                    onChange={validate}
                     className="w-100"
                     id="outlined-basic"
                     label="MOBILE NUMBER"
@@ -232,7 +235,7 @@ function HirerDetails() {
                     <Form.Select
                     name="car_type"
                       value={formState.car_type || ""}
-                      onChange={handleCarTypeChange}
+                      onChange={handleChange}
                       aria-label="Select car type"
                       className="custom-form-select"
                     >
@@ -248,6 +251,7 @@ function HirerDetails() {
                     <TextField
                       name="car_number"
                       value={formState.car_number || ""}
+                      onChange={validate}
                       className="w-100"
                       id="outlined-basic"
                       label="CAR NUMBER"
