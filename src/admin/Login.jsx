@@ -2,12 +2,12 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/lock-icon.jpg";
 import { ADMIN_USER } from "./constants";
-import Button from "react-bootstrap/Button";
 
 const Login = () => {
   const [email_id, setUsername] = useState("");
@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      <h1>Login</h1>
+      {/* <h1>Login</h1>
       <input
         type="text"
         placeholder="Username"
@@ -50,8 +50,7 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Login</button>
-      {/*  */}
+      <button onClick={handleLogin}>Login</button> */}
 
       <div
         className="d-flex justify-content-center align-items-center"
@@ -93,6 +92,7 @@ const Login = () => {
                     <TextField
                       name="login_email"
                       // value={loginState.email || ""}
+                      onChange={(e) => setUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
@@ -137,6 +137,7 @@ const Login = () => {
                     <TextField
                       name="login_pswd"
                       // value={loginState.pswd || ""}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="w-100"
                       id="outlined-basic-2"
                       label="PASSWORD"
@@ -180,6 +181,7 @@ const Login = () => {
                       <Button
                         variant="light"
                         size="lg"
+                        onClick={handleLogin}
                         className="mb-3 w-100 rounded-0"
                         style={{ width: "150px" }}
                       >
