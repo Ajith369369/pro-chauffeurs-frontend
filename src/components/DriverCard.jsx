@@ -6,13 +6,13 @@ import "../components/DriverCard.css";
 function DriverCard() {
   const navigate = useNavigate();
 
-  const handleDriverClick = () => {
+  
+  const handleSelectDriverClick = () => {
     navigate("/hirerdetails");
   };
   return (
     <>
       <Card
-        onClick={handleDriverClick}
         style={{ width: "100%", backgroundColor: "black" }}
         className="mt-3  p-4 rounded-4 card"
       >
@@ -45,7 +45,7 @@ function DriverCard() {
           </Card.Text>
           <div className="d-flex align-items-center justify-content-center mt-4 ">
             {" "}
-            <Button
+            <Button onClick={handleSelectDriverClick}
               variant="light"
               className="px-4"
               style={{ backgroundColor: "white" }}
