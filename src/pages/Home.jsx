@@ -162,3 +162,14 @@ function Home() {
 }
 
 export default Home;
+import React from 'react'
+
+function Home() {
+  return (
+    <>
+    <h1 className='text-light'>Home</h1>
+    </>
+  )
+}
+
+export default Home
