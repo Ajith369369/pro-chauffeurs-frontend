@@ -10,22 +10,22 @@ import { ADMIN_USER } from "./constants";
 import Button from "react-bootstrap/Button";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email_id, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
-      (user) => user.username === username && user.password === password
+      (user) => user.email_id === email_id && user.password === password
     );
 
     if (
       user ||
-      (username === ADMIN_USER.username && password === ADMIN_USER.password)
+      (email_id === ADMIN_USER.email_id && password === ADMIN_USER.password)
     ) {
-      localStorage.setItem("currentUser", JSON.stringify({ username }));
-      if (username === ADMIN_USER.username) {
+      localStorage.setItem("currentUser", JSON.stringify({ email_id }));
+      if (email_id === ADMIN_USER.email_id) {
         navigate("/admin");
       } else {
         navigate("/");
@@ -41,7 +41,7 @@ const Login = () => {
       <input
         type="text"
         placeholder="Username"
-        value={username}
+        value={email_id}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
