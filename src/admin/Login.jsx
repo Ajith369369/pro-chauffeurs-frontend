@@ -141,6 +141,7 @@ const Login = () => {
                       className="w-100"
                       id="outlined-basic-2"
                       label="PASSWORD"
+                      type="password"
                       variant="outlined"
                       sx={{
                         // Root class for the input field

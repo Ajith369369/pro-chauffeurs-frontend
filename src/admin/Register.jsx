@@ -169,6 +169,7 @@ const Register = () => {
                       // value={loginState.pswd || ""}
                       onChange={(e) => setPassword(e.target.value)}
                       className="w-100"
+                      type="password"
                       id="outlined-basic-2"
                       label="PASSWORD"
                       variant="outlined"
