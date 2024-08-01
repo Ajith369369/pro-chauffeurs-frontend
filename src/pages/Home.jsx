@@ -31,9 +31,10 @@ function Home() {
                   <Nav.Link href="#services" className="text-white mx-3">
                     Services
                   </Nav.Link>
-                  <Nav.Link href="#contact" className="text-white ms-3">
+                  <Nav.Link href="#contact" className="text-white mx-3 me-4">
                     Contact Us
                   </Nav.Link>
+                  <Button className="bookbtn px-4 py-2">Login</Button>
                 </Nav>
               </Navbar.Collapse>
             </Container>
