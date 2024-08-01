@@ -1,8 +1,11 @@
+import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { deleteBookingDetailsOfAUserApi, getBookingDetailsOfAllUsersApi } from "../services/pro_allApi";
+import {
+  deleteBookingDetailsOfAUserApi,
+  getBookingDetailsOfAllUsersApi,
+} from "../services/pro_allApi";
 
 function Admin() {
   const [allUsers, setAllUsers] = useState([]);
@@ -14,7 +17,6 @@ function Admin() {
       setAllUsers(result.data);
     }
   };
-
 
   const handleDeleteUser = async (id) => {
     await deleteBookingDetailsOfAUserApi(id);
@@ -44,21 +46,23 @@ function Admin() {
                 <th>Sl. No.</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Timestamp</th>
-                <th>Action</th>
+                <th>Mobile No.</th>
+                <th>Service Type</th>
+                <th>Car Type</th>
+                <th>Car No.</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {allUsers?.map((item, index) => (
                 <tr key={id}>
                   <td>{index + 1}</td>
-                  <td>{item.caption}</td>
-                  <td>
-                    <Link to={item.url} target="_blank">
-                      {item.url}
-                    </Link>
-                  </td>
-                  <td>{item.timeStamp}</td>
+                  <td>{item.username}</td>
+                  <td>{item.email}</td>
+                  <td>{item.mobile_number}</td>
+                  <td>{item.service_type}</td>
+                  <td>{item.car_type}</td>
+                  <td>{item.car_number}</td>
                   <td>
                     <button
                       className="btn btn-danger"
