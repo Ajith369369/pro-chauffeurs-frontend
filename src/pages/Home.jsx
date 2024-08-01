@@ -90,7 +90,6 @@ function Home() {
           <Col md={10}>
             <Row>
               <h1
-                id="about"
                 className="Htitle d-flex justify-content-center align-items-center mb-4"
               >
                 About
@@ -154,7 +153,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 id="services" className="Htitle d-flex justify-content-center align-items-center mb-4">
+              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
                 Our Services
               </h1>
             </Row>
