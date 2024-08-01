@@ -2,14 +2,19 @@ import { Button, Col, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/ProChauffeursTransparent.png";
 import ClientRating from "../components/ClientRating";
 import Reasons from "../components/Reasons";
 import Services from "../components/Services";
 import "./Home.css";
-import { Link } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
   return (
     <>
       <div className="container-fluid">
@@ -26,16 +31,29 @@ function Home() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto text-white pb-4 text-sm-center">
-                  <Nav.Link href="#about" className="text-white mx-3">
+                  {/* <Nav.Link as={Link} to="/about" className="text-white mx-3">
                     About
-                  </Nav.Link>
-                  <Nav.Link href="#services" className="text-white mx-3">
+                  </Nav.Link> */}
+                  <Nav.Link
+                    as={Link}
+                    to="/services"
+                    className="text-white mx-3"
+                  >
                     Services
                   </Nav.Link>
-                  <Nav.Link href="#contact" className="text-white mx-3 me-4">
+                  <Nav.Link
+                    as={Link}
+                    to="/services"
+                    className="text-white mx-3 me-4"
+                  >
                     Contact Us
                   </Nav.Link>
-                  <Button className="bookbtn px-4 py-2">Login</Button>
+                  <Button
+                    className="bookbtn px-4 py-2"
+                    onClick={handleLoginClick}
+                  >
+                    Login
+                  </Button>
                 </Nav>
               </Navbar.Collapse>
             </Container>
