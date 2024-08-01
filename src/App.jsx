@@ -11,12 +11,18 @@ import BookRide from "./pages/BookRide";
 import DriverList from "./pages/DriverList";
 import HirerDetails from "./pages/HirerDetails";
 import Home from "./pages/Home";
+import Login from "./admin/Login";
+import Register from "./admin/Register";
+import Admin from "./admin/Admin";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/reasons" element={<Reasons />} />
