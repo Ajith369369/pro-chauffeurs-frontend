@@ -1,12 +1,17 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 import  '../components/DriverCard.css'
+import { useNavigate } from "react-router-dom";
 function DriverCard() {
+  const navigate = useNavigate();
+
+  const handleDriverClick = () => {
+    navigate("/hirerdetails");
+  };
   return (
     <>
-      <Card style={{ width: '100%', backgroundColor: 'black' }} className='mt-3  p-4 rounded-4 card'>
+      <Card onClick={handleDriverClick} style={{ width: '100%', backgroundColor: 'black' }} className='mt-3  p-4 rounded-4 card'>
         <div className='d-flex  align-items-center'>
           <img src="https://cms-assets.tutsplus.com/uploads/users/810/profiles/19338/profileImage/profile-square-extra-small.png" alt="" width={100} style={{ borderRadius: "50%" }} />
           <div className='ms-3'>

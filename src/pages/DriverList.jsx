@@ -1,4 +1,3 @@
-import React from 'react'
 import DriverCard from '../components/DriverCard'
 import   '../pages/DriverList.css'
 import { Button } from 'react-bootstrap'
