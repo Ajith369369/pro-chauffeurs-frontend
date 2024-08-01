@@ -28,7 +28,7 @@ function Admin() {
       <div className="row w-100 my-5">
         <div className="d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
-          <h5 className="mt-4">
+          <h5 className="mt-4 me-5">
             <Link
               to={"/home"}
               style={{ textDecoration: "none", color: "white" }}
