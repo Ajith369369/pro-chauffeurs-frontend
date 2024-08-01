@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
-import loginImage from "../assets/lock-icon.jpg";
+import loginImage from "../assets/favicon.jpeg";
 import { ADMIN_USER } from "./constants";
 
 const Login = () => {
