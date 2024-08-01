@@ -1,37 +1,36 @@
 .reasons-container {
-    padding: 20px;
-  }
-  
-  .reason-card {
-    width: 100%;
-    background: transparent !important;
-    border: none !important;
-    color: #fff !important;
-  }
-  
-  .reason-icon {
-    width: 70px !important;
-    margin-bottom: 20px !important;
-  }
-  
-  .reason-text {
-    font-family: "Inter", sans-serif !important;
-    font-weight: 300 !important;
-    font-size: 16px !important;
-  }
-  .title{
-    font-family: "Lora", serif !important;
-    font-size: 26px !important;
-    font-weight: 100 !important;
-  }
+  padding: 20px;
+}
 
+.reason-div {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
 
+.reason-icon {
+  width: 70px;
+  margin-bottom: 20px;
+}
 
+.reason-body {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
 
+.title {
+  font-family: "Lora", serif;
+  font-size: 26px;
+  font-weight: 100;
+}
 
 /* Media query for tablets and smaller screens */
 @media (max-width: 992px) {
-  .reason-card {
+  .reason-div {
     margin-bottom: 20px;
   }
 
@@ -39,14 +38,14 @@
     font-size: 18px;
   }
 
-  .reason-text {
+  .reason-body {
     font-size: 14px;
   }
 }
 
 /* Media query for mobile devices */
 @media (max-width: 576px) {
-  .reason-card {
+  .reason-div {
     margin-bottom: 15px;
     padding: 15px;
   }
@@ -60,7 +59,7 @@
     font-size: 16px;
   }
 
-  .reason-text {
+  .reason-body {
     font-size: 12px;
   }
 }
