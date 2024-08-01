@@ -29,7 +29,7 @@ function App() {
         <Route path="/clientrating" element={<ClientRating />} />
         <Route path="/header" element={<Header />} />
         <Route path="/footer" element={<Footer />} />
-        <Route path="/driverlist" element={<BookRide />} />
+        <Route path="/bookride" element={<BookRide />} />
         <Route path="/driverlist" element={<DriverList />} />
         <Route path="/drivercard" element={<DriverCard />} />
         <Route path="/hirerdetails" element={<HirerDetails />} />
