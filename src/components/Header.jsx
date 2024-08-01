@@ -15,9 +15,9 @@ function Header() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className='ms-auto'>
-                <Nav.Link className='navlink' as={Link} to={'/About'}>About</Nav.Link>
-                <Nav.Link className='navlink' as={Link} to={'/Services'}>Services</Nav.Link>
-                <Nav.Link className='navlink' as={Link} to={'/'}>Contact Us</Nav.Link>
+                <Nav.Link className='navlink' as={Link} to={'/about'}>About</Nav.Link>
+                <Nav.Link className='navlink' as={Link} to={'/services'}>Services</Nav.Link>
+                <Nav.Link className='navlink' as={Link} to={'/footer'}>Contact Us</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

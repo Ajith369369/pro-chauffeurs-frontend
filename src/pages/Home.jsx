@@ -35,16 +35,10 @@ function Home() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto text-white pb-4 text-sm-center">
-                  <Nav.Link
-                    href="#about"
-                    className="text-white mx-3"
-                  >
+                  <Nav.Link href="#about" className="text-white mx-3">
                     About
                   </Nav.Link>
-                  <Nav.Link
-                    href="#services"
-                    className="text-white mx-3"
-                  >
+                  <Nav.Link href="#services" className="text-white mx-3">
                     Services
                   </Nav.Link>
                   <Nav.Link
@@ -89,9 +83,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1
-                className="Htitle d-flex justify-content-center align-items-center mb-4"
-              >
+              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
                 About
               </h1>
             </Row>
@@ -149,20 +141,7 @@ function Home() {
       </div>
 
       <div className="container-fluid" id="services">
-        <Row className="BkGrnd2">
-          <Col md={1}></Col>
-          <Col md={10}>
-            <Row>
-              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
-                Our Services
-              </h1>
-            </Row>
-            <Row>
-              <Services />
-            </Row>
-          </Col>
-          <Col md={1}></Col>
-        </Row>
+        <Services />
       </div>
 
       <div className="container-fluid">
