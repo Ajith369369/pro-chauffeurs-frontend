@@ -30,7 +30,7 @@ function Admin() {
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
             <Link
-              to={"/home"}
+              to={"/"}
               style={{ textDecoration: "none", color: "white" }}
             >
               <FontAwesomeIcon icon={faHouse} className="me-2" />
