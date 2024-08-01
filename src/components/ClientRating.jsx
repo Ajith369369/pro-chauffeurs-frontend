@@ -22,7 +22,7 @@ function ClientRating() {
                 <Card.Body>
                   <Card.Title className="bg-dark rounded-5 text-light py-2 mx-3 paratxt"> John D</Card.Title>
                   <div className=" d-flex justify-content-center align items-center fs-5 py-2">
-                    <div class="checked"><FontAwesomeIcon icon={faStar} />
+                    <div className="checked"><FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
@@ -44,7 +44,7 @@ function ClientRating() {
                 <Card.Body>
                   <Card.Title className="bg-dark rounded-5 text-light py-2 mx-3 paratxt"> Sarah Thomas</Card.Title>
                   <div className=" d-flex justify-content-center align items-center fs-5 py-2">
-                    <div class="checked"><FontAwesomeIcon icon={faStar} />
+                    <div className="checked"><FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
@@ -64,7 +64,7 @@ function ClientRating() {
                 <Card.Body>
                   <Card.Title className="bg-dark rounded-5 text-light py-2 mx-3 paratxt"> Arjun Aravind</Card.Title>
                   <div className=" d-flex justify-content-center align items-center fs-5 py-2">
-                    <div class="checked"><FontAwesomeIcon icon={faStar} />
+                    <div className="checked"><FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
@@ -85,7 +85,7 @@ function ClientRating() {
                 <Card.Body>
                   <Card.Title className="bg-dark rounded-5 text-light py-2 mx-3 paratxt"> Anjali S</Card.Title>
                   <div className=" d-flex justify-content-center align items-center fs-5 py-2">
-                    <div class="checked"><FontAwesomeIcon icon={faStar} />
+                    <div className="checked"><FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />

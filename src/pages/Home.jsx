@@ -1,13 +1,12 @@
-import React from "react";
-import "./Home.css";
-import { Row, Col, Button } from "react-bootstrap";
-import Services from "../components/Services";
-import Reasons from "../components/Reasons";
-import ClientRating from "../components/ClientRating";
+import { Button, Col, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/ProChauffeursTransparent.png";
+import ClientRating from "../components/ClientRating";
+import Reasons from "../components/Reasons";
+import Services from "../components/Services";
+import "./Home.css";
 
 function Home() {
   return (
@@ -17,7 +16,11 @@ function Home() {
           <Navbar expand="lg" className="custom-navbar">
             <Container>
               <Navbar.Brand href="#home">
-                <img src={logo} alt="ProChauffeurs Logo" style={{ width: "160px" }}/>
+                <img
+                  src={logo}
+                  alt="ProChauffeurs Logo"
+                  style={{ width: "160px" }}
+                />
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -145,7 +148,7 @@ function Home() {
           <Col md={10}>
             <Row>
               <h1 className="Htitle d-flex justify-content-center align-items-center mb-4 text-center">
-                Don't believe us, <br />
+                Don&apos;t believe us, <br />
                 believe our clients
               </h1>
             </Row>
@@ -156,9 +159,8 @@ function Home() {
           <Col md={1}></Col>
         </Row>
       </div>
-      
     </>
   );
 }
 
-export default Home;import React from 'react'
+export default Home;
