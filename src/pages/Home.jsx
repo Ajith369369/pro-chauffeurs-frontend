@@ -7,6 +7,7 @@ import ClientRating from "../components/ClientRating";
 import Reasons from "../components/Reasons";
 import Services from "../components/Services";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
