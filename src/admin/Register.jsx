@@ -10,12 +10,13 @@ import loginImage from "../assets/favicon.jpeg";
 
 const Register = () => {
   const [username, setUsername] = useState("");
+  const [reg_email_id, setRegEmailId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({ username, password });
+    users.push({ username, reg_email_id, password });
     localStorage.setItem("users", JSON.stringify(users));
     navigate("/login");
   };
@@ -122,7 +123,7 @@ const Register = () => {
                     <TextField
                       name="login_email"
                       // value={loginState.email || ""}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => setRegEmailId(e.target.value)}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
