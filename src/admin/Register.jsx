@@ -23,7 +23,7 @@ const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>
+      {/* <h1>Register</h1>
       <input
         type="text"
         placeholder="Username"
@@ -36,8 +36,8 @@ const Register = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleRegister}>Register</button>
-      {/*  */}
+      <button onClick={handleRegister}>Register</button> */}
+
       <div
         className="d-flex justify-content-center align-items-center"
         style={{ width: "100%", height: "100vh" }}
