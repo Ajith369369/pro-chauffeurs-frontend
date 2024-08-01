@@ -36,15 +36,13 @@ function Home() {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto text-white pb-4 text-sm-center">
                   <Nav.Link
-                    as={Link}
-                    to={"#about-section"}
+                    href="#about"
                     className="text-white mx-3"
                   >
                     About
                   </Nav.Link>
                   <Nav.Link
-                    as={Link}
-                    to="/services"
+                    href="#services"
                     className="text-white mx-3"
                   >
                     Services
@@ -92,7 +90,7 @@ function Home() {
           <Col md={10}>
             <Row>
               <h1
-                id="about-section"
+                id="about"
                 className="Htitle d-flex justify-content-center align-items-center mb-4"
               >
                 About
@@ -156,7 +154,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
+              <h1 id="services" className="Htitle d-flex justify-content-center align-items-center mb-4">
                 Our Services
               </h1>
             </Row>
