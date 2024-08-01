@@ -100,7 +100,7 @@ const Login = () => {
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
-                          color: "#000000",
+                          color: "#ffffff",
                           fontFamily: "Arial",
                           fontWeight: "bold",
                           height: "60px",
@@ -144,7 +144,7 @@ const Login = () => {
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
-                          color: "#000000",
+                          color: "#ffffff",
                           fontFamily: "Arial",
                           fontWeight: "bold",
                           height: "60px",
