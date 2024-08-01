@@ -12,8 +12,12 @@ import "./Home.css";
 function Home() {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  const handleLoginClick_1 = () => {
     navigate("/login");
+  };
+
+  const handleLoginClick_2 = () => {
+    navigate("/bookride");
   };
   return (
     <>
@@ -50,7 +54,7 @@ function Home() {
                   </Nav.Link>
                   <Button
                     className="bookbtn px-4 py-2"
-                    onClick={handleLoginClick}
+                    onClick={handleLoginClick_1}
                   >
                     Login
                   </Button>
@@ -68,7 +72,7 @@ function Home() {
               Elevate your travel experience <br />
               with our transportation services
             </p>
-            <Button className="bookbtn mt-3 px-5 py-3">BOOK NOW</Button>
+            <Button className="bookbtn mt-3 px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
           </Col>
         </Row>
       </div>
@@ -117,7 +121,7 @@ function Home() {
                 </p>
               </Col>
               <Col md={6} className="text-center text-md-end pe-md-5">
-                <Button className="bookbtn px-5 py-3">BOOK NOW</Button>
+                <Button className="bookbtn px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
               </Col>
             </Row>
           </Col>
@@ -155,7 +159,7 @@ function Home() {
               <Reasons />
             </Row>
             <div className="d-flex justify-content-center align-items-center mt-5">
-              <Button className="bookbtn mt-3 px-5 py-3">BOOK NOW</Button>
+              <Button className="bookbtn mt-3 px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
             </div>
           </Col>
           <Col md={1}></Col>
