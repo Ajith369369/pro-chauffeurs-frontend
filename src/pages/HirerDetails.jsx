@@ -5,8 +5,20 @@ import Form from "react-bootstrap/Form";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./HirerDetails.css";
+import { useNavigate } from "react-router-dom";
 
 function HirerDetails() {
+
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate("/driverlist");
+  };
+
+  const handleBookNowClick = () => {
+    navigate("/");
+  };
+
   // State Initialization
   const [formState, setFormState] = useState({
     passenger_name: "",
@@ -284,7 +296,7 @@ function HirerDetails() {
                   </div>
                 </div>
                 <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
-                  <Button
+                  <Button onClick={handleBackClick}
                     variant="light"
                     size="lg"
                     className="mb-5"
@@ -292,7 +304,7 @@ function HirerDetails() {
                   >
                     Back
                   </Button>
-                  <Button
+                  <Button onClick={handleBookNowClick}
                     variant="light"
                     size="lg"
                     className="mb-5"

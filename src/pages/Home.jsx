@@ -2,6 +2,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/ProChauffeursTransparent.png";
 import ClientRating from "../components/ClientRating";
 import Reasons from "../components/Reasons";
@@ -9,6 +10,15 @@ import Services from "../components/Services";
 import "./Home.css";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleLoginClick_1 = () => {
+    navigate("/login");
+  };
+
+  const handleLoginClick_2 = () => {
+    navigate("/bookride");
+  };
   return (
     <>
       <div className="container-fluid">
@@ -25,16 +35,31 @@ function Home() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto text-white pb-4 text-sm-center">
-                  <Nav.Link href="#about" className="text-white mx-3">
+                  <Nav.Link
+                    href="#about"
+                    className="text-white mx-3"
+                  >
                     About
                   </Nav.Link>
-                  <Nav.Link href="#services" className="text-white mx-3">
+                  <Nav.Link
+                    href="#services"
+                    className="text-white mx-3"
+                  >
                     Services
                   </Nav.Link>
-                  <Nav.Link href="#contact" className="text-white mx-3 me-4">
+                  <Nav.Link
+                    as={Link}
+                    to="/footer"
+                    className="text-white mx-3 me-4"
+                  >
                     Contact Us
                   </Nav.Link>
-                  <Button className="bookbtn px-4 py-2">Login</Button>
+                  <Button
+                    className="bookbtn px-4 py-2"
+                    onClick={handleLoginClick_1}
+                  >
+                    Login
+                  </Button>
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -49,7 +74,12 @@ function Home() {
               Elevate your travel experience <br />
               with our transportation services
             </p>
-            <Button className="bookbtn mt-3 px-5 py-3">BOOK NOW</Button>
+            <Button
+              className="bookbtn mt-3 px-5 py-3"
+              onClick={handleLoginClick_2}
+            >
+              BOOK NOW
+            </Button>
           </Col>
         </Row>
       </div>
@@ -58,6 +88,14 @@ function Home() {
         <Row className="BkGrnd">
           <Col md={1}></Col>
           <Col md={10}>
+            <Row>
+              <h1
+                id="about"
+                className="Htitle d-flex justify-content-center align-items-center mb-4"
+              >
+                About
+              </h1>
+            </Row>
             <Row>
               <Col md={6} className="pb-5 mb-5 pe-5 smallscreen">
                 <h2 className="Htitle">
@@ -98,7 +136,12 @@ function Home() {
                 </p>
               </Col>
               <Col md={6} className="text-center text-md-end pe-md-5">
-                <Button className="bookbtn px-5 py-3">BOOK NOW</Button>
+                <Button
+                  className="bookbtn px-5 py-3"
+                  onClick={handleLoginClick_2}
+                >
+                  BOOK NOW
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -111,7 +154,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
+              <h1 id="services" className="Htitle d-flex justify-content-center align-items-center mb-4">
                 Our Services
               </h1>
             </Row>
@@ -136,7 +179,12 @@ function Home() {
               <Reasons />
             </Row>
             <div className="d-flex justify-content-center align-items-center mt-5">
-              <Button className="bookbtn mt-3 px-5 py-3">BOOK NOW</Button>
+              <Button
+                className="bookbtn mt-3 px-5 py-3"
+                onClick={handleLoginClick_2}
+              >
+                BOOK NOW
+              </Button>
             </div>
           </Col>
           <Col md={1}></Col>
