@@ -27,8 +27,8 @@ function Admin() {
     <>
       <div className="row w-100 my-5">
         <div className="d-flex justify-content-between p-md-5">
-          <h3 className="text-light">Dashboard</h3>
-          <h5>
+          <h1 className="text-light ms-5">Dashboard</h1>
+          <h5 className="mt-4">
             <Link
               to={"/home"}
               style={{ textDecoration: "none", color: "white" }}
@@ -38,8 +38,8 @@ function Admin() {
             </Link>
           </h5>
         </div>
-        <div className="col-md-2"></div>
-        <div className="col-md-8">
+        <div className="col-md-1"></div>
+        <div className="col-md-10">
           <table className="table">
             <thead>
               <tr>
@@ -77,7 +77,7 @@ function Admin() {
           </table>
           : <p className="text-danger fs-3">No Booking Details</p>
         </div>
-        <div className="col-md-2"></div>
+        <div className="col-md-1"></div>
       </div>
     </>
   );
