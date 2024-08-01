@@ -35,9 +35,13 @@ function Home() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto text-white pb-4 text-sm-center">
-                  {/* <Nav.Link as={Link} to="/about" className="text-white mx-3">
+                  <Nav.Link
+                    as={Link}
+                    to={"#about-section"}
+                    className="text-white mx-3"
+                  >
                     About
-                  </Nav.Link> */}
+                  </Nav.Link>
                   <Nav.Link
                     as={Link}
                     to="/services"
@@ -47,7 +51,7 @@ function Home() {
                   </Nav.Link>
                   <Nav.Link
                     as={Link}
-                    to="/services"
+                    to="/footer"
                     className="text-white mx-3 me-4"
                   >
                     Contact Us
@@ -72,7 +76,12 @@ function Home() {
               Elevate your travel experience <br />
               with our transportation services
             </p>
-            <Button className="bookbtn mt-3 px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
+            <Button
+              className="bookbtn mt-3 px-5 py-3"
+              onClick={handleLoginClick_2}
+            >
+              BOOK NOW
+            </Button>
           </Col>
         </Row>
       </div>
@@ -81,6 +90,14 @@ function Home() {
         <Row className="BkGrnd">
           <Col md={1}></Col>
           <Col md={10}>
+            <Row>
+              <h1
+                id="about-section"
+                className="Htitle d-flex justify-content-center align-items-center mb-4"
+              >
+                About
+              </h1>
+            </Row>
             <Row>
               <Col md={6} className="pb-5 mb-5 pe-5 smallscreen">
                 <h2 className="Htitle">
@@ -121,7 +138,12 @@ function Home() {
                 </p>
               </Col>
               <Col md={6} className="text-center text-md-end pe-md-5">
-                <Button className="bookbtn px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
+                <Button
+                  className="bookbtn px-5 py-3"
+                  onClick={handleLoginClick_2}
+                >
+                  BOOK NOW
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -159,7 +181,12 @@ function Home() {
               <Reasons />
             </Row>
             <div className="d-flex justify-content-center align-items-center mt-5">
-              <Button className="bookbtn mt-3 px-5 py-3" onClick={handleLoginClick_2}>BOOK NOW</Button>
+              <Button
+                className="bookbtn mt-3 px-5 py-3"
+                onClick={handleLoginClick_2}
+              >
+                BOOK NOW
+              </Button>
             </div>
           </Col>
           <Col md={1}></Col>
