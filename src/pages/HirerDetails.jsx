@@ -22,9 +22,12 @@ function HirerDetails() {
     passenger_name: "",
     email: "",
     mobile_number: "",
-    car_type: "",
+    car_make: "",
+    car_model: "",
     reg_number: "",
     ismobile_number: true,
+    iscar_make: true,
+    iscar_model: true,
     isreg_number: true,
   });
 
@@ -236,8 +239,96 @@ function HirerDetails() {
                     </p>
                   )}
                 </div>
-                <div className="form-group my-4"></div>
-                <div className="form-group my-4"></div>
+                <div className="form-group my-4">
+                <TextField
+                    name="car_make"
+                    value={formState.car_make || ""}
+                    onChange={validate}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR'S MAKE"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                  {!formState.iscar_make && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
+                </div>
+                <div className="form-group my-4">
+                <TextField
+                    name="car_model"
+                    value={formState.car_model || ""}
+                    onChange={validate}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR'S MODEL"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                  {!formState.iscar_model && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
+                </div>
                 <div className="form-group my-4">
                   <TextField
                     name="reg_number"
