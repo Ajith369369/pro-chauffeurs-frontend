@@ -110,7 +110,7 @@ function HirerDetails() {
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
           <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center border border-light">
+            <div className="d-flex flex-column justify-content-center align-items-center border border-light cp">
               <h4 className="text-center my-5">Hirer Details</h4>
               <form onSubmit={handleSubmit}>
                 <div className="form-group my-4">
