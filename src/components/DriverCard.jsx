@@ -6,7 +6,7 @@ import "../components/DriverCard.css";
 function DriverCard() {
   const navigate = useNavigate();
 
- /*  const handleBackClick = () => {
+  /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
   const handleSelectDriverClick = () => {
