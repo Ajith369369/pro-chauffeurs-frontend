@@ -16,7 +16,8 @@
 }
 
 .cp {
-  width: 400px;
+  /* max-width: 400px; */
+  flex: 1;
   padding: 0 10px;
 }
 
@@ -34,4 +35,20 @@ form {
   background-color: white;
   color: black;
   font-family: "Inter", sans-serif;
+}
+
+.back, .book {
+  margin: 0px 15px;
+}
+
+@media (max-width: 438px) {
+  .back, .book {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 439px) {
+  .back, .book {
+    width: 150px;
+  }
 }

@@ -240,7 +240,7 @@ function HirerDetails() {
                   )}
                 </div>
                 <div className="form-group my-4">
-                <TextField
+                  <TextField
                     name="car_make"
                     value={formState.car_make || ""}
                     onChange={validate}
@@ -285,7 +285,7 @@ function HirerDetails() {
                   )}
                 </div>
                 <div className="form-group my-4">
-                <TextField
+                  <TextField
                     name="car_model"
                     value={formState.car_model || ""}
                     onChange={validate}
@@ -394,13 +394,12 @@ function HirerDetails() {
                   <div className="ms-2">
                   </div>
                 </div> */}
-                <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
+                <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
                   <Button
                     onClick={handleBackClick}
                     variant="light"
                     size="lg"
-                    className="mb-5 me-2"
-                    style={{ width: "150px" }}
+                    className="mb-5 back"
                   >
                     Back
                   </Button>
@@ -408,8 +407,7 @@ function HirerDetails() {
                     onClick={handleBookNowClick}
                     variant="light"
                     size="lg"
-                    className="mb-5 ms-2"
-                    style={{ width: "150px" }}
+                    className="mb-5 book"
                   >
                     Book Now
                   </Button>
