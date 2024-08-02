@@ -7,6 +7,9 @@ function DriverList() {
   const handleDriverClick = () => {
     navigate("/drivercard");
   };
+  const handleBackClick = () => {
+    navigate("/bookride");
+  };
   return (
     <>
     <div className='driverlist px-3 px-md-5 py-5'>
@@ -32,9 +35,9 @@ function DriverList() {
         <DriverCard/>
         </div>
       </div>
-      <div className='mt-5 d-flex justify-content-between  '>
-      <Button variant="light" className='px-4 me-' style={{ backgroundColor: "white" }}>Back</Button>
-      <Button variant="light" className='px-4' style={{ backgroundColor: "white" }}>Next</Button>
+      <div className='mt-5 d-flex justify-content-center  '>
+      <Button variant="light" onClick={handleBackClick} className='px-4 mb-5' style={{ backgroundColor: "white", width: "150px" }}>Back</Button>
+      {/* <Button variant="light" className='px-4' style={{ backgroundColor: "white" }}>Next</Button> */}
       </div>
       </div>
     </div>
