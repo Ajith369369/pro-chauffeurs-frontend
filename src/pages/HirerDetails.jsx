@@ -1,14 +1,12 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./HirerDetails.css";
-import { useNavigate } from "react-router-dom";
 
 function HirerDetails() {
-
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -24,10 +22,13 @@ function HirerDetails() {
     passenger_name: "",
     email: "",
     mobile_number: "",
-    car_type: "",
-    car_number: "",
+    car_make: "",
+    car_model: "",
+    reg_number: "",
     ismobile_number: true,
-    iscar_number: true,
+    iscar_make: true,
+    iscar_model: true,
+    isreg_number: true,
   });
 
   const handleChange = (e) => {
@@ -61,7 +62,7 @@ function HirerDetails() {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          iscar_number: true,
+          isreg_number: true,
         }));
       }
     } else {
@@ -75,7 +76,7 @@ function HirerDetails() {
         handleChange(e);
         setFormState((prevState) => ({
           ...prevState,
-          iscar_number: false,
+          isreg_number: false,
         }));
       }
     }
@@ -88,7 +89,13 @@ function HirerDetails() {
 
     // Check if weight or height is zero
     // if (formState.weight === "" || formState.height === "") {
-    if (!formState.passenger_name || !formState.email || !formState.mobile_number || !formState.car_type || !formState.car_number ) {
+    if (
+      !formState.passenger_name ||
+      !formState.email ||
+      !formState.mobile_number ||
+      !formState.car_type ||
+      !formState.reg_number
+    ) {
       alert("Please fill the form completely.");
     } /* else if (formState.weight === 0 || formState.height === 0){
       alert("Please fill the form completely.");
@@ -106,7 +113,7 @@ function HirerDetails() {
         <div className="row">
           <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
           <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="d-flex flex-column justify-content-center align-items-center border border-light cp">
               <h4 className="text-center my-5">Hirer Details</h4>
               <form onSubmit={handleSubmit}>
                 <div className="form-group my-4">
@@ -232,7 +239,142 @@ function HirerDetails() {
                     </p>
                   )}
                 </div>
-                <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
+                <div className="form-group my-4">
+                  <TextField
+                    name="car_make"
+                    value={formState.car_make || ""}
+                    onChange={validate}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR'S MAKE"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                  {!formState.iscar_make && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
+                </div>
+                <div className="form-group my-4">
+                  <TextField
+                    name="car_model"
+                    value={formState.car_model || ""}
+                    onChange={validate}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR'S MODEL"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                  {!formState.iscar_model && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
+                </div>
+                <div className="form-group my-4">
+                  <TextField
+                    name="reg_number"
+                    value={formState.reg_number || ""}
+                    onChange={validate}
+                    className="w-100"
+                    id="outlined-basic"
+                    label="CAR'S REGISTRATION NUMBER"
+                    variant="outlined"
+                    sx={{
+                      // Root class for the input field
+                      "& .MuiOutlinedInput-root": {
+                        color: "#000000",
+                        fontFamily: "Arial",
+                        fontWeight: "bold",
+                        height: "60px",
+                        alignItems: "center",
+                        paddingLeft: "5px",
+                        // Class for the border around the input field
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#000000",
+                          borderWidth: "1px",
+                        },
+                        // Change border color when focused
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                        },
+                      },
+                      // Class for the label of the input field
+                      "& .MuiInputLabel-outlined": {
+                        color: "white",
+                        fontSize: "16px",
+                      },
+                      // Change label color when focused
+                      "& .MuiInputLabel-outlined.Mui-focused": {
+                        color: "white",
+                      },
+                    }}
+                  />
+                  {!formState.isreg_number && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
+                </div>
+                {/* <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
                     <Form.Select
                       name="car_type"
@@ -250,65 +392,22 @@ function HirerDetails() {
                     </Form.Select>
                   </div>
                   <div className="ms-2">
-                    <TextField
-                      name="car_number"
-                      value={formState.car_number || ""}
-                      onChange={validate}
-                      className="w-100"
-                      id="outlined-basic"
-                      label="CAR NUMBER"
-                      variant="outlined"
-                      sx={{
-                        // Root class for the input field
-                        "& .MuiOutlinedInput-root": {
-                          color: "#000000",
-                          fontFamily: "Arial",
-                          fontWeight: "bold",
-                          height: "60px",
-                          alignItems: "center",
-                          paddingLeft: "5px",
-                          // Class for the border around the input field
-                          "& .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "#000000",
-                            borderWidth: "1px",
-                          },
-                          // Change border color when focused
-                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "#ffffff",
-                          },
-                        },
-                        // Class for the label of the input field
-                        "& .MuiInputLabel-outlined": {
-                          color: "white",
-                          fontSize: "16px",
-                        },
-                        // Change label color when focused
-                        "& .MuiInputLabel-outlined.Mui-focused": {
-                          color: "white",
-                        },
-                      }}
-                    />
-                    {!formState.iscar_number && (
-                      <p className="text-danger fw-bold fs-5 me-auto">
-                        *Invalid Input
-                      </p>
-                    )}
                   </div>
-                </div>
-                <div className="form-group ps-2 pe-2 my-4 d-flex flex-wrap justify-content-between align-items-center">
-                  <Button onClick={handleBackClick}
+                </div> */}
+                <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
+                  <Button
+                    onClick={handleBackClick}
                     variant="light"
                     size="lg"
-                    className="mb-5"
-                    style={{ width: "150px" }}
+                    className="mb-5 back"
                   >
                     Back
                   </Button>
-                  <Button onClick={handleBookNowClick}
+                  <Button
+                    onClick={handleBookNowClick}
                     variant="light"
                     size="lg"
-                    className="mb-5"
-                    style={{ width: "150px" }}
+                    className="mb-5 book"
                   >
                     Book Now
                   </Button>
