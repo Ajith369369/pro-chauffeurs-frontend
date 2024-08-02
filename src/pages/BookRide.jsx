@@ -1,17 +1,57 @@
+// useDispatch, useSelector: Importing hooks from react-redux to interact with the Redux store.
+// useNavigate: Importing the hook from react-router-dom for navigation.
+// updateFormffState: Importing the action creator from the formSlice
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
+// import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { updateBookingFormState } from "../redux/slices/hirerDetailsSlice";
 import "./BookRide.css";
 
 function BookRide() {
+  // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
+  const dispatch = useDispatch();
+
+  // Setting up the navigate function from react-router-dom. This function is used for programmatic navigation within the application.
   const navigate = useNavigate();
+
+  // Accessing the formffState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
+  const bookingFormState = useSelector((state) => state.form.bookingFormState);
+
+  // Handling changes in the input fields. The handleChange function updates the bookingFormState.
+  // handleChange is a function that updates the state in the Redux store whenever an input field changes.
+  // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateBookingFormState({ [name]: value }));
+  };
+
+  /*   const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }; */
 
   const handleBackClick = () => {
     navigate("/");
   };
+
+  // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
+  //It prevents the default form submission behavior (e.preventDefault()).
+  // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
+  /*   const handleNext = (e) => {
+    e.preventDefault();
+    if (!bookingFormState.service_type) {
+      alert("Please fill the form completely.");
+    } else {
+      navigate("/driverlist");
+    }
+  }; */
 
   const handleBookNowClick = () => {
     navigate("/driverlist");
@@ -30,14 +70,6 @@ function BookRide() {
     iscar_model: true,
     isreg_number: true,
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const validate = (e) => {
     const data = e.target.value;
