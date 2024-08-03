@@ -44,18 +44,18 @@ function BookRide() {
   // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
   //It prevents the default form submission behavior (e.preventDefault()).
   // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
-  /*   const handleNext = (e) => {
+    const handleBookNowClick = (e) => {
     e.preventDefault();
     if (!bookingFormState.service_type) {
       alert("Please fill the form completely.");
     } else {
-      navigate("/driverlist");
+      navigate("/");
     }
-  }; */
-
-  const handleBookNowClick = () => {
-    navigate("/");
   };
+
+  /* const handleBookNowClick = () => {
+    navigate("/");
+  }; */
 
   // State Initialization
   /* const [formState, setFormState] = useState({
