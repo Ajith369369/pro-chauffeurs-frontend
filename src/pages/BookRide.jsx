@@ -13,7 +13,7 @@ import "./BookRide.css";
 
 function BookRide() {
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // Setting up the navigate function from react-router-dom. This function is used for programmatic navigation within the application.
   const navigate = useNavigate();
