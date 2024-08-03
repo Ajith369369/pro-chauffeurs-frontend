@@ -1,109 +1,52 @@
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./HirerDetails.css";
+import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 
 function HirerDetails() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const hirerFormState = useSelector((state) => state.form.hirerFormState);
 
   const handleBackClick = () => {
     navigate("/");
   };
 
-  const handleBookNowClick = () => {
-    navigate("/driverlist");
-  };
-
-  // State Initialization
-  const [formState, setFormState] = useState({
-    passenger_name: "",
-    email: "",
-    mobile_number: "",
-    car_make: "",
-    car_model: "",
-    reg_number: "",
-    ismobile_number: true,
-    iscar_make: true,
-    iscar_model: true,
-    isreg_number: true,
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    dispatch(updateHirerFormState({ [name]: value }));
   };
 
-  const validate = (e) => {
-    const data = e.target.value;
-    const name = e.target.name;
+/*   const validate = (e) => {
+    const { name, value } = e.target;
 
-    /* !!data.match(/^[0-9]*$/) ? (
-      setWeight(data),
-      setIsweight(true)
-    ) : name === 'height' ? (
-      setHeight(data),
-      setIsheight(true)
-    ) : null; */
-
-    if (data.match(/^[0-9]*$/)) {
-      if (name == "mobile_number") {
-        handleChange(e);
-        setFormState((prevState) => ({
-          ...prevState,
-          ismobile_number: true,
-        }));
-      } else {
-        handleChange(e);
-        setFormState((prevState) => ({
-          ...prevState,
-          isreg_number: true,
-        }));
-      }
+    if (name === "mobile_number" || name === "reg_number") {
+      const isNumber = /^[0-9]*$/.test(value);
+      dispatch(updateHirerFormState({ [name]: value }));
+      dispatch(updateHirerFormState({ [`is${name}`]: isNumber }));
     } else {
-      if (name == "mobile_number") {
-        handleChange(e);
-        setFormState((prevState) => ({
-          ...prevState,
-          ismobile_number: false,
-        }));
-      } else {
-        handleChange(e);
-        setFormState((prevState) => ({
-          ...prevState,
-          isreg_number: false,
-        }));
-      }
+      dispatch(updateHirerFormState({ [name]: value }));
     }
-  };
+  }; */
 
   const handleSubmit = (e) => {
-    // Prevents form from reloading the page
     e.preventDefault();
-    console.log(formState);
-
-    // Check if weight or height is zero
-    // if (formState.weight === "" || formState.height === "") {
     if (
-      !formState.passenger_name ||
-      !formState.email ||
-      !formState.mobile_number ||
-      !formState.car_type ||
-      !formState.reg_number
+      !hirerFormState.passenger_name ||
+      !hirerFormState.email ||
+      !hirerFormState.mobile_number ||
+      !hirerFormState.car_make ||
+      !hirerFormState.car_model ||
+      !hirerFormState.reg_number
     ) {
       alert("Please fill the form completely.");
-    } /* else if (formState.weight === 0 || formState.height === 0){
-      alert("Please fill the form completely.");
-    } */
-    /* else {
-      // Calls the parent function to calculate BMI
-      onCalculate(formState.weight, formState.height);
-    } */
+    } else {
+      navigate("/driverlist", { state: { hirerFormState } });
+    }
   };
 
   return (
@@ -119,7 +62,8 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="passenger_name"
-                    value={formState.passenger_name || ""}
+                    value={hirerFormState.passenger_name || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="PASSENGER NAME"
@@ -158,8 +102,8 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="email"
-                    value={formState.email || ""}
-                    className="w-100"
+                    value={hirerFormState.email || ""}
+                    onChange={handleChange}                     className="w-100"
                     id="outlined-basic"
                     label="EMAIL"
                     variant="outlined"
@@ -197,9 +141,9 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="mobile_number"
-                    value={formState.mobile_number || ""}
-                    onChange={validate}
-                    className="w-100"
+                    value={hirerFormState.mobile_number || ""}
+                    
+                    onChange={handleChange}                     className="w-100"
                     id="outlined-basic"
                     label="MOBILE NUMBER"
                     variant="outlined"
@@ -233,7 +177,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!formState.ismobile_number && (
+                  {!hirerFormState.ismobile_number && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -242,8 +186,8 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="car_make"
-                    value={formState.car_make || ""}
-                    onChange={validate}
+                    value={hirerFormState.car_make || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="CAR'S MAKE"
@@ -278,7 +222,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!formState.iscar_make && (
+                  {!hirerFormState.iscar_make && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -287,8 +231,8 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="car_model"
-                    value={formState.car_model || ""}
-                    onChange={validate}
+                    value={hirerFormState.car_model || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="CAR'S MODEL"
@@ -323,7 +267,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!formState.iscar_model && (
+                  {!hirerFormState.iscar_model && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -332,8 +276,8 @@ function HirerDetails() {
                 <div className="form-group my-4">
                   <TextField
                     name="reg_number"
-                    value={formState.reg_number || ""}
-                    onChange={validate}
+                    value={hirerFormState.reg_number || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="CAR'S REGISTRATION NUMBER"
@@ -368,7 +312,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!formState.isreg_number && (
+                  {!hirerFormState.isreg_number && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -378,7 +322,7 @@ function HirerDetails() {
                   <div className="me-2">
                     <Form.Select
                       name="car_type"
-                      value={formState.car_type || ""}
+                      value={hirerFormState.car_type || ""}
                       onChange={handleChange}
                       aria-label="Select car type"
                       className="custom-form-select"
@@ -404,10 +348,9 @@ function HirerDetails() {
                     Back
                   </Button>
                   <Button
-                    onClick={handleBookNowClick}
                     variant="light"
                     size="lg"
-                    className="mb-5 book"
+                    className="mb-5 book" type="submit"
                   >
                     Next
                   </Button>

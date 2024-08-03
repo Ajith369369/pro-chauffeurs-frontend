@@ -10,6 +10,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { updateBookingFormState } from "../redux/slices/hirerDetailsSlice";
 import "./BookRide.css";
+import { addBookingDetailsOfAUserApi } from "../services/pro_allApi";
+
 
 function BookRide() {
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
@@ -18,7 +20,9 @@ function BookRide() {
   // Setting up the navigate function from react-router-dom. This function is used for programmatic navigation within the application.
   const navigate = useNavigate();
 
-  // Accessing the formffState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
+  // Accessing the bookingFormState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
+  const hirerFormState = useSelector((state) => state.form.hirerFormState);
+  const driverFormState = useSelector((state) => state.form.driverFormState);
   const bookingFormState = useSelector((state) => state.form.bookingFormState);
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
@@ -44,51 +48,26 @@ function BookRide() {
   // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
   //It prevents the default form submission behavior (e.preventDefault()).
   // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
-    const handleBookNowClick = (e) => {
+/*     const handleBookNowClick = (e) => {
     e.preventDefault();
     if (!bookingFormState.service_type) {
       alert("Please fill the form completely.");
     } else {
+
       navigate("/");
     }
-  };
-
-  /* const handleBookNowClick = () => {
-    navigate("/");
   }; */
 
-  // State Initialization
-  /* const [formState, setFormState] = useState({
-    passenger_name: "",
-    email: "",
-    mobile_number: "",
-    car_make: "",
-    car_model: "",
-    reg_number: "",
-    ismobile_number: true,
-    iscar_make: true,
-    iscar_model: true,
-    isreg_number: true,
-  }); */
-
-  const validate = (e) => {
+ /*  const validate = (e) => {
     const data = e.target.value;
     const name = e.target.name;
 
-    /* !!data.match(/^[0-9]*$/) ? (
-      setWeight(data),
-      setIsweight(true)
-    ) : name === 'height' ? (
-      setHeight(data),
-      setIsheight(true)
-    ) : null; */
-
     if (data.match(/^[0-9]*$/)) {
-      if (name == "mobile_number") {
+      if (name == "pickup_location") {
         handleChange(e);
         updateBookingFormState((prevState) => ({
           ...prevState,
-          ismobile_number: true,
+          ispickup_location: true,
         }));
       } else {
         handleChange(e);
@@ -98,11 +77,11 @@ function BookRide() {
         }));
       }
     } else {
-      if (name == "mobile_number") {
+      if (name == "pickup_location") {
         handleChange(e);
         updateBookingFormState((prevState) => ({
           ...prevState,
-          ismobile_number: false,
+          ispickup_location: false,
         }));
       } else {
         handleChange(e);
@@ -113,7 +92,7 @@ function BookRide() {
       }
     }
   };
-
+ */
   const handleSubmit = (e) => {
     // Prevents form from reloading the page
     e.preventDefault();
@@ -122,16 +101,25 @@ function BookRide() {
     // Check if weight or height is zero
     // if (formState.weight === "" || formState.height === "") {
     if (
-      !bookingFormState.passenger_name ||
-      !bookingFormState.email ||
-      !bookingFormState.mobile_number ||
-      !bookingFormState.car_type ||
-      !bookingFormState.reg_number
+      !bookingFormState.service_type ||
+      !bookingFormState.pickup_date ||
+      !bookingFormState.pickup_location ||
+      !bookingFormState.dropoff_location
     ) {
       alert("Please fill the form completely.");
-    } /* else if (formState.weight === 0 || formState.height === 0){
-      alert("Please fill the form completely.");
-    } */
+    } else {
+      const combinedFormState = { ...hirerFormState, ...driverFormState, ...bookingFormState };
+      const response = await addBookingDetailsOfAUserApi(combinedFormState);
+      if (response.status >=200 && response.status <300) {
+        dispatch(addBookingDetail(combinedFormState));
+        dispatch(resetHirerFormState());
+        dispatch(resetDriverFormState());
+        dispatch(resetBookingFormState());
+      } else {
+        alert("Failed to save booking details. Please try again.");
+      }
+      navigate("/");
+    }
     /* else {
       // Calls the parent function to calculate BMI
       onCalculate(formState.weight, formState.height);
@@ -150,8 +138,8 @@ function BookRide() {
               <form onSubmit={handleSubmit}>
                 <div className="form-group my-4">
                   <TextField
-                    name="passenger_name"
-                    value={bookingFormState.passenger_name || ""}
+                    name="service_type"
+                    value={bookingFormState.service_type || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="SERVICE TYPE"
@@ -189,8 +177,8 @@ function BookRide() {
                 </div>
                 <div className="form-group my-4">
                   <TextField
-                    name="email"
-                    value={bookingFormState.email || ""}
+                    name="pickup_date"
+                    value={bookingFormState.pickup_date || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="PICKUP DATE"
@@ -228,9 +216,9 @@ function BookRide() {
                 </div>
                 <div className="form-group my-4">
                   <TextField
-                    name="mobile_number"
-                    value={bookingFormState.mobile_number || ""}
-                    onChange={validate}
+                    name="pickup_location"
+                    value={bookingFormState.pickup_location || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="PICKUP LOCATION"
@@ -265,7 +253,7 @@ function BookRide() {
                       },
                     }}
                   />
-                  {!bookingFormState.ismobile_number && (
+                  {!bookingFormState.ispickup_location && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -273,9 +261,9 @@ function BookRide() {
                 </div>
                 <div className="form-group my-4">
                   <TextField
-                    name="car_make"
-                    value={bookingFormState.car_make || ""}
-                    onChange={validate}
+                    name="dropoff_location"
+                    value={bookingFormState.dropoff_location || ""}
+                    onChange={handleChange}
                     className="w-100"
                     id="outlined-basic"
                     label="DROPOFF LOCATION"
@@ -310,7 +298,7 @@ function BookRide() {
                       },
                     }}
                   />
-                  {!bookingFormState.iscar_make && (
+                  {!bookingFormState.isdropoff_location && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -347,7 +335,7 @@ function BookRide() {
                     Back
                   </Button>
                   <Button
-                    onClick={handleBookNowClick}
+                    type="submit"
                     variant="light"
                     size="lg"
                     className="mb-5 book"

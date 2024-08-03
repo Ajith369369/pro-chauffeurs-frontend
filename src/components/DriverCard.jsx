@@ -2,15 +2,22 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 import "../components/DriverCard.css";
 function DriverCard() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const hirerFormState = useSelector((state) => state.form.hirerFormState);
+  const driverFormState = useSelector((state) => state.form.driverFormState);
 
   /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
-  const handleSelectDriverClick = () => {
-    navigate("/bookride");
+  const handleSelectDriverClick = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateDriverFormState({ [name]: value }));
+    navigate("/bookride", { state: { hirerFormState, driverFormState } });
   };
   return (
     <>
