@@ -10,7 +10,7 @@ function DriverCard() {
     navigate("/driverlist");
   }; */
   const handleSelectDriverClick = () => {
-    navigate("/hirerdetails");
+    navigate("/bookride");
   };
   return (
     <>

@@ -10,11 +10,11 @@ function HirerDetails() {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/driverlist");
+    navigate("/");
   };
 
   const handleBookNowClick = () => {
-    navigate("/");
+    navigate("/driverlist");
   };
 
   // State Initialization
@@ -409,7 +409,7 @@ function HirerDetails() {
                     size="lg"
                     className="mb-5 book"
                   >
-                    Book Now
+                    Next
                   </Button>
                 </div>
               </form>

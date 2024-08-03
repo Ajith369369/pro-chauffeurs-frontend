@@ -2,9 +2,9 @@
 // useNavigate: Importing the hook from react-router-dom for navigation.
 // updateFormffState: Importing the action creator from the formSlice
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+// import { useState } from "react";
 import Button from "react-bootstrap/Button";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -38,7 +38,7 @@ function BookRide() {
   }; */
 
   const handleBackClick = () => {
-    navigate("/");
+    navigate("/driverlist");
   };
 
   // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
@@ -54,11 +54,11 @@ function BookRide() {
   }; */
 
   const handleBookNowClick = () => {
-    navigate("/driverlist");
+    navigate("/");
   };
 
   // State Initialization
-  const [formState, setFormState] = useState({
+  /* const [formState, setFormState] = useState({
     passenger_name: "",
     email: "",
     mobile_number: "",
@@ -69,7 +69,7 @@ function BookRide() {
     iscar_make: true,
     iscar_model: true,
     isreg_number: true,
-  });
+  }); */
 
   const validate = (e) => {
     const data = e.target.value;
@@ -86,13 +86,13 @@ function BookRide() {
     if (data.match(/^[0-9]*$/)) {
       if (name == "mobile_number") {
         handleChange(e);
-        setFormState((prevState) => ({
+        updateBookingFormState((prevState) => ({
           ...prevState,
           ismobile_number: true,
         }));
       } else {
         handleChange(e);
-        setFormState((prevState) => ({
+        updateBookingFormState((prevState) => ({
           ...prevState,
           isreg_number: true,
         }));
@@ -100,13 +100,13 @@ function BookRide() {
     } else {
       if (name == "mobile_number") {
         handleChange(e);
-        setFormState((prevState) => ({
+        updateBookingFormState((prevState) => ({
           ...prevState,
           ismobile_number: false,
         }));
       } else {
         handleChange(e);
-        setFormState((prevState) => ({
+        updateBookingFormState((prevState) => ({
           ...prevState,
           isreg_number: false,
         }));
@@ -117,16 +117,16 @@ function BookRide() {
   const handleSubmit = (e) => {
     // Prevents form from reloading the page
     e.preventDefault();
-    console.log(formState);
+    console.log(bookingFormState);
 
     // Check if weight or height is zero
     // if (formState.weight === "" || formState.height === "") {
     if (
-      !formState.passenger_name ||
-      !formState.email ||
-      !formState.mobile_number ||
-      !formState.car_type ||
-      !formState.reg_number
+      !bookingFormState.passenger_name ||
+      !bookingFormState.email ||
+      !bookingFormState.mobile_number ||
+      !bookingFormState.car_type ||
+      !bookingFormState.reg_number
     ) {
       alert("Please fill the form completely.");
     } /* else if (formState.weight === 0 || formState.height === 0){
@@ -151,7 +151,7 @@ function BookRide() {
                 <div className="form-group my-4">
                   <TextField
                     name="passenger_name"
-                    value={formState.passenger_name || ""}
+                    value={bookingFormState.passenger_name || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="SERVICE TYPE"
@@ -190,7 +190,7 @@ function BookRide() {
                 <div className="form-group my-4">
                   <TextField
                     name="email"
-                    value={formState.email || ""}
+                    value={bookingFormState.email || ""}
                     className="w-100"
                     id="outlined-basic"
                     label="PICKUP DATE"
@@ -229,7 +229,7 @@ function BookRide() {
                 <div className="form-group my-4">
                   <TextField
                     name="mobile_number"
-                    value={formState.mobile_number || ""}
+                    value={bookingFormState.mobile_number || ""}
                     onChange={validate}
                     className="w-100"
                     id="outlined-basic"
@@ -265,7 +265,7 @@ function BookRide() {
                       },
                     }}
                   />
-                  {!formState.ismobile_number && (
+                  {!bookingFormState.ismobile_number && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -274,7 +274,7 @@ function BookRide() {
                 <div className="form-group my-4">
                   <TextField
                     name="car_make"
-                    value={formState.car_make || ""}
+                    value={bookingFormState.car_make || ""}
                     onChange={validate}
                     className="w-100"
                     id="outlined-basic"
@@ -310,7 +310,7 @@ function BookRide() {
                       },
                     }}
                   />
-                  {!formState.iscar_make && (
+                  {!bookingFormState.iscar_make && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
