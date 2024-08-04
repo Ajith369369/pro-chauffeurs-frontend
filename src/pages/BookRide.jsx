@@ -8,10 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { updateBookingFormState } from "../redux/slices/hirerDetailsSlice";
+import { resetBookingFormState, resetDriverFormState, resetHirerFormState, updateBookingFormState } from "../redux/slices/hirerDetailsSlice";
 import "./BookRide.css";
 import { addBookingDetailsOfAUserApi } from "../services/pro_allApi";
-
 
 function BookRide() {
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
@@ -93,7 +92,7 @@ function BookRide() {
     }
   };
  */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // Prevents form from reloading the page
     e.preventDefault();
     console.log(bookingFormState);
@@ -111,7 +110,7 @@ function BookRide() {
       const combinedFormState = { ...hirerFormState, ...driverFormState, ...bookingFormState };
       const response = await addBookingDetailsOfAUserApi(combinedFormState);
       if (response.status >=200 && response.status <300) {
-        dispatch(addBookingDetail(combinedFormState));
+        dispatch(addBookingDetailsOfAUserApi(combinedFormState));
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
         dispatch(resetBookingFormState());
