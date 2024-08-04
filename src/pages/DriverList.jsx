@@ -8,7 +8,7 @@ function DriverList() {
     navigate("/drivercard");
   };
   const handleBackClick = () => {
-    navigate("/bookride");
+    navigate("/hirerdetails");
   };
   return (
     <>

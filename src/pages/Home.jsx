@@ -17,7 +17,7 @@ function Home() {
   };
 
   const handleLoginClick_2 = () => {
-    navigate("/bookride");
+    navigate("/hirerdetails");
   };
   return (
     <>

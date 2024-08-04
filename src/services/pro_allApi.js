@@ -6,6 +6,11 @@ export const addBookingDetailsOfAUserApi = async (reqBody) => {
   return await commonAPI("POST", `${serverUrl}/allUsersBookingDetails`, reqBody);
 };
 
+// API (on button click) to upload/add Booking Details (HirerDetails.jsx)
+export const addCheck = async (reqBody) => {
+  return await commonAPI("POST", `${serverUrl}/allUsersBookingDetails`, reqBody);
+};
+
 // API to get all users' Booking Details
 export const getBookingDetailsOfAllUsersApi = async () => {
   return await commonAPI("GET", `${serverUrl}/allUsersBookingDetails`, "");
