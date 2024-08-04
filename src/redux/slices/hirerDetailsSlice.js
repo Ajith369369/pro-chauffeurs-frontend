@@ -40,7 +40,8 @@ export const addCheck = createAsyncThunk(
         throw new Error("Failed to get success response.");
       }
     } catch (error) {
-      return rejectWithValue(error.response.data); // Return the error to be used in the rejected action
+      return rejectWithValue(error.response ? error.response.data : error.message);
+      // Return the error to be used in the rejected action
     }
   }
 );
@@ -52,7 +53,7 @@ export const addCheck = createAsyncThunk(
 // updateBookingFormState: Updates bookingFormState with the payload from the action, merging it with the existing state.
 // resetBookingFormState: Resets bookingFormState to its initial state.
 const hirerDetailsSlice = createSlice({
-  name: "form",
+  name: "hirerDetails",
   initialState,
   reducers: {
     updateBookingFormState(state, action) {
