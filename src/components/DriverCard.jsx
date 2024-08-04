@@ -1,37 +1,79 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
+import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 
-function DriverCard({selected_driver}) {
+
+function DriverCard({ selected_driver }) {
+
+  const [aDriver, setADriver] = useState([]);
+  const getAllDrivers = async () => {
+    const result = await getDetailsOfAllDriversApi();
+    // console.log(result);
+    setAllDrivers(result.data);
+  };
+  console.log(allDrivers);
+
+  useEffect(() => {
+    getAllDrivers();
+  }, []);
+
+  // Use useLocation from react-router-dom to access the state passed through navigation.
+  const location = useLocation();
+  // Access driver details from navigation state
+  const selected_driver_loc = location.state?.driver;
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
-  const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
+  const hirerFormState = useSelector(
+    (state) => state.hirerDetails.hirerFormState
+  );
+  const driverFormState = useSelector(
+    (state) => state.hirerDetails.driverFormState
+  );
 
   const renderStars = (rating) => {
     const totalStars = 5;
-    const filledStars = Array(rating).fill().map((_, i) => (
-      <FontAwesomeIcon key={i} icon={faStar} style={{ color: "#FFD43B" }} />
-    ));
-    const unfilledStars = Array(totalStars - rating).fill().map((_, i) => (
-      <FontAwesomeIcon key={rating + i} icon={faStar} style={{ color: "white" }} />
-    ));
+    const filledStars = Array(rating)
+      .fill()
+      .map((_, i) => (
+        <FontAwesomeIcon
+          key={`filled-${i}`}
+          icon={faStar}
+          style={{ color: "#FFD43B" }}
+        />
+      ));
+    console.log(`filledStars: ${filledStars.length}`);
 
-    // This merges the filled and unfilled star arrays into a single array.
+    const unfilledStars = Array(totalStars - rating)
+      .fill()
+      .map((_, i) => (
+        <FontAwesomeIcon
+          key={`unfilled-${i}`}
+          icon={faStar}
+          style={{ color: "white" }}
+        />
+      ));
+      console.log(`unfilledStars: ${unfilledStars.length}`);
+    
     return [...filledStars, ...unfilledStars];
+    // const validRating =[]
+    /* if (rating>0 && rating<=5) {
+      
+    } else {
+      console.log("Invalid rating.");
+    } */
   };
 
   /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
-  const handleSelectDriverClick = (e) => {
-    const { name, value } = e.target;
-    dispatch(updateDriverFormState({ [name]: value }));
+  const handleSelectDriverClick = () => {
+    dispatch(updateDriverFormState({ driver: selected_driver_loc }));
     navigate("/bookride", { state: { hirerFormState, driverFormState } });
   };
   return (
@@ -49,10 +91,14 @@ function DriverCard({selected_driver}) {
           />
           <div className="ms-3">
             <h5 className="text-white">Name: {selected_driver?.DriverName}</h5>
-            <h6 className="text-white">License : {selected_driver?.DriverLicense}</h6>
-            <h6 className="text-white">Experience : {selected_driver?.Experience}</h6>
+            <h6 className="text-white">
+              License : {selected_driver?.DriverLicense}
+            </h6>
+            <h6 className="text-white">
+              Experience : {selected_driver?.Experience}
+            </h6>
             <div className="d-flex justify-content-between mt-3">
-            {renderStars(selected_driver?.DriverRating)}
+              {/* {renderStars(selected_driver?.DriverRating)} */}
               {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
             </div>

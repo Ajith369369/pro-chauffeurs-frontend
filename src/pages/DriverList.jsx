@@ -4,9 +4,15 @@ import DriverCard from "../components/DriverCard";
 import "../pages/DriverList.css";
 import { useEffect, useState } from "react";
 import { getDetailsOfAllDriversApi } from "../services/pro_allApi";
+// import { useDispatch, useSelector } from "react-redux";
+// import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 
 function DriverList() {
   const navigate = useNavigate();
+
+  // const dispatch = useDispatch()
+  // const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
+  // const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
 
   const [allDrivers, setAllDrivers] = useState([]);
   const getAllDrivers = async () => {
@@ -20,9 +26,16 @@ function DriverList() {
     getAllDrivers();
   }, []);
 
-  const handleDriverClick = () => {
+  /* const handleDriverClick = () => {
     navigate("/drivercard");
+  }; */
+
+  const handleDriverClick = (driver) => {
+    // Navigate with the selected driver's data
+    navigate("/drivercard", { state: { driver } });
   };
+
+
   const handleBackClick = () => {
     navigate("/hirerdetails");
   };
@@ -32,7 +45,7 @@ function DriverList() {
         <div className="container">
           <h1 className="text-light text-center  ">List Of Drivers</h1>
           <div className="row ">
-            {allDrivers?allDrivers?.map((item) => (<div key={item.id} className="col-md-4 mt-5" onClick={handleDriverClick}>
+            {allDrivers?allDrivers?.map((item) => (<div key={item.id} className="col-md-4 mt-5" onClick={() => handleDriverClick(item)}>
               <DriverCard selected_driver={item}/>
             </div>))
             :<p className="text-danger fs-5 mt-5">Nothing to display.</p>}
