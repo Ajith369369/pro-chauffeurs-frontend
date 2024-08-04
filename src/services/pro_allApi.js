@@ -46,3 +46,8 @@ export const deleteBookingDetailsOfAUserApi = async (id) => {
 export const getDetailsOfAllDriversApi = async () => {
   return await commonAPI("GET", `${serverUrl}/allDrivers`, "");
 };
+
+//  API to get all places (to caluclate amount based on distance between starting point and ending point)
+export const getPlacesApi = async () => {
+  return await commonAPI("GET", `${serverUrl}/Allplaces`, "");
+};
