@@ -1,17 +1,19 @@
 import TextField from "@mui/material/TextField";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "./HirerDetails.css";
 import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 import { addCheck } from "../services/pro_allApi";
+import "./HirerDetails.css";
 
 function HirerDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
+  const hirerFormState = useSelector(
+    (state) => state.hirerDetails.hirerFormState
+  );
 
   const handleBackClick = () => {
     navigate("/");
@@ -22,7 +24,7 @@ function HirerDetails() {
     dispatch(updateHirerFormState({ [name]: value }));
   };
 
-/*   const validate = (e) => {
+  /*   const validate = (e) => {
     const { name, value } = e.target;
 
     if (name === "mobile_number" || name === "reg_number") {
@@ -47,18 +49,17 @@ function HirerDetails() {
     ) {
       alert("Please fill the form completely.");
     } else {
-      const combinedFormState = { ...hirerFormState};
-      const response = await addCheck(combinedFormState);
-      if (response.status >=200 && response.status <300) {
-        dispatch(addCheck(combinedFormState));
+      const combinedFormState = { ...hirerFormState };
+      try {
+        await dispatch(addCheck(combinedFormState)).unwrap();
         alert("Added!");
-      } else {
+        navigate("/driverlist", { state: { hirerFormState } });
+      } catch (error) {
+        console.error("Failed to save booking details:", error);
         alert("Failed to save booking details. Please try again.");
       }
-      navigate("/driverlist", { state: { hirerFormState } });
     }
   };
-  
 
   return (
     <>
@@ -114,7 +115,8 @@ function HirerDetails() {
                   <TextField
                     name="email"
                     value={hirerFormState.email || ""}
-                    onChange={handleChange}                     className="w-100"
+                    onChange={handleChange}
+                    className="w-100"
                     id="outlined-basic"
                     label="EMAIL"
                     variant="outlined"
@@ -153,8 +155,8 @@ function HirerDetails() {
                   <TextField
                     name="mobile_number"
                     value={hirerFormState.mobile_number || ""}
-                    
-                    onChange={handleChange}                     className="w-100"
+                    onChange={handleChange}
+                    className="w-100"
                     id="outlined-basic"
                     label="MOBILE NUMBER"
                     variant="outlined"
@@ -361,7 +363,8 @@ function HirerDetails() {
                   <Button
                     variant="light"
                     size="lg"
-                    className="mb-5 book" type="submit"
+                    className="mb-5 book"
+                    type="submit"
                   >
                     Next
                   </Button>
