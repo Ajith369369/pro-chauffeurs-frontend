@@ -2,8 +2,24 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DriverCard from "../components/DriverCard";
 import "../pages/DriverList.css";
+import { useEffect, useState } from "react";
+import { getDetailsOfAllDriversApi } from "../services/pro_allApi";
+
 function DriverList() {
   const navigate = useNavigate();
+
+  const [allDrivers, setAllDrivers] = useState([]);
+  const getAllDrivers = async () => {
+    const result = await getDetailsOfAllDriversApi();
+    // console.log(result);
+    setAllDrivers(result.data);
+  };
+  console.log(allDrivers);
+
+  useEffect(() => {
+    getAllDrivers();
+  }, []);
+
   const handleDriverClick = () => {
     navigate("/drivercard");
   };
