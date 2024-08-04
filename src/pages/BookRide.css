@@ -40,7 +40,10 @@ form {
 .back, .book {
   margin: 0px 15px;
 }
-
+.disabled {
+  pointer-events: none; /* Prevent interaction */
+  opacity: 0.5; /* Visual indication */
+}
 @media (max-width: 438px) {
   .back, .book {
     max-width: 350px;

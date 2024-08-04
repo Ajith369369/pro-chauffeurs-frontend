@@ -10,9 +10,90 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { resetBookingFormState, resetDriverFormState, resetHirerFormState, updateBookingFormState } from "../redux/slices/hirerDetailsSlice";
 import "./BookRide.css";
-import { addBookingDetailsOfAUserApi } from "../services/pro_allApi";
+import { addBookingDetailsOfAUserApi, getPlacesApi } from "../services/pro_allApi";
+import { useEffect, useState } from "react";
+import { Toast, ToastContainer } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 function BookRide() {
+  // -----------------------------------------------------------------------
+  // State to hold the list of places fetched from the server
+  const [places, setPlaces] = useState([]);
+  // State to store the input values for from and to locations
+  const [fromPlaceName, setFromPlaceName] = useState('');
+  const [toPlaceName, setToPlaceName] = useState('');
+  // State to hold the place objects corresponding to the input values
+  const [fromPlace, setFromPlace] = useState(null);
+  const [toPlace, setToPlace] = useState(null);
+  // State to hold the calculated distance and cost
+  const [distance, setDistance] = useState(0);
+  const [cost, setCost] = useState(0);
+// for disable div
+const isDisabled = !distance; // Determine if the div should be disabled
+
+
+  // Fetch the list of places from the server when the component mounts
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        // Make a GET request to the JSON Server to fetch places
+        const response = await getPlacesApi()
+        // Update the state with the fetched places
+        setPlaces(response.data);
+        // console.log(response.data);
+
+      } catch (error) {
+        // Log any errors that occur during the fetch
+        console.error('Error fetching places:', error);
+      }
+    };
+
+    fetchPlaces();
+  }, []); // Empty dependency array means this effect runs only once when the component mounts
+
+  // Update the fromPlace and toPlace states whenever the input values or places change
+  useEffect(() => {
+    // Find the place object that matches the fromPlaceName
+    const from = places.find(p => p.name.toLowerCase() === fromPlaceName.toLowerCase());
+    // Find the place object that matches the toPlaceName
+    const to = places.find(p => p.name.toLowerCase() === toPlaceName.toLowerCase());
+    // Update the state with the found place objects
+    setFromPlace(from);
+    setToPlace(to);
+
+    // Calculate the distance and cost whenever the place objects are updated
+    if (from && to) {
+      const dist = calculateDistance(from.latitude, from.longitude, to.latitude, to.longitude);
+      setDistance(dist.toFixed(1)); // Distance in kilometers
+      const calculatedCost = dist * 30; // Cost in rupees
+      setCost(Math.floor(calculatedCost)); // Cost rounded to 2 decimal places
+    } else {
+      // Clear the distance and cost if one or both places are not selected
+      setDistance(0);
+      setCost(0);
+    }
+  }, [fromPlaceName, toPlaceName, places]); // Dependency array includes input values and places
+
+  // Function to calculate the distance using the Haversine formula
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    // Convert degrees to radians
+    const toRad = (value) => (value * Math.PI) / 180;
+
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in kilometers
+  };
+
+  // ------------------------------------------------------------------------
+
+
+
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
   const dispatch = useDispatch()
 
@@ -30,6 +111,16 @@ function BookRide() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(updateBookingFormState({ [name]: value }));
+
+    if (name == "pickup_location") {
+      setFromPlaceName(value)
+
+    }
+    else {
+      setToPlaceName(value)
+
+    }
+
   };
 
   /*   const handleChange = (e) => {
@@ -47,51 +138,51 @@ function BookRide() {
   // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
   //It prevents the default form submission behavior (e.preventDefault()).
   // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
-/*     const handleBookNowClick = (e) => {
-    e.preventDefault();
-    if (!bookingFormState.service_type) {
-      alert("Please fill the form completely.");
-    } else {
-
-      navigate("/");
-    }
-  }; */
-
- /*  const validate = (e) => {
-    const data = e.target.value;
-    const name = e.target.name;
-
-    if (data.match(/^[0-9]*$/)) {
-      if (name == "pickup_location") {
-        handleChange(e);
-        updateBookingFormState((prevState) => ({
-          ...prevState,
-          ispickup_location: true,
-        }));
+  /*     const handleBookNowClick = (e) => {
+      e.preventDefault();
+      if (!bookingFormState.service_type) {
+        alert("Please fill the form completely.");
       } else {
-        handleChange(e);
-        updateBookingFormState((prevState) => ({
-          ...prevState,
-          isreg_number: true,
-        }));
+  
+        navigate("/");
       }
-    } else {
-      if (name == "pickup_location") {
-        handleChange(e);
-        updateBookingFormState((prevState) => ({
-          ...prevState,
-          ispickup_location: false,
-        }));
-      } else {
-        handleChange(e);
-        updateBookingFormState((prevState) => ({
-          ...prevState,
-          isreg_number: false,
-        }));
-      }
-    }
-  };
- */
+    }; */
+
+  /*  const validate = (e) => {
+     const data = e.target.value;
+     const name = e.target.name;
+ 
+     if (data.match(/^[0-9]*$/)) {
+       if (name == "pickup_location") {
+         handleChange(e);
+         updateBookingFormState((prevState) => ({
+           ...prevState,
+           ispickup_location: true,
+         }));
+       } else {
+         handleChange(e);
+         updateBookingFormState((prevState) => ({
+           ...prevState,
+           isreg_number: true,
+         }));
+       }
+     } else {
+       if (name == "pickup_location") {
+         handleChange(e);
+         updateBookingFormState((prevState) => ({
+           ...prevState,
+           ispickup_location: false,
+         }));
+       } else {
+         handleChange(e);
+         updateBookingFormState((prevState) => ({
+           ...prevState,
+           isreg_number: false,
+         }));
+       }
+     }
+   };
+  */
   const handleSubmit = async (e) => {
     // Prevents form from reloading the page
     e.preventDefault();
@@ -109,7 +200,7 @@ function BookRide() {
     } else {
       const combinedFormState = { ...hirerFormState, ...driverFormState, ...bookingFormState };
       const response = await addBookingDetailsOfAUserApi(combinedFormState);
-      if (response.status >=200 && response.status <300) {
+      if (response.status >= 200 && response.status < 300) {
         dispatch(addBookingDetailsOfAUserApi(combinedFormState));
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
@@ -124,7 +215,10 @@ function BookRide() {
       onCalculate(formState.weight, formState.height);
     } */
   };
-
+  //  Confrim Booking
+  const confirmBooking=()=>{
+    toast.success("video uploaded Successfully")
+  }
   return (
     <>
       <div id="book_ride" className="container-fluid w-100">
@@ -225,7 +319,7 @@ function BookRide() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "white",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -270,7 +364,7 @@ function BookRide() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "white",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -324,6 +418,14 @@ function BookRide() {
                   <div className="ms-2">
                   </div>
                 </div> */}
+                <div className={isDisabled ? 'disabled' : ''}>
+                    <div className="d-flex  flex-column justify-content-center align-items-center">
+                     <div className="bg-success w-100 rounded d-flex justify-content-center align-items-center p-2" > <h5 className="mt-1" >Distance : {distance} km</h5></div>
+                     <div className="bg-primary w-100 rounded d-flex justify-content-center align-items-center p-2 mt-3"> <h5 className="mt-1" >Amount : ₹{cost}</h5></div>
+                      
+                    </div>
+                 
+                </div>
                 <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
                   <Button
                     onClick={handleBackClick}
@@ -338,8 +440,11 @@ function BookRide() {
                     variant="light"
                     size="lg"
                     className="mb-5 book"
+                    onClick={confirmBooking}
+                    disabled={distance ? false:true}
+                    
                   >
-                    Next
+                    PAY Now
                   </Button>
                 </div>
               </form>
@@ -349,6 +454,7 @@ function BookRide() {
         </div>
         <Footer />
       </div>
+      <ToastContainer position="top-right" theme="colored" autoclose={5000}/>
     </>
   );
 }
