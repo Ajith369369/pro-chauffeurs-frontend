@@ -32,24 +32,10 @@ function DriverList() {
         <div className="container">
           <h1 className="text-light text-center  ">List Of Drivers</h1>
           <div className="row ">
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
-            <div className="col-md-4 mt-5" onClick={handleDriverClick}>
-              <DriverCard />
-            </div>
+            {allDrivers?allDrivers?.map((item) => (<div key={item.id} className="col-md-4 mt-5" onClick={handleDriverClick}>
+              <DriverCard selected_driver={item}/>
+            </div>))
+            :<p className="text-danger fs-5 mt-5">Nothing to display.</p>}
           </div>
           <div className="mt-5 d-flex justify-content-center  ">
             <Button

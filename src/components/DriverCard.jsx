@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 import "../components/DriverCard.css";
-function DriverCard() {
+
+function DriverCard({selected_driver}) {
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
   const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
@@ -27,15 +29,15 @@ function DriverCard() {
       >
         <div className="d-flex  align-items-center">
           <img
-            src="https://cms-assets.tutsplus.com/uploads/users/810/profiles/19338/profileImage/profile-square-extra-small.png"
+            src={selected_driver?.Profile}
             alt=""
             width={130}
             style={{ borderRadius: "50%" }}
           />
           <div className="ms-3">
-            <h5 className="text-white">Driver Name</h5>
-            <h6 className="text-white">License : 12345</h6>
-            <h6 className="text-white">Experience : 4 Years</h6>
+            <h5 className="text-white">Name: {selected_driver?.DriverName}</h5>
+            <h6 className="text-white">License : {selected_driver?.DriverLicense}</h6>
+            <h6 className="text-white">Experience : {selected_driver?.Experience}</h6>
             <div className="d-flex justify-content-between mt-3">
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
@@ -50,7 +52,7 @@ function DriverCard() {
             className="text-light mt-3"
             style={{ textAlign: "justify" }}
           >
-            Professional driver with a focus on punctuality and customer satisfaction. Making every journey enjoyable and secure.
+            {selected_driver?.About}
           </Card.Text>
           <div className="d-flex align-items-center justify-content-center mt-4 px-4">
             {/* <Button
