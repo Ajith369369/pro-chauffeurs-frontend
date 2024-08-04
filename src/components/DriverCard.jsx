@@ -8,8 +8,8 @@ import "../components/DriverCard.css";
 function DriverCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const hirerFormState = useSelector((state) => state.form.hirerFormState);
-  const driverFormState = useSelector((state) => state.form.driverFormState);
+  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
+  const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
 
   /*  const handleBackClick = () => {
     navigate("/driverlist");

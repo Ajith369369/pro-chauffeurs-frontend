@@ -6,11 +6,12 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./HirerDetails.css";
 import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
+import { addCheck } from "../services/pro_allApi";
 
 function HirerDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const hirerFormState = useSelector((state) => state.form.hirerFormState);
+  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
 
   const handleBackClick = () => {
     navigate("/");
@@ -33,7 +34,8 @@ function HirerDetails() {
     }
   }; */
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !hirerFormState.passenger_name ||
@@ -45,6 +47,14 @@ function HirerDetails() {
     ) {
       alert("Please fill the form completely.");
     } else {
+      const combinedFormState = { ...hirerFormState};
+      const response = await addCheck(combinedFormState);
+      if (response.status >=200 && response.status <300) {
+        dispatch(addCheck(combinedFormState));
+        alert("Added!");
+      } else {
+        alert("Failed to save booking details. Please try again.");
+      }
       navigate("/driverlist", { state: { hirerFormState } });
     }
   };
@@ -71,7 +81,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -110,7 +120,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -150,7 +160,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -195,7 +205,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -240,7 +250,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",
@@ -285,7 +295,7 @@ function HirerDetails() {
                     sx={{
                       // Root class for the input field
                       "& .MuiOutlinedInput-root": {
-                        color: "#000000",
+                        color: "#ffffff",
                         fontFamily: "Arial",
                         fontWeight: "bold",
                         height: "60px",

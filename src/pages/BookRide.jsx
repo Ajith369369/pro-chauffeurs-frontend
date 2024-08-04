@@ -20,9 +20,9 @@ function BookRide() {
   const navigate = useNavigate();
 
   // Accessing the bookingFormState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
-  const hirerFormState = useSelector((state) => state.form.hirerFormState);
-  const driverFormState = useSelector((state) => state.form.driverFormState);
-  const bookingFormState = useSelector((state) => state.form.bookingFormState);
+  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
+  const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
+  const bookingFormState = useSelector((state) => state.hirerDetails.bookingFormState);
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
