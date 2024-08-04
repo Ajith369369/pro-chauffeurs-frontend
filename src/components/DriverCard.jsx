@@ -29,7 +29,7 @@ function DriverCard({selected_driver}) {
       >
         <div className="d-flex  align-items-center">
           <img
-            src={selected_driver?.Profile}
+            src={`${selected_driver?.Profile}`}
             alt=""
             width={130}
             style={{ borderRadius: "50%" }}
