@@ -28,7 +28,7 @@ function DriverCard() {
           <div className="ms-3">
             <h5 className="text-white">Driver Name</h5>
             <h6 className="text-white">License : 12345</h6>
-            <h6 className="text-white">Experience : 4 Years</h6>
+            <h6 className="text-white">Experience : 3 Years</h6>
             <div className="d-flex justify-content-between mt-3">
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
