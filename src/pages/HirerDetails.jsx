@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
-import { addCheck } from "../services/pro_allApi";
+import { addCheck } from '../redux/slices/hirerDetailsSlice';
 import "./HirerDetails.css";
 
 function HirerDetails() {
@@ -51,7 +51,8 @@ function HirerDetails() {
     } else {
       const combinedFormState = { ...hirerFormState };
       try {
-        await dispatch(addCheck(combinedFormState)).unwrap();
+        // Dispatch the thunk and wait for the result
+        const action = await dispatch(addCheck(combinedFormState)).unwrap();
         alert("Added!");
         navigate("/driverlist", { state: { hirerFormState } });
       } catch (error) {
