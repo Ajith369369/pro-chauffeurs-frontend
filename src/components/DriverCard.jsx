@@ -13,6 +13,19 @@ function DriverCard({selected_driver}) {
   const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
   const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
 
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Array(rating).fill().map((_, i) => (
+      <FontAwesomeIcon key={i} icon={faStar} style={{ color: "#FFD43B" }} />
+    ));
+    const unfilledStars = Array(totalStars - rating).fill().map((_, i) => (
+      <FontAwesomeIcon key={rating + i} icon={faStar} style={{ color: "white" }} />
+    ));
+
+    // This merges the filled and unfilled star arrays into a single array.
+    return [...filledStars, ...unfilledStars];
+  };
+
   /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
@@ -39,11 +52,9 @@ function DriverCard({selected_driver}) {
             <h6 className="text-white">License : {selected_driver?.DriverLicense}</h6>
             <h6 className="text-white">Experience : {selected_driver?.Experience}</h6>
             <div className="d-flex justify-content-between mt-3">
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} />
+            {renderStars(selected_driver?.DriverRating)}
+              {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
+              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
             </div>
           </div>
         </div>
