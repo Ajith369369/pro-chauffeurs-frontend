@@ -58,6 +58,7 @@ function HirerDetails() {
       navigate("/driverlist", { state: { hirerFormState } });
     }
   };
+  
 
   return (
     <>
