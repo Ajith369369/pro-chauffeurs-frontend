@@ -33,7 +33,7 @@ function DriverList() {
 
   const handleDriverClick = (driver) => {
     // Navigate with the selected driver's data
-    navigate("/drivercard", { state: { driver } });
+    navigate("/drivercard", { state: { selectedDriver: driver } });
   };
 
 
@@ -47,7 +47,7 @@ function DriverList() {
           <h1 className="text-light text-center  ">List Of Drivers</h1>
           <div className="row ">
             {allDrivers?allDrivers?.map((item) => (<div key={item.id} className="col-md-4 mt-5" onClick={() => handleDriverClick(item)}>
-              <DriverCard selected_driver={item} selected_driver_id={item?.id}/>
+              <DriverCard selected_driver={item}/>
             </div>))
             :<p className="text-danger fs-5 mt-5">Nothing to display.</p>}
           </div>

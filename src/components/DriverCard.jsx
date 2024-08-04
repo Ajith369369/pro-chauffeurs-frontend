@@ -1,19 +1,18 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
 import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
-import { useEffect, useState } from "react";
 import { getDetailsOfADriverApi } from "../services/pro_allApi";
 
-function DriverCard({ selected_driver, selected_driver_id }) {
-
+function DriverCard({ selected_driver }) {
   // Use useLocation from react-router-dom to access the state passed through navigation.
   const location = useLocation();
   // Access driver details from navigation state
-  const selected_driver_loc = location.state?.driver;
+  const selectedDriver = location.state?.driver;
 
   const [aDriver, setADriver] = useState([]);
   const getADriver = async (id) => {
@@ -23,11 +22,10 @@ function DriverCard({ selected_driver, selected_driver_id }) {
   };
   console.log(aDriver);
 
-  useEffect(() => {
-    getADriver(selected_driver_id);
+  /*   useEffect(() => {
+    getADriver();
   }, []);
-
-  
+ */
 
   const navigate = useNavigate();
 
@@ -61,8 +59,8 @@ function DriverCard({ selected_driver, selected_driver_id }) {
           style={{ color: "white" }}
         />
       ));
-      console.log(`unfilledStars: ${unfilledStars.length}`);
-    
+    console.log(`unfilledStars: ${unfilledStars.length}`);
+
     return [...filledStars, ...unfilledStars];
     // const validRating =[]
     /* if (rating>0 && rating<=5) {
@@ -76,7 +74,7 @@ function DriverCard({ selected_driver, selected_driver_id }) {
     navigate("/driverlist");
   }; */
   const handleSelectDriverClick = () => {
-    dispatch(updateDriverFormState({ driver: selected_driver_loc }));
+    dispatch(updateDriverFormState({ selectedDriver }));
     navigate("/bookride", { state: { hirerFormState, driverFormState } });
   };
   return (
