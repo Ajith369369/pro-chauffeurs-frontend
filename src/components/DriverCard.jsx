@@ -29,11 +29,13 @@ function DriverCard() {
           <img
             src="https://cms-assets.tutsplus.com/uploads/users/810/profiles/19338/profileImage/profile-square-extra-small.png"
             alt=""
-            width={100}
+            width={130}
             style={{ borderRadius: "50%" }}
           />
           <div className="ms-3">
             <h5 className="text-white">Driver Name</h5>
+            <h6 className="text-white">License : 12345</h6>
+            <h6 className="text-white">Experience : 4 Years</h6>
             <div className="d-flex justify-content-between mt-3">
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
@@ -48,9 +50,7 @@ function DriverCard() {
             className="text-light mt-3"
             style={{ textAlign: "justify" }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            ducimus numquam nam ab dolor alias impedit neque dolore, corporis
-            vel, exercitationem distinctio, eaque ipsum laborum?
+            Professional driver with a focus on punctuality and customer satisfaction. Making every journey enjoyable and secure.
           </Card.Text>
           <div className="d-flex align-items-center justify-content-center mt-4 px-4">
             {/* <Button
