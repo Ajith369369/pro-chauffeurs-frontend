@@ -8,6 +8,7 @@ import { getDetailsOfAllDriversApi } from "../services/pro_allApi";
 // import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 
 function DriverList() {
+  
   const navigate = useNavigate();
 
   // const dispatch = useDispatch()
@@ -46,7 +47,7 @@ function DriverList() {
           <h1 className="text-light text-center  ">List Of Drivers</h1>
           <div className="row ">
             {allDrivers?allDrivers?.map((item) => (<div key={item.id} className="col-md-4 mt-5" onClick={() => handleDriverClick(item)}>
-              <DriverCard selected_driver={item}/>
+              <DriverCard selected_driver={item} selected_driver_id={item?.id}/>
             </div>))
             :<p className="text-danger fs-5 mt-5">Nothing to display.</p>}
           </div>

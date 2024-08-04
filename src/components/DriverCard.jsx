@@ -5,26 +5,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
 import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
+import { useEffect, useState } from "react";
+import { getDetailsOfADriverApi } from "../services/pro_allApi";
 
-
-function DriverCard({ selected_driver }) {
-
-  const [aDriver, setADriver] = useState([]);
-  const getAllDrivers = async () => {
-    const result = await getDetailsOfAllDriversApi();
-    // console.log(result);
-    setAllDrivers(result.data);
-  };
-  console.log(allDrivers);
-
-  useEffect(() => {
-    getAllDrivers();
-  }, []);
+function DriverCard({ selected_driver, selected_driver_id }) {
 
   // Use useLocation from react-router-dom to access the state passed through navigation.
   const location = useLocation();
   // Access driver details from navigation state
   const selected_driver_loc = location.state?.driver;
+
+  const [aDriver, setADriver] = useState([]);
+  const getADriver = async (id) => {
+    const result1 = await getDetailsOfADriverApi(id);
+    // console.log(result);
+    setADriver(result1.data);
+  };
+  console.log(aDriver);
+
+  useEffect(() => {
+    getADriver(selected_driver_id);
+  }, []);
+
+  
 
   const navigate = useNavigate();
 
