@@ -33,7 +33,7 @@ function DriverList() {
 
   const handleDriverClick = (driver) => {
     // Navigate with the selected driver's data
-    navigate("/drivercard", { state: { selectedDriver: driver } });
+    navigate("/driverselected", { state: { selectedDriver: driver } });
   };
 
 
