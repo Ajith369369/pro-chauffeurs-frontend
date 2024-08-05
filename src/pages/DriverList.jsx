@@ -32,7 +32,8 @@ function DriverList() {
   }; */
 
   const handleDriverClick = (driver) => {
-    // Navigate with the selected driver's data
+    // Navigate with the selected driver's data.
+    // When a driver card is clicked, the navigate function passes the selectedDriver data as part of the state. This state will contain the details of the driver.
     navigate("/driverselected", { state: { selectedDriver: driver } });
   };
 

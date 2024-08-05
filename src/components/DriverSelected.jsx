@@ -22,7 +22,7 @@ function DriverSelected() {
   // Use useLocation from react-router-dom to access the state passed through navigation.
   const location = useLocation();
   // Access driver details from navigation state
-  const selectedDriver = location.state?.driver;
+  const selectedDriver = location.state?.selectedDriver;
   console.log(`selectedDriver: ${selectedDriver}`);
 
   const [aDriver, setADriver] = useState([]);
@@ -97,7 +97,7 @@ function DriverSelected() {
               Experience : {selectedDriver?.Experience}
             </h6>
             <div className="d-flex justify-content-between mt-3">
-              {/* {renderStars(selectedDriver?.DriverRating)} */}
+              {renderStars(selectedDriver?.DriverRating)}
               {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
             </div>
