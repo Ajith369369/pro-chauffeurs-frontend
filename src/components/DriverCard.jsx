@@ -1,22 +1,80 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
-function DriverCard() {
+import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
+import { getDetailsOfADriverApi } from "../services/pro_allApi";
+
+function DriverCard({ selected_driver }) {
+  // Use useLocation from react-router-dom to access the state passed through navigation.
+  const location = useLocation();
+  // Access driver details from navigation state
+  const selectedDriver = location.state?.driver;
+
+  const [aDriver, setADriver] = useState([]);
+  const getADriver = async (id) => {
+    const result1 = await getDetailsOfADriverApi(id);
+    // console.log(result);
+    setADriver(result1.data);
+  };
+  console.log(aDriver);
+
+  /*   useEffect(() => {
+    getADriver();
+  }, []);
+ */
+
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
-  const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
+  const hirerFormState = useSelector(
+    (state) => state.hirerDetails.hirerFormState
+  );
+  const driverFormState = useSelector(
+    (state) => state.hirerDetails.driverFormState
+  );
+
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Array(rating)
+      .fill()
+      .map((_, i) => (
+        <FontAwesomeIcon
+          key={`filled-${i}`}
+          icon={faStar}
+          style={{ color: "#FFD43B" }}
+        />
+      ));
+    console.log(`filledStars: ${filledStars.length}`);
+
+    const unfilledStars = Array(totalStars - rating)
+      .fill()
+      .map((_, i) => (
+        <FontAwesomeIcon
+          key={`unfilled-${i}`}
+          icon={faStar}
+          style={{ color: "white" }}
+        />
+      ));
+    console.log(`unfilledStars: ${unfilledStars.length}`);
+
+    return [...filledStars, ...unfilledStars];
+    // const validRating =[]
+    /* if (rating>0 && rating<=5) {
+      
+    } else {
+      console.log("Invalid rating.");
+    } */
+  };
 
   /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
-  const handleSelectDriverClick = (e) => {
-    const { name, value } = e.target;
-    dispatch(updateDriverFormState({ [name]: value }));
+  const handleSelectDriverClick = () => {
+    dispatch(updateDriverFormState({ selectedDriver }));
     navigate("/bookride", { state: { hirerFormState, driverFormState } });
   };
   return (
@@ -27,21 +85,23 @@ function DriverCard() {
       >
         <div className="d-flex  align-items-center">
           <img
-            src="https://cms-assets.tutsplus.com/uploads/users/810/profiles/19338/profileImage/profile-square-extra-small.png"
+            src={`${selected_driver?.Profile}`}
             alt=""
             width={130}
             style={{ borderRadius: "50%" }}
           />
           <div className="ms-3">
-            <h5 className="text-white">Driver Name</h5>
-            <h6 className="text-white">License : 12345</h6>
-            <h6 className="text-white">Experience : 3 Years</h6>
+            <h5 className="text-white">Name: {selected_driver?.DriverName}</h5>
+            <h6 className="text-white">
+              License : {selected_driver?.DriverLicense}
+            </h6>
+            <h6 className="text-white">
+              Experience : {selected_driver?.Experience}
+            </h6>
             <div className="d-flex justify-content-between mt-3">
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} />
+              {/* {renderStars(selected_driver?.DriverRating)} */}
+              {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
+              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
             </div>
           </div>
         </div>
@@ -50,7 +110,7 @@ function DriverCard() {
             className="text-light mt-3"
             style={{ textAlign: "justify" }}
           >
-            Professional driver with a focus on punctuality and customer satisfaction. Making every journey enjoyable and secure.
+            {selected_driver?.About}
           </Card.Text>
           <div className="d-flex align-items-center justify-content-center mt-4 px-4">
             {/* <Button
