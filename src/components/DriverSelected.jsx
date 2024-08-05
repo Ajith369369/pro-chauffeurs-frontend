@@ -1,13 +1,14 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/DriverSelected.css";
 import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
+import { getDetailsOfADriverApi } from "../services/pro_allApi";
 
 function DriverSelected() {
-
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -18,22 +19,23 @@ function DriverSelected() {
     (state) => state.hirerDetails.driverFormState
   );
 
-  const [allDrivers, setAllDrivers] = useState([]);
-  const getAllDrivers = async () => {
-    const result = await getDetailsOfAllDriversApi();
-    // console.log(result);
-    setAllDrivers(result.data);
-  };
-  console.log(allDrivers);
-
-  useEffect(() => {
-    getAllDrivers();
-  }, []);
-
   // Use useLocation from react-router-dom to access the state passed through navigation.
   const location = useLocation();
   // Access driver details from navigation state
   const selectedDriver = location.state?.driver;
+  console.log(`selectedDriver: ${selectedDriver}`);
+
+  const [aDriver, setADriver] = useState([]);
+  const getADriver = async (id) => {
+    const result = await getDetailsOfADriverApi(id);
+    console.log(result);
+    setADriver(result.data);
+  };
+  console.log(aDriver);
+
+  useEffect(() => {
+    getADriver(selectedDriver?.id);
+  }, []);
 
   const renderStars = (rating) => {
     const totalStars = 5;
@@ -129,7 +131,7 @@ function DriverSelected() {
         </Card.Body>
       </Card>
     </>
-  )
+  );
 }
 
-export default DriverSelected
+export default DriverSelected;
