@@ -42,12 +42,17 @@ export const deleteBookingDetailsOfAUserApi = async (id) => {
   );
 };
 
-// API to get all drivers'details
+// API to get all drivers' details
 export const getDetailsOfAllDriversApi = async () => {
   return await commonAPI("GET", `${serverUrl}/allDrivers`, "");
 };
 
-//  API to get all places (to caluclate amount based on distance between starting point and ending point)
+// API to get a driver's details
+export const getDetailsOfADriverApi = async (id) => {
+  return await commonAPI("GET", `${serverUrl}/allDrivers/${id}`, "");
+};
+
+// API to get all places (to calculate amount based on distance between starting point and ending point)
 export const getPlacesApi = async () => {
   return await commonAPI("GET", `${serverUrl}/Allplaces`, "");
 };
