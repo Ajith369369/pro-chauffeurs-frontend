@@ -18,6 +18,18 @@ function DriverSelected() {
     (state) => state.hirerDetails.driverFormState
   );
 
+  const [allDrivers, setAllDrivers] = useState([]);
+  const getAllDrivers = async () => {
+    const result = await getDetailsOfAllDriversApi();
+    // console.log(result);
+    setAllDrivers(result.data);
+  };
+  console.log(allDrivers);
+
+  useEffect(() => {
+    getAllDrivers();
+  }, []);
+
   // Use useLocation from react-router-dom to access the state passed through navigation.
   const location = useLocation();
   // Access driver details from navigation state
