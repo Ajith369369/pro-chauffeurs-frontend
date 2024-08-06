@@ -12,9 +12,15 @@ import { resetBookingFormState, resetDriverFormState, resetHirerFormState, updat
 import "./BookRide.css";
 import { addBookingDetailsOfAUserApi, getPlacesApi } from "../services/pro_allApi";
 import { useEffect, useState } from "react";
-import {  ToastContainer } from "react-bootstrap";
+import { ToastContainer } from "react-bootstrap";
 import { toast } from "react-toastify";
 
+// libraries for date
+import { DatePicker } from '@mui/x-date-pickers';
+
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 function BookRide() {
   // -----------------------------------------------------------------------
@@ -130,7 +136,7 @@ function BookRide() {
 
   };
   console.log(fromPlaceName);
-  
+
 
 
 
@@ -297,7 +303,7 @@ function BookRide() {
                   </div>
                 </div>
                 <div className="form-group my-4">
-                  <TextField
+                  {/* <TextField
                     name="pickup_date"
                     value={bookingFormState.pickup_date || ""}
                     className="w-100"
@@ -333,7 +339,40 @@ function BookRide() {
                         color: "white",
                       },
                     }}
-                  />
+                  /> */}
+
+                  {/* date */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                    <DemoItem>
+                      <DatePicker
+                        label="PICKUP DATE"
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            color: 'white', // Text color
+                          },
+                          '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                              borderColor: 'white', // Border color
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'white', // Border color on hover
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: 'white', // Border color when focused
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: 'white', // Label color
+                          },
+                          '& .MuiSvgIcon-root': {
+                            color: 'white', // Icon color
+                          },
+                        }}
+                      />
+                    </DemoItem>
+                  </LocalizationProvider>
+
                 </div>
                 <div className="form-group my-4">
                   {/* <TextField
@@ -378,11 +417,11 @@ function BookRide() {
                     <select
                       className="dropdown-input"
                       value={fromPlaceName}
-                      onChange={(e) => handleChange(e)} 
+                      onChange={(e) => handleChange(e)}
                       name="pickup_location"
                     >
                       <option value="" disabled>PICKUP LOCATION</option>
-                      {places.map(option=>{
+                      {places.map(option => {
                         return <option key={option.id} value={option.name}>{option.name}</option>
                       })}
                       {/* <option value="aluva">aluva</option>
@@ -438,11 +477,11 @@ function BookRide() {
                     <select
                       className="dropdown-input"
                       value={toPlaceName}
-                      onChange={(e) => handleChange(e)} 
+                      onChange={(e) => handleChange(e)}
                       name="dropoff_location"
                     >
                       <option value="" disabled>DROPOFF LOCATION</option>
-                      {places.map(option=>{
+                      {places.map(option => {
                         return <option key={option.id} value={option.name}>{option.name}</option>
                       })}
                     </select>

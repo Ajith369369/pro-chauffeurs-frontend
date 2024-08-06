@@ -71,6 +71,7 @@ form {
   background-color: black;
   color: white;
 }
+/* date */
 
 @media (max-width: 438px) {
   .back, .book {
