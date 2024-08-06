@@ -23,7 +23,6 @@ function DriverSelected() {
   const location = useLocation();
   // Access driver details from navigation state
   const selectedDriver = location.state?.selectedDriver;
-  console.log(`selectedDriver: ${selectedDriver}`);
 
   const [aDriver, setADriver] = useState([]);
   const getADriver = async (id) => {
