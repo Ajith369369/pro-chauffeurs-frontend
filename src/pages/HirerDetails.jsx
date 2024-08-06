@@ -11,6 +11,9 @@ import {
 import "./HirerDetails.css";
 
 function HirerDetails() {
+
+  let isValid = true;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const hirerFormState = useSelector(
@@ -21,10 +24,8 @@ function HirerDetails() {
     navigate("/");
   };
 
-  const validate = (name, value) => {
-
-    let isValid = true;
-
+  const validate = (e) => {
+    const { name, value } = e.target;
     if (name === "mobile_number") {
 
       // Regular Expression: /^[0-9]*$/
@@ -33,7 +34,7 @@ function HirerDetails() {
       // $: Asserts the position at the end of the string.
       // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
       isValid = /^[0-9]*$/.test(value);
-      
+
     } else {
       isValid = value.trim() !== "";
     }
@@ -41,8 +42,8 @@ function HirerDetails() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    validate(name, value);
+    // const { name, value } = e.target;
+    validate(e);
     // dispatch(updateHirerFormState({ [name]: value }));
   };
 
@@ -201,7 +202,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.ismobile_number && (
+                  {(isValid == false) && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
