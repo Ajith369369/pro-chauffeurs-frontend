@@ -12,9 +12,9 @@ import { resetBookingFormState, resetDriverFormState, resetHirerFormState, updat
 import "./BookRide.css";
 import { addBookingDetailsOfAUserApi, getPlacesApi } from "../services/pro_allApi";
 import { useEffect, useState } from "react";
-import { FormControl, ToastContainer } from "react-bootstrap";
+import {  ToastContainer } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+
 
 function BookRide() {
   // -----------------------------------------------------------------------
