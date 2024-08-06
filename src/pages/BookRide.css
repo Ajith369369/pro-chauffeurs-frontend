@@ -44,6 +44,34 @@ form {
   pointer-events: none; /* Prevent interaction */
   opacity: 0.5; /* Visual indication */
 }
+
+
+/* DropdownInput.css */
+
+/* Container for dropdown input */
+.dropdown-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown input styling */
+.dropdown-input {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Option styling */
+.dropdown-input option {
+  background-color: black;
+  color: white;
+}
+
 @media (max-width: 438px) {
   .back, .book {
     max-width: 350px;
@@ -55,3 +83,6 @@ form {
     width: 150px;
   }
 }
+
+
+
