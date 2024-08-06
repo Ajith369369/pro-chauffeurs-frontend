@@ -29,11 +29,29 @@ import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 function BookRide() {
+
+  // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
+  const dispatch = useDispatch();
+
+  // Setting up the navigate function from react-router-dom. This function is used for programmatic navigation within the application.
+  const navigate = useNavigate();
+
+  // Accessing the bookingFormState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
+  const hirerFormState = useSelector(
+    (state) => state.hirerDetails.hirerFormState
+  );
+  const driverFormState = useSelector(
+    (state) => state.hirerDetails.driverFormState
+  );
+  const bookingFormState = useSelector(
+    (state) => state.hirerDetails.bookingFormState
+  );
+
   // -----------------------------------------------------------------------
   // State to hold the list of places fetched from the server
   const [places, setPlaces] = useState([]);
   // State to store the input values for from and to locations
-  const [fromPlaceName, setFromPlaceName] = useState("");
+  // const [bookingFormState.pickup_location, setFromPlaceName] = useState("");
   const [toPlaceName, setToPlaceName] = useState("");
   // State to hold the place objects corresponding to the input values
   const [fromPlace, setFromPlace] = useState(null);
@@ -67,9 +85,9 @@ function BookRide() {
 
   // Update the fromPlace and toPlace states whenever the input values or places change
   useEffect(() => {
-    // Find the place object that matches the fromPlaceName
+    // Find the place object that matches the bookingFormState.pickup_location
     const from = places.find(
-      (p) => p.name.toLowerCase() === fromPlaceName.toLowerCase()
+      (p) => p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
     );
     // Find the place object that matches the toPlaceName
     const to = places.find(
@@ -95,7 +113,7 @@ function BookRide() {
       setDistance(0);
       setCost(0);
     }
-  }, [fromPlaceName, toPlaceName, places]); // Dependency array includes input values and places
+  }, [bookingFormState.pickup_location, toPlaceName, places]); // Dependency array includes input values and places
 
   // Function to calculate the distance using the Haversine formula
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -117,39 +135,22 @@ function BookRide() {
 
   // ------------------------------------------------------------------------
 
-  // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
-  const dispatch = useDispatch();
-
-  // Setting up the navigate function from react-router-dom. This function is used for programmatic navigation within the application.
-  const navigate = useNavigate();
-
-  // Accessing the bookingFormState from the Redux store. The useSelector hook allows you to extract data from the Redux store state.
-  const hirerFormState = useSelector(
-    (state) => state.hirerDetails.hirerFormState
-  );
-  const driverFormState = useSelector(
-    (state) => state.hirerDetails.driverFormState
-  );
-  const bookingFormState = useSelector(
-    (state) => state.hirerDetails.bookingFormState
-  );
-
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(updateBookingFormState({ [name]: value }));
-
+/* 
     if (name == "pickup_location") {
       setFromPlaceName(value);
     } else if (name == "dropoff_location") {
       setToPlaceName(value);
     } else if (name == "service_type") {
       setSelectedService(value);
-    }
+    } */
   };
-  // console.log(fromPlaceName);
+  // console.log(bookingFormState.pickup_location);
 
   /*   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -318,7 +319,7 @@ function BookRide() {
                   <div className="dropdown-input-container w-100 mb-3">
                     <select
                       className="dropdown-input"
-                      value={fromPlaceName}
+                      value={bookingFormState.pickup_location}
                       onChange={(e) => handleChange(e)}
                       name="pickup_location"
                     >
