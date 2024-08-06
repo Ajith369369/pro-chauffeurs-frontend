@@ -1,41 +1,10 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
-import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
-import { getDetailsOfADriverApi } from "../services/pro_allApi";
 
 function DriverCard({ selected_driver }) {
-  // Use useLocation from react-router-dom to access the state passed through navigation.
-  const location = useLocation();
-  // Access driver details from navigation state
-  const selectedDriver = location.state?.driver;
-
-  const [aDriver, setADriver] = useState([]);
-  const getADriver = async (id) => {
-    const result1 = await getDetailsOfADriverApi(id);
-    // console.log(result);
-    setADriver(result1.data);
-  };
-  console.log(aDriver);
-
-  /*   useEffect(() => {
-    getADriver();
-  }, []);
- */
-
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
-  const hirerFormState = useSelector(
-    (state) => state.hirerDetails.hirerFormState
-  );
-  const driverFormState = useSelector(
-    (state) => state.hirerDetails.driverFormState
-  );
 
   const renderStars = (rating) => {
     const totalStars = 5;
@@ -73,10 +42,7 @@ function DriverCard({ selected_driver }) {
   /*  const handleBackClick = () => {
     navigate("/driverlist");
   }; */
-  const handleSelectDriverClick = () => {
-    dispatch(updateDriverFormState({ selectedDriver }));
-    navigate("/bookride", { state: { hirerFormState, driverFormState } });
-  };
+
   return (
     <>
       <Card
@@ -99,7 +65,7 @@ function DriverCard({ selected_driver }) {
               Experience : {selected_driver?.Experience}
             </h6>
             <div className="d-flex justify-content-between mt-3">
-              {/* {renderStars(selected_driver?.DriverRating)} */}
+              {renderStars(selected_driver?.DriverRating)}
               {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
               <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
             </div>
@@ -122,7 +88,6 @@ function DriverCard({ selected_driver }) {
               Back
             </Button> */}
             <Button
-              onClick={handleSelectDriverClick}
               variant="light"
               className="px-4"
               style={{ backgroundColor: "white", width: "150px" }}

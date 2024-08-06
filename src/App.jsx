@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Login from "./admin/Login";
 import Register from "./admin/Register";
 import Admin from "./admin/Admin";
+import DriverSelected from "./components/DriverSelected";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/bookride" element={<BookRide />} />
         <Route path="/driverlist" element={<DriverList />} />
         <Route path="/drivercard" element={<DriverCard />} />
+        <Route path="/driverselected" element={<DriverSelected />} />
         <Route path="/hirerdetails" element={<HirerDetails />} />
       </Routes>
     </>
