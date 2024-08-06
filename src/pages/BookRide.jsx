@@ -141,13 +141,13 @@ function BookRide() {
     const { name, value } = e.target;
     dispatch(updateBookingFormState({ [name]: value }));
 
-    /* if (name == "pickup_location") {
+    if (name == "pickup_location") {
       setFromPlaceName(value);
     } else if (name == "dropoff_location") {
       setToPlaceName(value);
-    } else if (name == "Service_DropDown") {
+    } else if (name == "service_type") {
       setSelectedService(value);
-    } */
+    }
   };
   // console.log(fromPlaceName);
 
@@ -278,13 +278,17 @@ function BookRide() {
                     </select>
                   </div>
                 </div>
-                <div className="form-group my-4">                  
+                <div className="form-group my-4"> 
+               {/*  value={bookingFormState.pickup_date}
+                onChange={handleChange} */}
+                {<p></p>}                 
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoItem>
                       <DatePicker
+                      name="pickup_date"
+                      value={bookingFormState.pickup_date}
                         label="PICKUP DATE"
-                        value={selectedDate}
-          onChange={handleDateChange}
+                        onChange={handleChange}
                         sx={{
                           "& .MuiInputBase-input": {
                             color: "white", // Text color

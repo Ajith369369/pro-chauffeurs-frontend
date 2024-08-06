@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import dayjs from 'dayjs';
 
 // This defines the initial state of the slice. initialState is an object containing two nested objects: bookingFormState, driverFormState, and hirerFormState.
 // driverFormState has a single property, driver_name.
+// Initialize pickup_date with Day.js object
 const initialState = {
   bookingFormState: {
     service_type: "",
-    pickup_date: "",
+    pickup_date: dayjs(),
     pickup_location: "",
     dropoff_location: "",
   },
