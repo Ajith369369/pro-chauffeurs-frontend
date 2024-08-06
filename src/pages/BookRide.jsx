@@ -12,8 +12,15 @@ import { resetBookingFormState, resetDriverFormState, resetHirerFormState, updat
 import "./BookRide.css";
 import { addBookingDetailsOfAUserApi, getPlacesApi } from "../services/pro_allApi";
 import { useEffect, useState } from "react";
-import {  ToastContainer } from "react-bootstrap";
+import { ToastContainer } from "react-bootstrap";
 import { toast } from "react-toastify";
+
+// libraries for date
+import { DatePicker } from '@mui/x-date-pickers';
+
+import {  DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 function BookRide() {
   // -----------------------------------------------------------------------
@@ -28,8 +35,11 @@ function BookRide() {
   // State to hold the calculated distance and cost
   const [distance, setDistance] = useState(0);
   const [cost, setCost] = useState(0);
-// for disable div
-const isDisabled = !distance; // Determine if the div should be disabled
+  // for disable div
+  const isDisabled = !distance; // Determine if the div should be disabled
+
+  // service dropdown state
+  const [selectedService, setSelectedService] = useState('')
 
 
   // Fetch the list of places from the server when the component mounts
@@ -116,12 +126,19 @@ const isDisabled = !distance; // Determine if the div should be disabled
       setFromPlaceName(value)
 
     }
-    else {
+    else if (name == 'dropoff_location') {
       setToPlaceName(value)
 
     }
+    else if (name == "Service_DropDown") {
+      setSelectedService(value)
+    }
 
   };
+  console.log(fromPlaceName);
+
+
+
 
   /*   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -216,7 +233,7 @@ const isDisabled = !distance; // Determine if the div should be disabled
     } */
   };
   //  Confrim Booking
-  const confirmBooking=()=>{
+  const confirmBooking = () => {
     toast.success("video uploaded Successfully")
   }
   return (
@@ -230,7 +247,7 @@ const isDisabled = !distance; // Determine if the div should be disabled
               <h4 className="text-center my-5">Booking Details</h4>
               <form onSubmit={handleSubmit}>
                 <div className="form-group my-4">
-                  <TextField
+                  {/* <TextField
                     name="service_type"
                     value={bookingFormState.service_type || ""}
                     className="w-100"
@@ -266,10 +283,27 @@ const isDisabled = !distance; // Determine if the div should be disabled
                         color: "white",
                       },
                     }}
-                  />
+                  /> */}
+                  {/* drop down */}
+
+                  <div className="dropdown-input-container w-100 mb-3">
+                    <select
+                      className="dropdown-input"
+                      value={selectedService}
+                      onChange={(e) => handleChange(e)}
+                      name="Service_DropDown"
+                    >
+                      <option value="" disabled>Select Service Type</option>
+                      <option value="option1">Hourly Booking</option>
+                      <option value="option2">Airport Transfer</option>
+                      <option value="option3">City Transfers</option>
+                      <option value="option3">Corporate Transport</option>
+
+                    </select>
+                  </div>
                 </div>
                 <div className="form-group my-4">
-                  <TextField
+                  {/* <TextField
                     name="pickup_date"
                     value={bookingFormState.pickup_date || ""}
                     className="w-100"
@@ -305,10 +339,43 @@ const isDisabled = !distance; // Determine if the div should be disabled
                         color: "white",
                       },
                     }}
-                  />
+                  /> */}
+
+                  {/* date */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+                    <DemoItem>
+                      <DatePicker
+                        label="PICKUP DATE"
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            color: 'white', // Text color
+                          },
+                          '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                              borderColor: 'white', // Border color
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'white', // Border color on hover
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: 'white', // Border color when focused
+                            },
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: 'white', // Label color
+                          },
+                          '& .MuiSvgIcon-root': {
+                            color: 'white', // Icon color
+                          },
+                        }}
+                      />
+                    </DemoItem>
+                  </LocalizationProvider>
+
                 </div>
                 <div className="form-group my-4">
-                  <TextField
+                  {/* <TextField
                     name="pickup_location"
                     value={bookingFormState.pickup_location || ""}
                     onChange={handleChange}
@@ -345,7 +412,22 @@ const isDisabled = !distance; // Determine if the div should be disabled
                         color: "white",
                       },
                     }}
-                  />
+                  /> */}
+                  <div className="dropdown-input-container w-100 mb-3">
+                    <select
+                      className="dropdown-input"
+                      value={fromPlaceName}
+                      onChange={(e) => handleChange(e)}
+                      name="pickup_location"
+                    >
+                      <option value="" disabled>PICKUP LOCATION</option>
+                      {places.map(option => {
+                        return <option key={option.id} value={option.name}>{option.name}</option>
+                      })}
+                      {/* <option value="aluva">aluva</option>
+                      <option value="kakkanad">kakkanad</option> */}
+                    </select>
+                  </div>
                   {!bookingFormState.ispickup_location && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
@@ -353,7 +435,7 @@ const isDisabled = !distance; // Determine if the div should be disabled
                   )}
                 </div>
                 <div className="form-group my-4">
-                  <TextField
+                  {/* <TextField
                     name="dropoff_location"
                     value={bookingFormState.dropoff_location || ""}
                     onChange={handleChange}
@@ -390,7 +472,20 @@ const isDisabled = !distance; // Determine if the div should be disabled
                         color: "white",
                       },
                     }}
-                  />
+                  /> */}
+                  <div className="dropdown-input-container w-100 mb-3">
+                    <select
+                      className="dropdown-input"
+                      value={toPlaceName}
+                      onChange={(e) => handleChange(e)}
+                      name="dropoff_location"
+                    >
+                      <option value="" disabled>DROPOFF LOCATION</option>
+                      {places.map(option => {
+                        return <option key={option.id} value={option.name}>{option.name}</option>
+                      })}
+                    </select>
+                  </div>
                   {!bookingFormState.isdropoff_location && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
@@ -419,12 +514,12 @@ const isDisabled = !distance; // Determine if the div should be disabled
                   </div>
                 </div> */}
                 <div className={isDisabled ? 'disabled' : ''}>
-                    <div className="d-flex  flex-column justify-content-center align-items-center">
-                     <div className="bg-success w-100 rounded d-flex justify-content-center align-items-center p-2" > <h5 className="mt-1" >Distance : {distance} km</h5></div>
-                     <div className="bg-primary w-100 rounded d-flex justify-content-center align-items-center p-2 mt-3"> <h5 className="mt-1" >Amount : ₹{cost}</h5></div>
-                      
-                    </div>
-                 
+                  <div className="d-flex  flex-column justify-content-center align-items-center">
+                    <div className="bg-success w-100 rounded d-flex justify-content-center align-items-center p-2" > <h5 className="mt-1" >Distance : {distance} km</h5></div>
+                    <div className="bg-primary w-100 rounded d-flex justify-content-center align-items-center p-2 mt-3"> <h5 className="mt-1" >Amount : ₹{cost}</h5></div>
+
+                  </div>
+
                 </div>
                 <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
                   <Button
@@ -441,8 +536,8 @@ const isDisabled = !distance; // Determine if the div should be disabled
                     size="lg"
                     className="mb-5 book"
                     onClick={confirmBooking}
-                    disabled={distance ? false:true}
-                    
+                    disabled={distance ? false : true}
+
                   >
                     PAY Now
                   </Button>
@@ -454,7 +549,7 @@ const isDisabled = !distance; // Determine if the div should be disabled
         </div>
         <Footer />
       </div>
-      <ToastContainer position="top-right" theme="colored" autoclose={5000}/>
+      <ToastContainer position="top-right" theme="colored" autoclose={5000} />
     </>
   );
 }
