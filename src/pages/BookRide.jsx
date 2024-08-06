@@ -232,7 +232,9 @@ function BookRide() {
         ...driverFormState,
         ...bookingFormState,
       };
-      const response_booking = await addBookingDetailsOfAUserApi(combinedFormState);
+      const response_booking = await addBookingDetailsOfAUserApi(
+        combinedFormState
+      );
       if (response_booking.status >= 200 && response_booking.status < 300) {
         dispatch(addBookingDetailsOfAUserApi(combinedFormState));
         dispatch(resetHirerFormState());
@@ -260,7 +262,7 @@ function BookRide() {
             <div className="d-flex flex-column justify-content-center align-items-center border border-light cp">
               <h4 className="text-center my-5">Booking Details</h4>
               <form onSubmit={handleSubmit}>
-                <div className="form-group my-4">                  
+                <div className="form-group my-4">
                   <div className="dropdown-input-container w-100 mb-3">
                     <select
                       className="dropdown-input"
@@ -278,15 +280,12 @@ function BookRide() {
                     </select>
                   </div>
                 </div>
-                <div className="form-group my-4"> 
-               {/*  value={bookingFormState.pickup_date}
-                onChange={handleChange} */}
-                {<p></p>}                 
+                <div className="form-group my-4">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoItem>
                       <DatePicker
-                      name="pickup_date"
-                      value={bookingFormState.pickup_date}
+                        name="pickup_date"
+                        value={bookingFormState.pickup_date}
                         label="PICKUP DATE"
                         onChange={handleChange}
                         sx={{
@@ -315,7 +314,7 @@ function BookRide() {
                     </DemoItem>
                   </LocalizationProvider>
                 </div>
-                <div className="form-group my-4">              
+                <div className="form-group my-4">
                   <div className="dropdown-input-container w-100 mb-3">
                     <select
                       className="dropdown-input"
@@ -332,7 +331,7 @@ function BookRide() {
                             {option.name}
                           </option>
                         );
-                      })}                    
+                      })}
                     </select>
                   </div>
                 </div>
