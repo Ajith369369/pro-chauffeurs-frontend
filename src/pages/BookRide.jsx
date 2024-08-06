@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 // libraries for date
 import { DatePicker } from '@mui/x-date-pickers';
 
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import {  DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
