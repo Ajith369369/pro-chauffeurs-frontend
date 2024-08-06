@@ -52,7 +52,7 @@ function BookRide() {
   const [places, setPlaces] = useState([]);
   // State to store the input values for from and to locations
   // const [bookingFormState.pickup_location, setFromPlaceName] = useState("");
-  const [toPlaceName, setToPlaceName] = useState("");
+  // const [bookingFormState.dropoff_location, setToPlaceName] = useState("");
   // State to hold the place objects corresponding to the input values
   const [fromPlace, setFromPlace] = useState(null);
   const [toPlace, setToPlace] = useState(null);
@@ -89,9 +89,9 @@ function BookRide() {
     const from = places.find(
       (p) => p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
     );
-    // Find the place object that matches the toPlaceName
+    // Find the place object that matches the bookingFormState.dropoff_location
     const to = places.find(
-      (p) => p.name.toLowerCase() === toPlaceName.toLowerCase()
+      (p) => p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
     );
     // Update the state with the found place objects
     setFromPlace(from);
@@ -113,7 +113,7 @@ function BookRide() {
       setDistance(0);
       setCost(0);
     }
-  }, [bookingFormState.pickup_location, toPlaceName, places]); // Dependency array includes input values and places
+  }, [bookingFormState.pickup_location, bookingFormState.dropoff_location, places]); // Dependency array includes input values and places
 
   // Function to calculate the distance using the Haversine formula
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -134,6 +134,13 @@ function BookRide() {
   };
 
   // ------------------------------------------------------------------------
+
+  // The pickup_date field in the bookingFormState contains a date object that cannot be serialized by Redux. Redux expects all state values to be serializable for purposes like time-travel debugging and persistence. Date objects are inherently non-serializable because they include methods and internal properties that cannot be represented as plain JSON. When we attempt to store a date object directly in our Redux state, we encounter this issue.
+  // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
+  // Using the date in the component. When we need to use the pickup_date in our component, convert the string back to a Date object.
+  // This ensures that our Redux state remains serializable while still allowing us to work with Date objects in our components.
+  // const pickupDateString = useSelector((state) => state.hirerDetails.bookingFormState.pickup_date);
+  // const pickupDate = pickupDateString ? new Date(pickupDateString) : null;
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
@@ -340,7 +347,7 @@ function BookRide() {
                   <div className="dropdown-input-container w-100 mb-3">
                     <select
                       className="dropdown-input"
-                      value={toPlaceName}
+                      value={bookingFormState.dropoff_location}
                       onChange={(e) => handleChange(e)}
                       name="dropoff_location"
                     >

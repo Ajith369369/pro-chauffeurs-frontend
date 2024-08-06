@@ -48,7 +48,7 @@ export const addCheck = createAsyncThunk(
   }
 );
 
-// This creates a Redux slice named "form" with the specified initial state and reducers.
+// This creates a Redux slice named "hirerDetails" with the specified initial state and reducers.
 // name: The name of the slice, which is "form".
 // initialState: The initial state defined above.
 // reducers: An object containing reducer functions that handle state updates.
@@ -58,8 +58,21 @@ const hirerDetailsSlice = createSlice({
   name: "hirerDetails",
   initialState,
   reducers: {
+    // The pickup_date field in the bookingFormState contains a date object that cannot be serialized by Redux. Redux expects all state values to be serializable for purposes like time-travel debugging and persistence. Date objects are inherently non-serializable because they include methods and internal properties that cannot be represented as plain JSON. When we attempt to store a date object directly in our Redux state, we encounter this issue.
+    // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
+
+    // const newState = { ...state.bookingFormState, ...action.payload }; - Create a new state object for the bookingFormState by merging the current state with the new values from action.payload  
+    // Check if the pickup_date in newState is a dayjs object
+    // If it is a dayjs object, convert it to an ISO string representation
+    // Update the bookingFormState in the Redux state with the new state object
     updateBookingFormState(state, action) {
-      state.bookingFormState = { ...state.bookingFormState, ...action.payload };
+      const newState = { ...state.bookingFormState, ...action.payload };
+
+      if (dayjs.isDayjs(newState.pickup_date)) {
+        newState.pickup_date = newState.pickup_date.toISOString();
+      }
+
+      state.bookingFormState = newState;
     },
     updateDriverFormState(state, action) {
       state.driverFormState = { ...state.driverFormState, ...action.payload };
