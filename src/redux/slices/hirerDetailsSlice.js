@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 // This defines the initial state of the slice. initialState is an object containing two nested objects: bookingFormState, driverFormState, and hirerFormState.
 // driverFormState has a single property, driver_name.
@@ -42,7 +42,9 @@ export const addCheck = createAsyncThunk(
         throw new Error("Failed to get success response.");
       }
     } catch (error) {
-      return rejectWithValue(error.response ? error.response.data : error.message);
+      return rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
       // Return the error to be used in the rejected action
     }
   }
@@ -61,15 +63,25 @@ const hirerDetailsSlice = createSlice({
     // The pickup_date field in the bookingFormState contains a date object that cannot be serialized by Redux. Redux expects all state values to be serializable for purposes like time-travel debugging and persistence. Date objects are inherently non-serializable because they include methods and internal properties that cannot be represented as plain JSON. When we attempt to store a date object directly in our Redux state, we encounter this issue.
     // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
 
-    // const newState = { ...state.bookingFormState, ...action.payload }; - Create a new state object for the bookingFormState by merging the current state with the new values from action.payload  
-    // Check if the pickup_date in newState is a dayjs object
+    // const newState = { ...state.bookingFormState, ...action.payload }; - Create a new state object for the bookingFormState by merging the current state with the new values from action.payload
+    // The spread operator (...) is used to copy all properties from state.bookingFormState and action.payload into a new object. If there are properties with the same name in both objects, the values from action.payload will overwrite those from state.bookingFormState. This effectively combines the existing state with any updates from the action payload.
     // If it is a dayjs object, convert it to an ISO string representation
-    // Update the bookingFormState in the Redux state with the new state object
+    /* if (dayjs.isDayjs(newState.pickup_date)) {
+        newState.pickup_date = newState.pickup_date.toISOString();
+      } */
+
+    // Check if the 'pickup_date' in newState, exists in the payload and if it is a valid dayjs object (i.e., an instance of dayjs)..
+    // Convert the dayjs object to an ISO string (i.e., a standardized ISO 8601 string format, which is a common format for storing date and time in strings.) and assigns it to the 'pickup_date' field in the newState object. 
+    // Update the bookingFormState property in the Redux state with the new state object. 'state.bookingFormState' is assigned the value of newState, effectively applying all the changes made in the newState to the Redux state. This replaces the previous bookingFormState with the updated state, including any changes from action.payload and the converted pickup_date.
+    
     updateBookingFormState(state, action) {
       const newState = { ...state.bookingFormState, ...action.payload };
 
-      if (dayjs.isDayjs(newState.pickup_date)) {
-        newState.pickup_date = newState.pickup_date.toISOString();
+      if (
+        action.payload.pickup_date &&
+        dayjs.isDayjs(action.payload.pickup_date)
+      ) {
+        newState.pickup_date = action.payload.pickup_date.toISOString();
       }
 
       state.bookingFormState = newState;

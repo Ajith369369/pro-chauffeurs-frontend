@@ -29,7 +29,6 @@ import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 function BookRide() {
-
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
   const dispatch = useDispatch();
 
@@ -87,11 +86,13 @@ function BookRide() {
   useEffect(() => {
     // Find the place object that matches the bookingFormState.pickup_location
     const from = places.find(
-      (p) => p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
+      (p) =>
+        p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
     );
     // Find the place object that matches the bookingFormState.dropoff_location
     const to = places.find(
-      (p) => p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
+      (p) =>
+        p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
     );
     // Update the state with the found place objects
     setFromPlace(from);
@@ -113,7 +114,11 @@ function BookRide() {
       setDistance(0);
       setCost(0);
     }
-  }, [bookingFormState.pickup_location, bookingFormState.dropoff_location, places]); // Dependency array includes input values and places
+  }, [
+    bookingFormState.pickup_location,
+    bookingFormState.dropoff_location,
+    places,
+  ]); // Dependency array includes input values and places
 
   // Function to calculate the distance using the Haversine formula
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -139,16 +144,28 @@ function BookRide() {
   // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
   // Using the date in the component. When we need to use the pickup_date in our component, convert the string back to a Date object.
   // This ensures that our Redux state remains serializable while still allowing us to work with Date objects in our components.
-  // const pickupDateString = useSelector((state) => state.hirerDetails.bookingFormState.pickup_date);
-  // const pickupDate = pickupDateString ? new Date(pickupDateString) : null;
+  const pickupDateString = useSelector(
+    (state) => state.hirerDetails.bookingFormState.pickup_date
+  );
+  const pickupDate = pickupDateString ? new Date(pickupDateString) : null;
+  {/* <div>
+    <input type="date" onChange={handleDateChange} />
+    {pickupDate && <p>Pickup Date: {pickupDate.toString()}</p>}
+  </div>; */}
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
   const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch(updateBookingFormState({ [name]: value }));
-/* 
+    if (name === "pickup_date") {
+      const newDate = new Date(e.target.value);
+      dispatch(updateBookingFormState({ pickup_date: newDate }));
+    } else {
+      dispatch(updateBookingFormState({ [name]: value }));
+    }
+    
+    /* 
     if (name == "pickup_location") {
       setFromPlaceName(value);
     } else if (name == "dropoff_location") {
