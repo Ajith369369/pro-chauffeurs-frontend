@@ -191,13 +191,28 @@ function BookRide() {
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
   // const newDate = dayjs(e.target.value); - Convert the string to a dayjs object
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    if (e.target) {
+      // Standard form input
+      const { name, value } = e.target;
+      if (name === "pickup_date") {
+        const newDate = dayjs(e.target.value);
+        dispatch(updateBookingFormState({ pickup_date: newDate }));
+      } else {
+        dispatch(updateBookingFormState({ [name]: value }));
+      }
+    } else if (e && e.$d) {
+      // DatePicker input
+      const newDate = dayjs(e.target.value); // Convert the dayjs object to a JavaScript Date object
+      dispatch(updateBookingFormState({ pickup_date: newDate }));
+    }
+
+    /* const { name, value } = e.target;
     if (name === "pickup_date") {
       const newDate = dayjs(e.target.value);
       dispatch(updateBookingFormState({ pickup_date: newDate }));
     } else {
       dispatch(updateBookingFormState({ [name]: value }));
-    }
+    } */
 
     /* 
     if (name == "pickup_location") {
