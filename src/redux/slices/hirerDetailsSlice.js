@@ -73,6 +73,7 @@ const hirerDetailsSlice = createSlice({
     // Check if the 'pickup_date' in newState, exists in the payload and if it is a valid dayjs object (i.e., an instance of dayjs)..
     // Convert the dayjs object to an ISO string (i.e., a standardized ISO 8601 string format, which is a common format for storing date and time in strings.) and assigns it to the 'pickup_date' field in the newState object. 
     // Update the bookingFormState property in the Redux state with the new state object. 'state.bookingFormState' is assigned the value of newState, effectively applying all the changes made in the newState to the Redux state. This replaces the previous bookingFormState with the updated state, including any changes from action.payload and the converted pickup_date.
+    // This reducer function updates the bookingFormState in our Redux store with new values from action.payload, ensuring that any dayjs objects in the payload are converted to ISO strings before being stored. This approach maintains consistent data types and avoids potential issues with non-serializable values in Redux state.
     
     updateBookingFormState(state, action) {
       const newState = { ...state.bookingFormState, ...action.payload };

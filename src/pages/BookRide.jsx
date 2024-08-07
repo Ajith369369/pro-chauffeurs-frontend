@@ -1,7 +1,3 @@
-// useDispatch, useSelector: Importing hooks from react-redux to interact with the Redux store.
-// useNavigate: Importing the hook from react-router-dom for navigation.
-// updateFormffState: Importing the action creator from the formSlice
-// import { useState } from "react";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -27,6 +23,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs from "dayjs";
 
 function BookRide() {
   // Setting up the dispatch function from react-redux. This function is used to dispatch actions to the Redux store.
@@ -140,31 +137,68 @@ function BookRide() {
 
   // ------------------------------------------------------------------------
 
+  // The DatePicker component from Material-UI expects its value prop to be a dayjs object. We need to ensure that the 'value' prop for the DatePicker is a dayjs object.
+  // Here, bookingFormState.pickup_date is being passed directly to the DatePicker's value prop. The DatePicker expects this value to be a dayjs object, but we are storing it as an ISO string in the Redux state.
+
+  {
+    /* <DatePicker
+  name="pickup_date"
+  value={bookingFormState.pickup_date}
+  label="PICKUP DATE"
+  onChange={handleChange}
+  sx={{
+    // styling options
+  }}
+/> */
+  }
+
   // The pickup_date field in the bookingFormState contains a date object that cannot be serialized by Redux. Redux expects all state values to be serializable for purposes like time-travel debugging and persistence. Date objects are inherently non-serializable because they include methods and internal properties that cannot be represented as plain JSON. When we attempt to store a date object directly in our Redux state, we encounter this issue.
   // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
+
+  /* const pickupDateString = useSelector(
+    (state) => state.hirerDetails.bookingFormState.pickup_date
+  ); */
+
   // Using the date in the component. When we need to use the pickup_date in our component, convert the string back to a Date object.
   // This ensures that our Redux state remains serializable while still allowing us to work with Date objects in our components.
-  const pickupDateString = useSelector(
-    (state) => state.hirerDetails.bookingFormState.pickup_date
-  );
-  const pickupDate = pickupDateString ? new Date(pickupDateString) : null;
-  {/* <div>
+
+  const pickupDate = bookingFormState.pickup_date
+    ? dayjs(bookingFormState.pickup_date)
+    : null;
+
+  // Pass the pickupDate to the DatePicker.
+  {
+    /* <DatePicker
+  name="pickup_date"
+  value={pickupDate}
+  label="PICKUP DATE"
+  onChange={handleChange}
+  sx={{
+    // styling options
+  }}
+/> */
+  }
+
+  {
+    /* <div>
     <input type="date" onChange={handleDateChange} />
     {pickupDate && <p>Pickup Date: {pickupDate.toString()}</p>}
-  </div>; */}
+  </div>; */
+  }
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
+  // const newDate = dayjs(e.target.value); - Convert the string to a dayjs object
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "pickup_date") {
-      const newDate = new Date(e.target.value);
+      const newDate = dayjs(e.target.value);
       dispatch(updateBookingFormState({ pickup_date: newDate }));
     } else {
       dispatch(updateBookingFormState({ [name]: value }));
     }
-    
+
     /* 
     if (name == "pickup_location") {
       setFromPlaceName(value);
@@ -310,7 +344,7 @@ function BookRide() {
                     <DemoItem>
                       <DatePicker
                         name="pickup_date"
-                        value={bookingFormState.pickup_date}
+                        value={pickupDate}
                         label="PICKUP DATE"
                         onChange={handleChange}
                         sx={{
