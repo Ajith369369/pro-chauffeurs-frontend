@@ -186,6 +186,21 @@ function BookRide() {
   </div>; */
   }
 
+  const handleDateChange = (newDate) => {
+    if (newDate) {
+      // Should log "object" since it's a Date object or Dayjs object
+      console.log(newDate);
+      console.log(typeof newDate);
+
+      // When using Redux Toolkit and handling non-serializable data like Dayjs objects, we'll need to convert them to serializable formats before storing them in Redux state. Dayjs objects are not serializable, but ISO strings are
+      // Dayjs objects are not serializable, so you need to convert them to ISO strings (or another serializable format) before storing them in Redux state.
+      // Convert Dayjs object to ISO string before dispatching. Converting Dayjs objects to ISO strings before dispatching ensures that your Redux state remains serializable and avoids any potential issues with non-serializable data.
+      // Dispatching the action with the ISO string ensures that Redux state remains serializable. Our reducer then handles the conversion back to Dayjs if needed, but generally, we should only store ISO strings in Redux.
+      const isoString = newDate.toISOString();
+      dispatch(updateBookingFormState({ pickup_date: isoString }));
+    }
+  };
+
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
@@ -361,7 +376,7 @@ function BookRide() {
                         name="pickup_date"
                         value={pickupDate}
                         label="PICKUP DATE"
-                        onChange={handleChange}
+                        onChange={handleDateChange}
                         sx={{
                           "& .MuiInputBase-input": {
                             color: "white", // Text color
