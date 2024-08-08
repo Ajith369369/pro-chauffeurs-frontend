@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {
@@ -335,16 +335,12 @@ function BookRide() {
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
         dispatch(resetBookingFormState());
+        toast.success("Booking Confirmed", {
+          onClose: () => navigate('/')});
       } else {
         alert("Failed to save booking details. Please try again.");
       }
-      navigate("/");
     }
-  };
-
-  //  Confirm Booking
-  const confirmBooking = () => {
-    toast.success("Booking Confirmed.");
   };
 
   return (
@@ -371,7 +367,9 @@ function BookRide() {
                       <option value="Hourly Booking">Hourly Booking</option>
                       <option value="Airport Transfer">Airport Transfer</option>
                       <option value="City Transfers">City Transfers</option>
-                      <option value="Corporate Transport">Corporate Transport</option>
+                      <option value="Corporate Transport">
+                        Corporate Transport
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -497,7 +495,6 @@ function BookRide() {
                     variant="light"
                     size="lg"
                     className="mb-5 book"
-                    onClick={confirmBooking}
                     disabled={distance ? false : true}
                   >
                     PAY Now
@@ -510,7 +507,7 @@ function BookRide() {
         </div>
         <Footer />
       </div>
-      <ToastContainer position="top-right" theme="colored" autoclose={5000} />
+      <ToastContainer position="top-right" theme="colored" autoclose={3000} />
     </>
   );
 }
