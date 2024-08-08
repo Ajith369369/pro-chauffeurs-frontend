@@ -359,7 +359,7 @@ function BookRide() {
                       </option>
                       <option value="Hourly Booking">Hourly Booking</option>
                       <option value="Airport Transfer">Airport Transfer</option>
-                      <option value="City Transfers">City Transfers</option>
+                      <option value="City Transfer">City Transfer</option>
                       <option value="Corporate Transport">
                         Corporate Transport
                       </option>
