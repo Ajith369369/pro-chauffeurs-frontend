@@ -303,7 +303,7 @@ function BookRide() {
   const handleSubmit = async (e) => {
     // Prevents form from reloading the page
     e.preventDefault();
-    console.log(bookingFormState);
+    // console.log(bookingFormState);
 
     // Check if service_type, pickup_date, pickup_location or dropoff_location is zero
     // name="pickup_location"
@@ -325,7 +325,13 @@ function BookRide() {
         combinedFormState
       );
       if (response_booking.status >= 200 && response_booking.status < 300) {
-        dispatch(addBookingDetailsOfAUserApi(combinedFormState));
+        // dispatch(addBookingDetailsOfAUserApi(combinedFormState));
+
+        // const result = await addBookingDetailsOfAUserApi(combinedFormState);
+        // console.log(result);
+        console.log(combinedFormState);
+        await addBookingDetailsOfAUserApi(combinedFormState);
+
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
         dispatch(resetBookingFormState());
@@ -362,10 +368,10 @@ function BookRide() {
                       <option value="" disabled>
                         Select Service Type
                       </option>
-                      <option value="option1">Hourly Booking</option>
-                      <option value="option2">Airport Transfer</option>
-                      <option value="option3">City Transfers</option>
-                      <option value="option3">Corporate Transport</option>
+                      <option value="Hourly Booking">Hourly Booking</option>
+                      <option value="Airport Transfer">Airport Transfer</option>
+                      <option value="City Transfers">City Transfers</option>
+                      <option value="Corporate Transport">Corporate Transport</option>
                     </select>
                   </div>
                 </div>
