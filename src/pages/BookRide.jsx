@@ -314,7 +314,7 @@ function BookRide() {
       !bookingFormState.pickup_location ||
       !bookingFormState.dropoff_location
     ) {
-      alert("Please fill the form completely.");
+      toast.info("Please fill the form completely.");
     } else {
       const combinedFormState = {
         ...hirerFormState,
@@ -338,7 +338,7 @@ function BookRide() {
         toast.success("Booking Confirmed", {
           onClose: () => navigate('/')});
       } else {
-        alert("Failed to save booking details. Please try again.");
+        toast.danger("Failed to save booking details. Please try again.");
       }
     }
   };
