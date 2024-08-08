@@ -4,10 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { updateHirerFormState, addCheck } from "../redux/slices/hirerDetailsSlice";
+import {
+  addCheck,
+  updateHirerFormState,
+} from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
+
+  let isValid = true;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const hirerFormState = useSelector(
@@ -18,22 +24,28 @@ function HirerDetails() {
     navigate("/");
   };
 
-  const handleChange = (e) => {
+  const validate = (e) => {
     const { name, value } = e.target;
+    if (name === "mobile_number") {
+
+      // Regular Expression: /^[0-9]*$/
+      // ^: Asserts the position at the start of the string.
+      // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
+      // $: Asserts the position at the end of the string.
+      // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
+      isValid = /^[0-9]*$/.test(value);
+
+    } else {
+      isValid = value.trim() !== "";
+    }
     dispatch(updateHirerFormState({ [name]: value }));
   };
 
-  /*   const validate = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "mobile_number" || name === "reg_number") {
-      const isNumber = /^[0-9]*$/.test(value);
-      dispatch(updateHirerFormState({ [name]: value }));
-      dispatch(updateHirerFormState({ [`is${name}`]: isNumber }));
-    } else {
-      dispatch(updateHirerFormState({ [name]: value }));
-    }
-  }; */
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    validate(e);
+    // dispatch(updateHirerFormState({ [name]: value }));
+  };
 
   // const handleSubmit = (e) => {
   const handleSubmit = async (e) => {
@@ -190,7 +202,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.ismobile_number && (
+                  {(isValid == false) && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
