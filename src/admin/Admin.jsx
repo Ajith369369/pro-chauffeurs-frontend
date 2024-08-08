@@ -1,11 +1,12 @@
 import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   deleteBookingDetailsOfAUserApi,
   getBookingDetailsOfAllUsersApi,
 } from "../services/pro_allApi";
+import "./Admin.css";
 
 function Admin() {
   const [allUsers, setAllUsers] = useState([]);
@@ -23,6 +24,10 @@ function Admin() {
     getBookingDetails();
   };
 
+useEffect(() => {
+  getBookingDetails()
+}, [])
+
   return (
     <>
       <div className="row w-100 my-5">
@@ -36,7 +41,7 @@ function Admin() {
           </h5>
         </div>
         <div className="col-md-1"></div>
-        <div className="col-md-10">
+        <div className="col-md-10 table-container">
           <table className="table">
             <thead>
               <tr>
@@ -55,7 +60,7 @@ function Admin() {
             </thead>
             <tbody>
               {allUsers?.map((item, index) => (
-                <tr key={id}>
+                <tr key={item.id}>
                   <td>{index + 1}</td>
                   <td>{item.username}</td>
                   <td>{item.email}</td>
@@ -78,8 +83,8 @@ function Admin() {
               ))}
             </tbody>
           </table>
-          : <p className="text-danger fs-3">No Booking Details</p>
         </div>
+        : <p className="text-danger fs-3">No Booking Details</p>
         <div className="col-md-1"></div>
       </div>
     </>
