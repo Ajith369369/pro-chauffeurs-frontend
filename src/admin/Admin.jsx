@@ -29,10 +29,7 @@ function Admin() {
         <div className="d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
-            <Link
-              to={"/"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
+            <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
               <FontAwesomeIcon icon={faHouse} className="me-2" />
               <span className="hide">Back Home</span>
             </Link>
@@ -47,9 +44,12 @@ function Admin() {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Mobile No.</th>
+                <th>Car Make</th>
+                <th>Car Model</th>
+                <th>Registration No.</th>
                 <th>Service Type</th>
-                <th>Car Type</th>
-                <th>Car No.</th>
+                <th>Driver</th>
+                <th>Pick-Up Date</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -60,9 +60,12 @@ function Admin() {
                   <td>{item.username}</td>
                   <td>{item.email}</td>
                   <td>{item.mobile_number}</td>
+                  <td>{item.car_make}</td>
+                  <td>{item.car_model}</td>
+                  <td>{item.reg_number}</td>
                   <td>{item.service_type}</td>
-                  <td>{item.car_type}</td>
-                  <td>{item.car_number}</td>
+                  <td>{item.driver_name}</td>
+                  <td>{item.pickup_date}</td>
                   <td>
                     <button
                       className="btn btn-danger"
