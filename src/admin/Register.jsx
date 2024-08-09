@@ -11,12 +11,12 @@ import loginImage from "../assets/favicon.jpeg";
 const Register = () => {
   const [reg_username, setRegUsername] = useState("");
   const [reg_email_id, setRegEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [reg_password, setRegPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({ reg_username, reg_email_id, password });
+    users.push({ reg_username, reg_email_id, reg_password });
     localStorage.setItem("users", JSON.stringify(users));
     navigate("/login");
   };
@@ -168,7 +168,7 @@ const Register = () => {
                     <TextField
                       name="login_pswd"
                       // value={loginState.pswd || ""}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setRegPassword(e.target.value)}
                       className="w-100"
                       type="password"
                       id="outlined-basic-2"
