@@ -1,11 +1,12 @@
 import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   deleteBookingDetailsOfAUserApi,
   getBookingDetailsOfAllUsersApi,
 } from "../services/pro_allApi";
+import "./Admin.css";
 
 function Admin() {
   const [allUsers, setAllUsers] = useState([]);
@@ -23,23 +24,24 @@ function Admin() {
     getBookingDetails();
   };
 
+useEffect(() => {
+  getBookingDetails()
+}, [])
+
   return (
     <>
       <div className="row w-100 my-5">
         <div className="d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
-            <Link
-              to={"/"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
+            <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
               <FontAwesomeIcon icon={faHouse} className="me-2" />
               <span className="hide">Back Home</span>
             </Link>
           </h5>
         </div>
         <div className="col-md-1"></div>
-        <div className="col-md-10">
+        <div className="col-md-10 table-container">
           <table className="table">
             <thead>
               <tr>
@@ -47,22 +49,28 @@ function Admin() {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Mobile No.</th>
+                <th>Car Make</th>
+                <th>Car Model</th>
+                <th>Registration No.</th>
                 <th>Service Type</th>
-                <th>Car Type</th>
-                <th>Car No.</th>
+                <th>Driver</th>
+                <th>Pick-Up Date</th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {allUsers?.map((item, index) => (
-                <tr key={id}>
+                <tr key={item.id}>
                   <td>{index + 1}</td>
                   <td>{item.username}</td>
                   <td>{item.email}</td>
                   <td>{item.mobile_number}</td>
+                  <td>{item.car_make}</td>
+                  <td>{item.car_model}</td>
+                  <td>{item.reg_number}</td>
                   <td>{item.service_type}</td>
-                  <td>{item.car_type}</td>
-                  <td>{item.car_number}</td>
+                  <td>{item.driver_name}</td>
+                  <td>{item.pickup_date}</td>
                   <td>
                     <button
                       className="btn btn-danger"
@@ -75,8 +83,8 @@ function Admin() {
               ))}
             </tbody>
           </table>
-          : <p className="text-danger fs-3">No Booking Details</p>
         </div>
+        : <p className="text-danger fs-3">No Booking Details</p>
         <div className="col-md-1"></div>
       </div>
     </>
