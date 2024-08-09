@@ -54,29 +54,6 @@ export const addCheck = createAsyncThunk(
   }
 );
 
-/* // Define the async thunk
-export const addCheck = createAsyncThunk(
-  "hirerDetails/addCheck",
-  async (formData, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/allUsersBookingDetails",
-        formData
-      );
-      if (response.status >= 200 && response.status < 300) {
-        return response.data; // Return the data to be used in the fulfilled action
-      } else {
-        throw new Error("Failed to get success response.");
-      }
-    } catch (error) {
-      return rejectWithValue(
-        error.response ? error.response.data : error.message
-      );
-      // Return the error to be used in the rejected action
-    }
-  }
-); */
-
 // This creates a Redux slice named "hirerDetails" with the specified initial state and reducers.
 // name: The name of the slice, which is "form".
 // initialState: The initial state defined above.
