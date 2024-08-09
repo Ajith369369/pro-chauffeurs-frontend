@@ -50,16 +50,12 @@ function BookRide() {
   // const [bookingFormState.pickup_location, setFromPlaceName] = useState("");
   // const [bookingFormState.dropoff_location, setToPlaceName] = useState("");
   // State to hold the place objects corresponding to the input values
-  const [fromPlace, setFromPlace] = useState(null);
-  const [toPlace, setToPlace] = useState(null);
+
   // State to hold the calculated distance and cost
   const [distance, setDistance] = useState(0);
   const [cost, setCost] = useState(0);
   // for disable div
   const isDisabled = !distance; // Determine if the div should be disabled
-
-  // service dropdown state
-  const [selectedService, setSelectedService] = useState("");
 
   // Fetch the list of places from the server when the component mounts
   useEffect(() => {
@@ -91,10 +87,7 @@ function BookRide() {
       (p) =>
         p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
     );
-    // Update the state with the found place objects
-    setFromPlace(from);
-    setToPlace(to);
-
+    
     // Calculate the distance and cost whenever the place objects are updated
     if (from && to) {
       const dist = calculateDistance(
@@ -366,7 +359,7 @@ function BookRide() {
                       </option>
                       <option value="Hourly Booking">Hourly Booking</option>
                       <option value="Airport Transfer">Airport Transfer</option>
-                      <option value="City Transfers">City Transfers</option>
+                      <option value="City Transfer">City Transfer</option>
                       <option value="Corporate Transport">
                         Corporate Transport
                       </option>
