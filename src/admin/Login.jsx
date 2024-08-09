@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
-      (user) => user.email_id === email_id && user.password === password
+      (user) => user.reg_email_id === email_id && user.password === password
     );
 
     if (
