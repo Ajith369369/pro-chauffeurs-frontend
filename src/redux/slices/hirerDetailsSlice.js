@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 // Initialize pickup_date with Day.js object
 const initialState = {
   loginFormState: {
-    user_name: "",
+    login_email: "",
   },
 
   bookingFormState: {
