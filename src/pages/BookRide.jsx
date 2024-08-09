@@ -500,7 +500,7 @@ function BookRide() {
         </div>
         <Footer />
       </div>
-      <ToastContainer position="top-right" theme="colored" autoclose={3000} />
+      <ToastContainer position="top-center" theme="colored" autoclose={3000} />
     </>
   );
 }
