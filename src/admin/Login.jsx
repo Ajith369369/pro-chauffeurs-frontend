@@ -12,23 +12,25 @@ import loginImage from "../assets/favicon.jpeg";
 import { ADMIN_USER } from "./constants";
 
 const Login = () => {
-  const [email_id, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [log_email_id, setLogUsername] = useState("");
+  const [log_password, setLogPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
-      (user) => user.reg_email_id === email_id && user.password === password
+      (user) => user.reg_email_id === log_email_id && user.reg_password === log_password
     );
 
     if (
       user ||
-      (email_id === ADMIN_USER.email_id && password === ADMIN_USER.password)
+      (log_email_id === ADMIN_USER.email_id && log_password === ADMIN_USER.password)
     ) {
-      localStorage.setItem("currentUser", JSON.stringify({ email_id }));
-      if (email_id === ADMIN_USER.email_id) {
-        navigate("/admin");
+      localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
+      if (log_email_id === ADMIN_USER.email_id) {
+        toast.success("Administrator Login successful", {
+          onClose: () => navigate("/admin"),
+        });
       } else {
         toast.success("Login successful", {
           onClose: () => navigate("/"),
@@ -96,7 +98,7 @@ const Login = () => {
                     <TextField
                       name="login_email"
                       // value={loginState.email || ""}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => setLogUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
@@ -141,7 +143,7 @@ const Login = () => {
                     <TextField
                       name="login_pswd"
                       // value={loginState.pswd || ""}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setLogPassword(e.target.value)}
                       className="w-100"
                       id="outlined-basic-2"
                       label="PASSWORD"
