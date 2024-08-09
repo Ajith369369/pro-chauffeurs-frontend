@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/favicon.jpeg";
 
 const Register = () => {
-  const [reg_username, setUsername] = useState("");
+  const [reg_username, setRegUsername] = useState("");
   const [reg_email_id, setRegEmailId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const Register = () => {
                     <TextField
                       name="register_username"
                       // value={loginState.email || ""}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => setRegUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-3"
                       label="USERNAME"
