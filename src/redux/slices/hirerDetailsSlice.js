@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
 // This defines the initial state of the slice. initialState is an object containing four nested objects: loginFormState, bookingFormState, driverFormState, and hirerFormState.
@@ -88,21 +87,6 @@ const hirerDetailsSlice = createSlice({
     resetHirerFormState(state) {
       state.hirerFormState = initialState.hirerFormState;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(addCheck.pending, (state) => {
-        // Handle loading state if needed
-        console.log("Loading addCheck...");
-      })
-      .addCase(addCheck.fulfilled, (state, action) => {
-        // Handle success state
-        console.log("Successfully added:", action.payload);
-      })
-      .addCase(addCheck.rejected, (state, action) => {
-        // Handle error state
-        console.error("Failed to add:", action.payload);
-      });
   },
 });
 
