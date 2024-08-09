@@ -9,14 +9,14 @@ import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/favicon.jpeg";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
+  const [reg_username, setUsername] = useState("");
   const [reg_email_id, setRegEmailId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({ username, reg_email_id, password });
+    users.push({ reg_username, reg_email_id, password });
     localStorage.setItem("users", JSON.stringify(users));
     navigate("/login");
   };
