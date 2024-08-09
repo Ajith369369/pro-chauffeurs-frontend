@@ -6,10 +6,10 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
-import loginImage from "../assets/favicon.jpeg";
-import { ADMIN_USER } from "./constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import loginImage from "../assets/favicon.jpeg";
+import { ADMIN_USER } from "./constants";
 
 const Login = () => {
   const [email_id, setUsername] = useState("");
@@ -30,11 +30,12 @@ const Login = () => {
       if (email_id === ADMIN_USER.email_id) {
         navigate("/admin");
       } else {
-        toast.success("Login successful.", {
-          onClose: () => navigate('/')});
+        toast.success("Login successful", {
+          onClose: () => navigate("/"),
+        });
       }
     } else {
-      alert("Invalid credentials");
+      toast.error("Invalid credentials");
     }
   };
 
@@ -205,7 +206,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer position="top-center" theme="colored" autoclose={2000} />
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 };
