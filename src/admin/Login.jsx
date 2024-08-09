@@ -5,39 +5,53 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginImage from "../assets/favicon.jpeg";
 import { ADMIN_USER } from "./constants";
+import { updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
 
 const Login = () => {
   const [log_email_id, setLogUsername] = useState("");
   const [log_password, setLogPassword] = useState("");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginFormState = useSelector(
+    (state) => state.hirerDetails.loginFormState
+  );
 
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
-      (user) => user.reg_email_id === log_email_id && user.reg_password === log_password
+      (user) =>
+        user.reg_email_id === log_email_id && user.reg_password === log_password
     );
 
-    if (
-      user ||
-      (log_email_id === ADMIN_USER.email_id && log_password === ADMIN_USER.password)
-    ) {
-      localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
-      if (log_email_id === ADMIN_USER.email_id) {
-        toast.success("Administrator Login successful", {
-          onClose: () => navigate("/admin"),
-        });
-      } else {
-        toast.success("Login successful", {
-          onClose: () => navigate("/"),
-        });
-      }
+    if (!loginFormState.login_email || !loginFormState.login_pswd) {
+      toast.info("Please fill the form completely");
     } else {
-      toast.error("Invalid credentials");
+      if (
+        user ||
+        (log_email_id === ADMIN_USER.email_id &&
+          log_password === ADMIN_USER.password)
+      ) {
+        localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
+        if (log_email_id === ADMIN_USER.email_id) {
+          toast.success("Administrator Login successful", {
+            onClose: () => navigate("/admin"),
+          });
+        } else {
+          dispatch(updateLoginFormState({ [name]: value }));
+          toast.success("Login successful", {
+            onClose: () => navigate("/", { state: { loginFormState } }),
+          });
+        }
+      } else {
+        toast.error("Invalid credentials");
+      }
     }
   };
 
@@ -97,7 +111,7 @@ const Login = () => {
                     /> */}
                     <TextField
                       name="login_email"
-                      // value={loginState.email || ""}
+                      value={loginFormState.login_email || ""}
                       onChange={(e) => setLogUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-1"
@@ -142,7 +156,7 @@ const Login = () => {
                     /> */}
                     <TextField
                       name="login_pswd"
-                      // value={loginState.pswd || ""}
+                      value={loginFormState.login_pswd || ""}
                       onChange={(e) => setLogPassword(e.target.value)}
                       className="w-100"
                       id="outlined-basic-2"

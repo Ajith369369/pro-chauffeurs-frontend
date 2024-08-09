@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 const initialState = {
   loginFormState: {
     login_email: "",
+    login_pswd: "",
   },
 
   bookingFormState: {
