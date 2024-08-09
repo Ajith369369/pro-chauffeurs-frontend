@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/favicon.jpeg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [reg_username, setRegUsername] = useState("");
@@ -18,7 +20,9 @@ const Register = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push({ reg_username, reg_email_id, reg_password });
     localStorage.setItem("users", JSON.stringify(users));
-    navigate("/login");
+    toast.success("Registration successful", {
+      onClose: () => navigate("/login"),
+    });
   };
 
   return (
@@ -233,6 +237,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 };
