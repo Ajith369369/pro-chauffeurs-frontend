@@ -46,8 +46,8 @@ function Admin() {
 
   return (
     <>
-      <div className="row w-100 my-5">
-        <div className="d-flex justify-content-between p-md-5">
+      <div className="admin-container row w-100 my-5 d-flex flex-column justify-content-start align-items-center">
+        <div className="dash-home d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
             <Link
@@ -63,53 +63,54 @@ function Admin() {
             </Link>
           </h5>
         </div>
-        <div className="col-md-1"></div>
-        <div className="col-md-10 table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Sl. No.</th>
-                <th>Email</th>
-                <th>Mobile No.</th>
-                <th>Car Make</th>
-                <th>Car Model</th>
-                <th>Registration No.</th>
-                <th>Service Type</th>
-                <th>Driver</th>
-                <th>Pick-Up Date</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            {allUsers.length > 0 && (
-              <tbody>
-                {allUsers?.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{index + 1}</td>
-                    <td>{item.email}</td>
-                    <td>{item.mobile_number}</td>
-                    <td>{item.car_make}</td>
-                    <td>{item.car_model}</td>
-                    <td>{item.reg_number}</td>
-                    <td>{item.service_type}</td>
-                    <td>{item.driver_name}</td>
-                    <td>{dateFormatter(item.pickup_date)}</td>
-                    <td>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDeleteUser(item.id)}
-                      >
-                        <FontAwesomeIcon icon={faTrashCan} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-          </table>
-          <p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>
+        <div className="row w-100">
+          <div className="col-md-1"></div>
+          <div className="col-md-10 table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Sl. No.</th>
+                  <th>Email</th>
+                  <th>Mobile No.</th>
+                  <th>Car Make</th>
+                  <th>Car Model</th>
+                  <th>Registration No.</th>
+                  <th>Service Type</th>
+                  <th>Driver</th>
+                  <th>Pick-Up Date</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              {allUsers.length > 0 && (
+                <tbody>
+                  {allUsers?.map((item, index) => (
+                    <tr key={item.id}>
+                      <td>{index + 1}</td>
+                      <td>{item.email}</td>
+                      <td>{item.mobile_number}</td>
+                      <td>{item.car_make}</td>
+                      <td>{item.car_model}</td>
+                      <td>{item.reg_number}</td>
+                      <td>{item.service_type}</td>
+                      <td>{item.driver_name}</td>
+                      <td>{dateFormatter(item.pickup_date)}</td>
+                      <td>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDeleteUser(item.id)}
+                        >
+                          <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              )}
+            </table>
+            {allUsers.length == 0 && <p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>}
+          </div>
+          <div className="col-md-1"></div>
         </div>
-
-        <div className="col-md-1"></div>
       </div>
     </>
   );
