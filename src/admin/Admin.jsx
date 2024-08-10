@@ -24,13 +24,11 @@ function Admin() {
 
   // Get the booking details of all users
   const getBookingDetails = async () => {
-
     // Calls the API function getBookingDetailsOfAllUsersApi to fetch booking details and waits for the response. The await keyword pauses execution until the promise resolves.
     const result = await getBookingDetailsOfAllUsersApi();
     console.log(`result : ${result}`);
 
     if (result.status >= 200 && result.status < 300) {
-
       // Updates the allUsers state with the data fetched from the API.
       setAllUsers(result.data);
     }
@@ -38,14 +36,11 @@ function Admin() {
 
   // Add default data to the database (db.json)
   const addDefaultDataToDatabase = async () => {
-
     // Starts a try block to catch any errors that might occur during the execution of the code inside it.
     try {
-
       // Use map to create an array of promises.
       // Maps over the defaultUsers array to create an array of promises. Each promise represents an API call to add a booking detail.
       const promises = defaultUsers.map(async (item) => {
-
         // Await the result of the API call
         // Calls addBookingDetailsOfAUserApi for each item (default booking detail) and waits for it to complete.
         // The await keyword pauses execution until the promise resolves.
@@ -65,7 +60,6 @@ function Admin() {
 
       // Catches any errors that occur during the try block execution.
     } catch (error) {
-
       // Logs an error message to the console if an error occurs.
       console.error("Error adding default data to the database:", error);
     }
@@ -73,15 +67,12 @@ function Admin() {
 
   // Load default booking details from db.json
   const loadDefaultBookingDetails = async () => {
-
     // Starts a try block to catch any errors that might occur during the execution of the code inside it.
     try {
-
       // Calls getDefaultBookingDetailsApi to fetch default booking details and waits for the response.
       // The await keyword pauses execution until the promise resolves.
       const defaultData = await getDefaultBookingDetailsApi();
       if (defaultData.status >= 200 && defaultData.status < 300) {
-
         // Updates the defaultUsers state with the fetched default booking details.
         setDefaultUsers(defaultData.data);
 
@@ -91,7 +82,6 @@ function Admin() {
 
       // Catches any errors that occur during the try block execution.
     } catch (error) {
-
       // Logs an error message to the console if an error occurs.
       console.error("Error loading default booking details:", error);
     }
