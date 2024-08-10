@@ -10,6 +10,7 @@ import {
   resetBookingFormState,
   resetDriverFormState,
   resetHirerFormState,
+  resetLoginFormState,
   updateBookingFormState,
 } from "../redux/slices/hirerDetailsSlice";
 import {
@@ -323,15 +324,16 @@ function BookRide() {
         // const result = await addBookingDetailsOfAUserApi(combinedFormState);
         // console.log(result);
         console.log(combinedFormState);
-        await addBookingDetailsOfAUserApi(combinedFormState);
-
+        
+        dispatch(resetLoginFormState());
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
         dispatch(resetBookingFormState());
+        localStorage.removeItem("currentUser");
         toast.success("Booking Confirmed", {
           onClose: () => navigate('/')});
       } else {
-        toast.danger("Failed to save booking details. Please try again.");
+        toast.error("Failed to save booking details. Please try again.");
       }
     }
   };
@@ -500,7 +502,7 @@ function BookRide() {
         </div>
         <Footer />
       </div>
-      <ToastContainer position="top-right" theme="colored" autoclose={3000} />
+      <ToastContainer position="top-center" theme="colored" autoclose={3000} />
     </>
   );
 }
