@@ -7,8 +7,10 @@ import { updateLoginButtonState } from "../redux/slices/hirerDetailsSlice";
 import {
   deleteBookingDetailsOfAUserApi,
   getBookingDetailsOfAllUsersApi,
+  getDefaultBookingDetailsApi,
 } from "../services/pro_allApi";
 import "./Admin.css";
+import { Button } from "react-bootstrap";
 
 function Admin() {
   const dispatch = useDispatch();
@@ -21,6 +23,21 @@ function Admin() {
     if (result.status >= 200 && result.status < 300) {
       setAllUsers(result.data);
     }
+  };
+
+  const [defaultUsers, setDefaultUsers] = useState([]);
+  const loadDefaultBookingDetails = async() => {
+    const defaultData = await getDefaultBookingDetailsApi()
+
+    if (defaultData.status >= 200 && defaultData.status < 300) {
+      setDefaultUsers(defaultData.data);
+    }
+
+    // Update the local state to include the new booking details
+    setAllUsers((prevDetails) => [
+        ...prevDetails,
+        ...defaultUsers,
+      ]);
   };
 
   const dateFormatter = (isoString) => {
@@ -49,7 +66,7 @@ function Admin() {
       <div className="admin-container row w-100 my-5 d-flex flex-column justify-content-start align-items-center">
         <div className="dash-home d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
-          <h5 className="mt-4 me-5">
+          <h5 className="mt-1 me-5">
             <Link
               to={"/"}
               style={{ textDecoration: "none", color: "white" }}
@@ -107,7 +124,17 @@ function Admin() {
                 </tbody>
               )}
             </table>
-            {allUsers.length == 0 && <p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>}
+            {allUsers.length == 0 && <div className="d-flex flex-column justify-content-center align-items-center"><p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>
+              <Button
+              onClick={loadDefaultBookingDetails}
+              variant="light"
+              className="px-4"
+              style={{ backgroundColor: "white", width: "150px" }}
+            >
+              Load Default Data
+            </Button></div>
+            }
+            
           </div>
           <div className="col-md-1"></div>
         </div>

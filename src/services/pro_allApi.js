@@ -52,6 +52,11 @@ export const getDetailsOfADriverApi = async (id) => {
   return await commonAPI("GET", `${serverUrl}/allDrivers/${id}`, "");
 };
 
+// API to get default booking details
+export const getDefaultBookingDetailsApi = async () => {
+  return await commonAPI("GET", `${serverUrl}/defaultBookingDetails`, "");
+};
+
 // API to get all places (to calculate amount based on distance between starting point and ending point)
 export const getPlacesApi = async () => {
   return await commonAPI("GET", `${serverUrl}/Allplaces`, "");
