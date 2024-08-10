@@ -79,7 +79,7 @@ function HirerDetails() {
                     value={hirerFormState.passenger_name || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-1"
                     label="PASSENGER NAME"
                     variant="outlined"
                     sx={{
@@ -123,7 +123,7 @@ function HirerDetails() {
                     value={hirerFormState.email || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-2"
                     label="EMAIL"
                     variant="outlined"
                     sx={{
@@ -167,7 +167,7 @@ function HirerDetails() {
                     value={hirerFormState.mobile_number || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-3"
                     label="MOBILE NUMBER"
                     variant="outlined"
                     sx={{
@@ -212,7 +212,7 @@ function HirerDetails() {
                     value={hirerFormState.car_make || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-4"
                     label="CAR'S MAKE"
                     variant="outlined"
                     sx={{
@@ -261,7 +261,7 @@ function HirerDetails() {
                     value={hirerFormState.car_model || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-5"
                     label="CAR'S MODEL"
                     variant="outlined"
                     sx={{
@@ -310,7 +310,7 @@ function HirerDetails() {
                     value={hirerFormState.reg_number || ""}
                     onChange={handleChange}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-6"
                     label="CAR'S REGISTRATION NUMBER"
                     variant="outlined"
                     sx={{
