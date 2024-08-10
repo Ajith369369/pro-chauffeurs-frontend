@@ -29,9 +29,11 @@ function HirerDetails() {
       // $: Asserts the position at the end of the string.
       // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
       isValid = /^[0-9]*$/.test(value);
-    } else {
+    } else if (name === "passenger_name" || name === "car_make" || name === "car_model") {
+      isValid = /^[A-Z]*$/.test(value);
+    }/* else {
       isValid = value.trim() !== "";
-    }
+    } */
     dispatch(updateHirerFormState({ [name]: value }));
   };
 
@@ -116,6 +118,11 @@ function HirerDetails() {
                       },
                     }}
                   />
+                  {isValid == false && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
                 </div>
                 <div className="form-group my-4">
                   <TextField
