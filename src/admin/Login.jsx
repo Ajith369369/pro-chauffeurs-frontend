@@ -14,8 +14,8 @@ import { updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
 import { ADMIN_USER } from "./constants";
 
 const Login = () => {
-  const [log_email_id, setLogUsername] = useState("");
-  const [log_password, setLogPassword] = useState("");
+  // const [log_email_id, setLogUsername] = useState("");
+  // const [log_password, setLogPassword] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,11 +23,17 @@ const Login = () => {
     (state) => state.hirerDetails.loginFormState
   );
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateLoginFormState({ [name]: value }));
+  };
+
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
       (user) =>
-        user.reg_email_id === log_email_id && user.reg_password === log_password
+        // user.reg_email_id === log_email_id && user.reg_password === log_password
+      user.reg_email_id === loginFormState.login_email && user.reg_password === loginFormState.login_pswd
     );
 
     if (!loginFormState.login_email || !loginFormState.login_pswd) {
@@ -35,16 +41,20 @@ const Login = () => {
     } else {
       if (
         user ||
-        (log_email_id === ADMIN_USER.email_id &&
-          log_password === ADMIN_USER.password)
+        (loginFormState.login_email === ADMIN_USER.email_id &&
+          loginFormState.login_pswd === ADMIN_USER.password)
       ) {
-        localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
+        const log_email_id = String(loginFormState.login_email);
+        // localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
+        localStorage.setItem("currentUser",log_email_id)
+        const show_currentUser = localStorage.getItem("currentUser");
+        console.log('Current User: ', show_currentUser)
+        
         if (log_email_id === ADMIN_USER.email_id) {
           toast.success("Administrator Login successful", {
             onClose: () => navigate("/admin"),
           });
         } else {
-          dispatch(updateLoginFormState({ [name]: value }));
           toast.success("Login successful", {
             onClose: () => navigate("/", { state: { loginFormState } }),
           });
@@ -112,7 +122,8 @@ const Login = () => {
                     <TextField
                       name="login_email"
                       value={loginFormState.login_email || ""}
-                      onChange={(e) => setLogUsername(e.target.value)}
+                      // onChange={(e) => setLogUsername(e.target.value)}
+                      onChange={handleChange}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
@@ -157,7 +168,8 @@ const Login = () => {
                     <TextField
                       name="login_pswd"
                       value={loginFormState.login_pswd || ""}
-                      onChange={(e) => setLogPassword(e.target.value)}
+                      // onChange={(e) => setLogPassword(e.target.value)}
+                      onChange={handleChange}
                       className="w-100"
                       id="outlined-basic-2"
                       label="PASSWORD"
