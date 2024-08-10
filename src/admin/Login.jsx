@@ -217,7 +217,7 @@ const Login = () => {
                         className="mb-3 w-100 rounded-0"
                         style={{ width: "150px" }}
                       >
-                        Login
+                        Log In
                       </Button>
                       <p>
                         New User? Click Here to{" "}
