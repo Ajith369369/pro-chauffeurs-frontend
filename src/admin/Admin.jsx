@@ -1,7 +1,9 @@
 import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { updateLoginButtonState } from "../redux/slices/hirerDetailsSlice";
 import {
   deleteBookingDetailsOfAUserApi,
   getBookingDetailsOfAllUsersApi,
@@ -9,6 +11,8 @@ import {
 import "./Admin.css";
 
 function Admin() {
+  const dispatch = useDispatch();
+
   const [allUsers, setAllUsers] = useState([]);
   const getBookingDetails = async () => {
     const result = await getBookingDetailsOfAllUsersApi();
@@ -24,9 +28,9 @@ function Admin() {
     getBookingDetails();
   };
 
-useEffect(() => {
-  getBookingDetails()
-}, [])
+  useEffect(() => {
+    getBookingDetails();
+  }, []);
 
   return (
     <>
@@ -34,7 +38,14 @@ useEffect(() => {
         <div className="d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
-            <Link to={"/"} style={{ textDecoration: "none", color: "white" }} onClick={() => localStorage.removeItem("currentUser")}>
+            <Link
+              to={"/"}
+              style={{ textDecoration: "none", color: "white" }}
+              onClick={() => {
+                localStorage.removeItem("currentUser");
+                dispatch(updateLoginButtonState(true));
+              }}
+            >
               <FontAwesomeIcon icon={faHouse} className="me-2" />
               <span className="hide">Back Home</span>
             </Link>
