@@ -58,7 +58,7 @@ function Home() {
                     className="bookbtn px-4 py-2"
                     onClick={handleLoginClick_1}
                   >
-                    Login
+                    Log In
                   </Button>
                 </Nav>
               </Navbar.Collapse>
