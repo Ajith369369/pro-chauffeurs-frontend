@@ -215,85 +215,12 @@ function BookRide() {
       dispatch(updateBookingFormState({ pickup_date: newDate }));
     }
 
-    /* const { name, value } = e.target;
-    if (name === "pickup_date") {
-      const newDate = dayjs(e.target.value);
-      dispatch(updateBookingFormState({ pickup_date: newDate }));
-    } else {
-      dispatch(updateBookingFormState({ [name]: value }));
-    } */
-
-    /* 
-    if (name == "pickup_location") {
-      setFromPlaceName(value);
-    } else if (name == "dropoff_location") {
-      setToPlaceName(value);
-    } else if (name == "service_type") {
-      setSelectedService(value);
-    } */
   };
-  // console.log(bookingFormState.pickup_location);
-
-  /*   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }; */
 
   const handleBackClick = () => {
     navigate("/driverlist");
   };
 
-  // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
-  //It prevents the default form submission behavior (e.preventDefault()).
-  // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
-  /*     const handleBookNowClick = (e) => {
-      e.preventDefault();
-      if (!bookingFormState.service_type) {
-        alert("Please fill the form completely.");
-      } else {
-  
-        navigate("/");
-      }
-    }; */
-
-  /*  const validate = (e) => {
-     const data = e.target.value;
-     const name = e.target.name;
- 
-     if (data.match(/^[0-9]*$/)) {
-       if (name == "pickup_location") {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           ispickup_location: true,
-         }));
-       } else {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           isreg_number: true,
-         }));
-       }
-     } else {
-       if (name == "pickup_location") {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           ispickup_location: false,
-         }));
-       } else {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           isreg_number: false,
-         }));
-       }
-     }
-   };
-  */
   const handleSubmit = async (e) => {
     // Prevents form from reloading the page
     e.preventDefault();

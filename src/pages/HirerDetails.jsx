@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
@@ -85,7 +87,6 @@ function HirerDetails() {
         handleChange("is_car_model", true);
       }
     } else if (name === "mobile_number") {
-
       // Regular Expression: /^[0-9]*$/
       // ^: Asserts the position at the start of the string.
       // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
@@ -118,29 +119,28 @@ function HirerDetails() {
         handleChange("is_reg_number", true);
       }
     } else if (name === "email") {
-
       // Regular expression to check for a valid email format
       // john@gmail.com
       // ^: This asserts the start of the string. Ensures that the match begins right from the start of the input, with no preceding characters.
       // [^\s@]+
-        // [ and ]: Defines a character class, which matches any one of the characters contained within it.
-        // \s: Matches any whitespace character (like spaces, tabs, etc.).
-        // @: Matches the "@" character specifically.
-        // ^ inside [ and ]: When used inside a character class, it negates the class, meaning it matches any character except those specified.
-        // [^\s@]]+: It matches a sequence of one or more characters that are not whitespace and not the "@" symbol.
-        // + symbol: It is a quantifier that specifies that the preceding element must appear one or more times. This means that the pattern before the + must occur at least once but can repeat any number of times, including indefinitely.
-        // E.g., john
+      // [ and ]: Defines a character class, which matches any one of the characters contained within it.
+      // \s: Matches any whitespace character (like spaces, tabs, etc.).
+      // @: Matches the "@" character specifically.
+      // ^ inside [ and ]: When used inside a character class, it negates the class, meaning it matches any character except those specified.
+      // [^\s@]]+: It matches a sequence of one or more characters that are not whitespace and not the "@" symbol.
+      // + symbol: It is a quantifier that specifies that the preceding element must appear one or more times. This means that the pattern before the + must occur at least once but can repeat any number of times, including indefinitely.
+      // E.g., john
       // @: Matches the "@" character specifically.
       // [^\s@]+ (again): Matches one or more characters after the "@" symbol that are not whitespace and not "@".
-        // E.g., gmail
+      // E.g., gmail
       // \.: Matches a literal period '.' Ensures that there's a period in the domain part of the email, which is standard in most email formats (like example.com).
       // [^\s@]+ (again): Matches one or more characters after the period, which typically represents the top-level domain (like com, org, etc.).
-        // E.g., com
+      // E.g., com
       // $: Asserts the end of the string. Ensures that the match extends to the end of the input, with no trailing characters.
       // This pattern is designed to catch most common email formats, ensuring that the input looks like a valid email address (e.g., user@example.com). However, it may not catch every edge case or allow every valid email according to the full specification.
       // When a user types just a single letter or number, it fails the emailPattern.test(value) check because it's not yet a valid email address. So, proper validation happens only after typing the entire email address.
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
       if (value === "") {
         // If the input is empty, reset the validation to true
         handleChange("is_email", true);
@@ -171,13 +171,13 @@ function HirerDetails() {
       !hirerFormState.car_model ||
       !hirerFormState.reg_number
     ) {
-      alert("Please fill the form completely.");
+      toast.info("Please fill the form completely.");
     } else {
       try {
         navigate("/driverlist", { state: { hirerFormState } });
       } catch (error) {
         console.error("Failed to save booking details:", error);
-        alert("Failed to save booking details. Please try again.");
+        toast.error("Failed to save booking details. Please try again.");
       }
     }
   };
@@ -527,6 +527,7 @@ function HirerDetails() {
         </div>
         <Footer />
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 }
