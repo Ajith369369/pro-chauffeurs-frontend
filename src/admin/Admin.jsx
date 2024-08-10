@@ -32,7 +32,7 @@ function Admin() {
     // Input: "2024-08-10T07:39:55.209Z"
     // Output: 10/08/2024
     console.log(formattedDate);
-    return formattedDate
+    return formattedDate;
   };
 
   const handleDeleteUser = async (id) => {
@@ -80,32 +80,35 @@ function Admin() {
                 <th>Delete</th>
               </tr>
             </thead>
-            <tbody>
-              {allUsers?.map((item, index) => (
-                <tr key={item.id}>
-                  <td>{index + 1}</td>
-                  <td>{item.email}</td>
-                  <td>{item.mobile_number}</td>
-                  <td>{item.car_make}</td>
-                  <td>{item.car_model}</td>
-                  <td>{item.reg_number}</td>
-                  <td>{item.service_type}</td>
-                  <td>{item.driver_name}</td>
-                  <td>{dateFormatter(item.pickup_date)}</td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDeleteUser(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {allUsers.length > 0 && (
+              <tbody>
+                {allUsers?.map((item, index) => (
+                  <tr key={item.id}>
+                    <td>{index + 1}</td>
+                    <td>{item.email}</td>
+                    <td>{item.mobile_number}</td>
+                    <td>{item.car_make}</td>
+                    <td>{item.car_model}</td>
+                    <td>{item.reg_number}</td>
+                    <td>{item.service_type}</td>
+                    <td>{item.driver_name}</td>
+                    <td>{dateFormatter(item.pickup_date)}</td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDeleteUser(item.id)}
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
+          <p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>
         </div>
-        : <p className="text-danger fs-3">No Booking Details</p>
+
         <div className="col-md-1"></div>
       </div>
     </>
