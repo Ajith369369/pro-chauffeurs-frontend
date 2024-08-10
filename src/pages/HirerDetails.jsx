@@ -84,6 +84,7 @@ function HirerDetails() {
         handleChange("is_car_model", true);
       }
     } else if (name === "mobile_number") {
+
       // Regular Expression: /^[0-9]*$/
       // ^: Asserts the position at the start of the string.
       // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
@@ -94,7 +95,6 @@ function HirerDetails() {
       // +: Quantifier that matches one or more occurrences of the preceding element.
       // /^[0-9]*$/: Matches any string that consists entirely of digits or is empty.
       // /^\d+$/: Matches any string that consists entirely of one or more digits and does not allow an empty string.
-
       if (value === "") {
         // If the input is empty, reset the validation to true
         handleChange("is_mobile_number", true);
