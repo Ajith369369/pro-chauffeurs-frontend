@@ -74,7 +74,7 @@ function DriverSelected() {
     // dispatch is a method provided by the Redux useDispatch hook, which allows you to send actions to the Redux store.
     // updateDriverFormState is an action creator that is imported from your Redux slice, hirerDetailsSlice.js. It creates an action to update the state related to the driver form in the Redux store.
     // { selectedDriver } is the payload of the action. It includes the selectedDriver object, which  contains information about the driver that was selected. 
-    dispatch(updateDriverFormState({ selectedDriver }));
+    dispatch(updateDriverFormState({ driver_name: selectedDriver?.DriverName }));
 
     // navigate is a function provided by the useNavigate hook from react-router-dom. It allows you to programmatically navigate to different routes in your application.
     // The state object passed to navigate contains hirerFormState and driverFormState, which will be available in the location.state of the "/bookride" route.
