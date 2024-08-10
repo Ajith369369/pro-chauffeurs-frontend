@@ -32,7 +32,8 @@ const Login = () => {
     const user = users.find(
       (user) =>
         // user.reg_email_id === log_email_id && user.reg_password === log_password
-      user.reg_email_id === loginFormState.login_email && user.reg_password === loginFormState.login_pswd
+        user.reg_email_id === loginFormState.login_email &&
+        user.reg_password === loginFormState.login_pswd
     );
 
     if (!loginFormState.login_email || !loginFormState.login_pswd) {
@@ -45,15 +46,17 @@ const Login = () => {
       ) {
         const log_email_id = String(loginFormState.login_email);
         // localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
-        localStorage.setItem("currentUser",log_email_id)
+        localStorage.setItem("currentUser", log_email_id);
         const show_currentUser = localStorage.getItem("currentUser");
-        console.log('Current User: ', show_currentUser)
-        
+        console.log("Current User: ", show_currentUser);
+
         if (log_email_id === ADMIN_USER.email_id) {
+          loginFormState.logi
           toast.success("Administrator Login successful", {
             onClose: () => navigate("/admin"),
           });
         } else {
+          // document.getElementById("outlined-basic-1").value = "";
           toast.success("Login successful", {
             onClose: () => navigate("/", { state: { loginFormState } }),
           });

@@ -2,6 +2,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,12 +11,25 @@ import ClientRating from "../components/ClientRating";
 import Reasons from "../components/Reasons";
 import Services from "../components/Services";
 import "./Home.css";
+import { resetBookingFormState, resetDriverFormState, resetHirerFormState, resetLoginFormState } from "../redux/slices/hirerDetailsSlice";
 
 function Home() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginFormState = useSelector(
+    (state) => state.hirerDetails.loginFormState
+  );
 
   const handleLoginClick_1 = () => {
     navigate("/login");
+  };
+
+  const handleLoginClick_1_logOut = () => {
+    dispatch(resetLoginFormState());
+    dispatch(resetHirerFormState());
+    dispatch(resetDriverFormState());
+    dispatch(resetBookingFormState());
+    localStorage.removeItem("currentUser");
   };
 
   const handleLoginClick_2 = () => {
@@ -54,12 +68,21 @@ function Home() {
                   >
                     Contact Us
                   </Nav.Link>
-                  <Button
-                    className="bookbtn px-4 py-2"
-                    onClick={handleLoginClick_1}
-                  >
-                    Log In
-                  </Button>
+                  {loginFormState.login_button ? (
+                    <Button
+                      className="bookbtn px-4 py-2"
+                      onClick={handleLoginClick_1}
+                    >
+                      Log In
+                    </Button>
+                  ) : (
+                    <Button
+                      className="bookbtn px-4 py-2"
+                      onClick={handleLoginClick_1_logOut}
+                    >
+                      Log Out
+                    </Button>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>

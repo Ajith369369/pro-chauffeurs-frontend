@@ -8,6 +8,7 @@ const initialState = {
   loginFormState: {
     login_email: "",
     login_pswd: "",
+    login_button: true,
   },
 
   bookingFormState: {
