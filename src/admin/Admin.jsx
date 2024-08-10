@@ -1,43 +1,100 @@
 import { faHouse, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateLoginButtonState } from "../redux/slices/hirerDetailsSlice";
 import {
+  addBookingDetailsOfAUserApi,
   deleteBookingDetailsOfAUserApi,
   getBookingDetailsOfAllUsersApi,
   getDefaultBookingDetailsApi,
 } from "../services/pro_allApi";
 import "./Admin.css";
-import { Button } from "react-bootstrap";
 
 function Admin() {
   const dispatch = useDispatch();
 
+  // Initializes the state variable allUsers with an empty array. This state will hold the booking details of all users fetched from the API.
   const [allUsers, setAllUsers] = useState([]);
+
+  // Initializes the state variable defaultUsers with an empty array. This state will hold the default booking details fetched from the API.
+  const [defaultUsers, setDefaultUsers] = useState([]);
+
+  // Get the booking details of all users
   const getBookingDetails = async () => {
+
+    // Calls the API function getBookingDetailsOfAllUsersApi to fetch booking details and waits for the response. The await keyword pauses execution until the promise resolves.
     const result = await getBookingDetailsOfAllUsersApi();
     console.log(`result : ${result}`);
 
     if (result.status >= 200 && result.status < 300) {
+
+      // Updates the allUsers state with the data fetched from the API.
       setAllUsers(result.data);
     }
   };
 
-  const [defaultUsers, setDefaultUsers] = useState([]);
-  const loadDefaultBookingDetails = async() => {
-    const defaultData = await getDefaultBookingDetailsApi()
+  // Add default data to the database (db.json)
+  const addDefaultDataToDatabase = async () => {
 
-    if (defaultData.status >= 200 && defaultData.status < 300) {
-      setDefaultUsers(defaultData.data);
+    // Starts a try block to catch any errors that might occur during the execution of the code inside it.
+    try {
+
+      // Use map to create an array of promises.
+      // Maps over the defaultUsers array to create an array of promises. Each promise represents an API call to add a booking detail.
+      const promises = defaultUsers.map(async (item) => {
+
+        // Await the result of the API call
+        // Calls addBookingDetailsOfAUserApi for each item (default booking detail) and waits for it to complete.
+        // The await keyword pauses execution until the promise resolves.
+        await addBookingDetailsOfAUserApi(item);
+      });
+
+      // Wait for all promises to resolve
+      // Waits for all the promises to resolve. This ensures that all default booking details are added before proceeding.
+      await Promise.all(promises);
+
+      // Logs a message to indicate that all default data has been successfully added.
+      console.log("All default data has been added to the database.");
+
+      // Get the updated booking details
+      // Calls getBookingDetails to fetch the updated list of booking details from the API, reflecting the newly added data.
+      getBookingDetails();
+
+      // Catches any errors that occur during the try block execution.
+    } catch (error) {
+
+      // Logs an error message to the console if an error occurs.
+      console.error("Error adding default data to the database:", error);
     }
+  };
 
-    // Update the local state to include the new booking details
-    setAllUsers((prevDetails) => [
-        ...prevDetails,
-        ...defaultUsers,
-      ]);
+  // Load default booking details from db.json
+  const loadDefaultBookingDetails = async () => {
+
+    // Starts a try block to catch any errors that might occur during the execution of the code inside it.
+    try {
+
+      // Calls getDefaultBookingDetailsApi to fetch default booking details and waits for the response.
+      // The await keyword pauses execution until the promise resolves.
+      const defaultData = await getDefaultBookingDetailsApi();
+      if (defaultData.status >= 200 && defaultData.status < 300) {
+
+        // Updates the defaultUsers state with the fetched default booking details.
+        setDefaultUsers(defaultData.data);
+
+        // Calls addDefaultDataToDatabase to add the default booking details to the database.
+        await addDefaultDataToDatabase();
+      }
+
+      // Catches any errors that occur during the try block execution.
+    } catch (error) {
+
+      // Logs an error message to the console if an error occurs.
+      console.error("Error loading default booking details:", error);
+    }
   };
 
   const dateFormatter = (isoString) => {
@@ -57,6 +114,8 @@ function Admin() {
     getBookingDetails();
   };
 
+  // The function call inside the useEffect hook triggers the getBookingDetails function as soon as the component (the specific React component in which the useEffect is defined, i.e., <Admin/>) is mounted (rendered for the first time).
+  // The empty array [] as the second argument means that this effect will only run once when the component first mounts.
   useEffect(() => {
     getBookingDetails();
   }, []);
@@ -110,7 +169,9 @@ function Admin() {
                       <td>{item.reg_number}</td>
                       <td>{item.service_type}</td>
                       <td>{item.driver_name}</td>
-                      <td className="text-center">{dateFormatter(item.pickup_date)}</td>
+                      <td className="text-center">
+                        {dateFormatter(item.pickup_date)}
+                      </td>
                       <td className="text-center">
                         <button
                           className="btn btn-danger"
@@ -124,17 +185,21 @@ function Admin() {
                 </tbody>
               )}
             </table>
-            {allUsers.length == 0 && <div className="d-flex flex-column justify-content-center align-items-center"><p className="text-danger text-center fs-3 fw-bolder w-100">No Booking Details</p>
-              <Button
-              onClick={loadDefaultBookingDetails}
-              variant="light"
-              className="px-4"
-              style={{ backgroundColor: "white", width: "150px" }}
-            >
-              Load Default Data
-            </Button></div>
-            }
-            
+            {allUsers.length == 0 && (
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <p className="text-danger text-center fs-3 fw-bolder w-100">
+                  No Booking Details
+                </p>
+                <Button
+                  onClick={loadDefaultBookingDetails}
+                  variant="light"
+                  className="px-4"
+                  style={{ backgroundColor: "white", width: "150px" }}
+                >
+                  Load Default Data
+                </Button>
+              </div>
+            )}
           </div>
           <div className="col-md-1"></div>
         </div>
