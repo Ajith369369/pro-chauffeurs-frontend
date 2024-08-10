@@ -51,6 +51,7 @@ const Register = () => {
             to={"/"}
             className="text-warning"
             style={{ textDecoration: "none" }}
+            onClick={() => localStorage.removeItem("currentUser")}
           >
             <h4 className="text-light">
               <FontAwesomeIcon icon={faArrowLeft} className="me-2" />

@@ -34,7 +34,7 @@ useEffect(() => {
         <div className="d-flex justify-content-between p-md-5">
           <h1 className="text-light ms-5">Dashboard</h1>
           <h5 className="mt-4 me-5">
-            <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <Link to={"/"} style={{ textDecoration: "none", color: "white" }} onClick={() => localStorage.removeItem("currentUser")}>
               <FontAwesomeIcon icon={faHouse} className="me-2" />
               <span className="hide">Back Home</span>
             </Link>
