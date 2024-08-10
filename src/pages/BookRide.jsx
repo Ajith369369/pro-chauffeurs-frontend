@@ -324,8 +324,7 @@ function BookRide() {
         // const result = await addBookingDetailsOfAUserApi(combinedFormState);
         // console.log(result);
         console.log(combinedFormState);
-        // await addBookingDetailsOfAUserApi(combinedFormState);
-
+        
         dispatch(resetLoginFormState());
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());

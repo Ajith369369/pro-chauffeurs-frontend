@@ -57,7 +57,6 @@ function Admin() {
             <thead>
               <tr>
                 <th>Sl. No.</th>
-                <th>Username</th>
                 <th>Email</th>
                 <th>Mobile No.</th>
                 <th>Car Make</th>
@@ -73,7 +72,6 @@ function Admin() {
               {allUsers?.map((item, index) => (
                 <tr key={item.id}>
                   <td>{index + 1}</td>
-                  <td>{item.username}</td>
                   <td>{item.email}</td>
                   <td>{item.mobile_number}</td>
                   <td>{item.car_make}</td>
