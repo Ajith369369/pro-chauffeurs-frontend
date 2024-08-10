@@ -17,7 +17,13 @@ function Home() {
   };
 
   const handleLoginClick_2 = () => {
-    navigate("/hirerdetails");
+    if (localStorage.getItem("currentUser")) {
+      navigate("/hirerdetails");
+    } else {
+      
+    }
+    
+
   };
   return (
     <>
