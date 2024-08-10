@@ -23,6 +23,18 @@ function Admin() {
     }
   };
 
+  const dateFormatter = (isoString) => {
+    const date = new Date(isoString);
+
+    // en-GB format gives dd/mm/yyyy
+    const formattedDate = date.toLocaleDateString("en-GB");
+
+    // Input: "2024-08-10T07:39:55.209Z"
+    // Output: 10/08/2024
+    console.log(formattedDate);
+    return formattedDate
+  };
+
   const handleDeleteUser = async (id) => {
     await deleteBookingDetailsOfAUserApi(id);
     getBookingDetails();
@@ -79,7 +91,7 @@ function Admin() {
                   <td>{item.reg_number}</td>
                   <td>{item.service_type}</td>
                   <td>{item.driver_name}</td>
-                  <td>{item.pickup_date}</td>
+                  <td>{dateFormatter(item.pickup_date)}</td>
                   <td>
                     <button
                       className="btn btn-danger"
