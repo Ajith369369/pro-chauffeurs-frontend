@@ -10,8 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginImage from "../assets/favicon.jpeg";
-import { ADMIN_USER } from "./constants";
 import { updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
+import { ADMIN_USER } from "./constants";
 
 const Login = () => {
   const [log_email_id, setLogUsername] = useState("");
