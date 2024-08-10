@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import logo from "../assets/ProChauffeursTransparent.png";
 import ClientRating from "../components/ClientRating";
 import Reasons from "../components/Reasons";
@@ -20,10 +22,8 @@ function Home() {
     if (localStorage.getItem("currentUser")) {
       navigate("/hirerdetails");
     } else {
-      
+      toast.info("You need to log in to use this feature");
     }
-    
-
   };
   return (
     <>
@@ -192,6 +192,7 @@ function Home() {
           <Col md={1}></Col>
         </Row>
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 }
