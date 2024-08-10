@@ -16,6 +16,7 @@ function HirerDetails() {
     is_car_model: true,
     is_mobile_number: true,
     is_reg_number: true,
+    is_email: true,
   });
 
   const navigate = useNavigate();
@@ -137,6 +138,7 @@ function HirerDetails() {
         // E.g., com
       // $: Asserts the end of the string. Ensures that the match extends to the end of the input, with no trailing characters.
       // This pattern is designed to catch most common email formats, ensuring that the input looks like a valid email address (e.g., user@example.com). However, it may not catch every edge case or allow every valid email according to the full specification.
+      // When a user types just a single letter or number, it fails the emailPattern.test(value) check because it's not yet a valid email address. So, proper validation happens only after typing the entire email address.
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
       if (value === "") {
@@ -282,6 +284,11 @@ function HirerDetails() {
                       },
                     }}
                   />
+                  {hireFormState.is_email == false && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
                 </div>
                 <div className="form-group my-4">
                   <TextField
