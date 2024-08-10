@@ -25,10 +25,6 @@ form {
   width: 100%;
 }
 
-.text-cap {
-  text-transform: uppercase;
-}
-
 .custom-form-select {
   background-color: black !important;
   color: white !important;

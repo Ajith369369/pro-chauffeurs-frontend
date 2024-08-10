@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +9,14 @@ import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
-  let isValid = true;
+  // State Initialization
+  const [hireFormState, setHireFormState] = useState({
+    is_passenger_name: true,
+    is_car_make: true,
+    is_car_model: true,
+    is_mobile_number: true,
+    is_reg_number: true,
+  });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,28 +28,94 @@ function HirerDetails() {
     navigate("/");
   };
 
-  const validate = (e) => {
+  const handleChange = (name, value) => {
+    // const { name, value } = e.target;
+    setHireFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const validateData = (e) => {
     const { name, value } = e.target;
-    if (name === "mobile_number") {
+    dispatch(updateHirerFormState({ [name]: value }));
+    if (name === "passenger_name") {
+      if (!/^[A-Za-z]+$/.test(value)) {
+        handleChange(hireFormState.is_passenger_name, false)
+       /*  setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_passenger_name: false,
+        })); */
+      } else {
+        handleChange(hireFormState.is_passenger_name, true)
+        /* setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_passenger_name: true,
+        })); */
+      }
+    } else if (name === "car_make") {
+      if (!/^[A-Za-z]+$/.test(value)) {
+        setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_car_make: false,
+        }));
+      }
+    } else if (name === "car_model") {
+      if (!/^[A-Za-z]+$/.test(value)) {
+        setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_car_model: false,
+        }));
+      }
+    } else if (name === "mobile_number") {
+
       // Regular Expression: /^[0-9]*$/
       // ^: Asserts the position at the start of the string.
       // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
       // $: Asserts the position at the end of the string.
       // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
-      isValid = /^[0-9]*$/.test(value);
-    } else if (name === "passenger_name" || name === "car_make" || name === "car_model") {
-      isValid = /^[A-Z]*$/.test(value);
-    }/* else {
-      isValid = value.trim() !== "";
-    } */
-    dispatch(updateHirerFormState({ [name]: value }));
+      //isValid = /^[0-9]*$/.test(value);
+      if (!/^\d+$/.test(value)) {
+        setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_mobile_number: false,
+        }));
+      }
+    } else if (name === "reg_number") {
+      if (!/^[A-Za-z0-9]+$/.test(value)) {
+        setHireFormState((prevState) => ({
+          // Copy all the existing state properties
+          ...prevState,
+
+          // Update the specific property
+          is_reg_number: false,
+        }));
+      }
+    }
+    // dispatch(updateHirerFormState({ [name]: value }));
+
   };
 
-  const handleChange = (e) => {
+  /*  const handleChange = (e) => {
     // const { name, value } = e.target;
     validate(e);
     // dispatch(updateHirerFormState({ [name]: value }));
-  };
+  }; */
 
   // const handleSubmit = (e) => {
   const handleSubmit = async (e) => {
@@ -79,7 +153,7 @@ function HirerDetails() {
                   <TextField
                     name="passenger_name"
                     value={hirerFormState.passenger_name || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-1"
                     label="PASSENGER NAME"
@@ -118,7 +192,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {isValid == false && (
+                  {hireFormState.is_passenger_name == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -128,7 +202,7 @@ function HirerDetails() {
                   <TextField
                     name="email"
                     value={hirerFormState.email || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-2"
                     label="EMAIL"
@@ -172,7 +246,7 @@ function HirerDetails() {
                   <TextField
                     name="mobile_number"
                     value={hirerFormState.mobile_number || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-3"
                     label="MOBILE NUMBER"
@@ -207,7 +281,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {isValid == false && (
+                  {hireFormState.is_mobile_number == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -217,7 +291,7 @@ function HirerDetails() {
                   <TextField
                     name="car_make"
                     value={hirerFormState.car_make || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-4"
                     label="CAR'S MAKE"
@@ -256,7 +330,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.iscar_make && (
+                  {hireFormState.is_car_make == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -266,7 +340,7 @@ function HirerDetails() {
                   <TextField
                     name="car_model"
                     value={hirerFormState.car_model || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-5"
                     label="CAR'S MODEL"
@@ -305,7 +379,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.iscar_model && (
+                  {hireFormState.is_car_model == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -315,7 +389,7 @@ function HirerDetails() {
                   <TextField
                     name="reg_number"
                     value={hirerFormState.reg_number || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
                     id="outlined-basic-6"
                     label="CAR'S REGISTRATION NUMBER"
@@ -354,7 +428,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.isreg_number && (
+                  {hireFormState.is_reg_number == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
