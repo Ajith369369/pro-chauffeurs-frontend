@@ -66,8 +66,8 @@ function Admin() {
         <div className="row w-100">
           <div className="col-md-1"></div>
           <div className="col-md-10 table-container">
-            <table className="table">
-              <thead>
+            <table className="table table-dark table-striped table-hover align-middle table-responsive">
+              <thead className="text-center align-middle">
                 <tr>
                   <th>Sl. No.</th>
                   <th>Email</th>
@@ -82,10 +82,10 @@ function Admin() {
                 </tr>
               </thead>
               {allUsers.length > 0 && (
-                <tbody>
+                <tbody className="table-group-divider">
                   {allUsers?.map((item, index) => (
                     <tr key={item.id}>
-                      <td>{index + 1}</td>
+                      <td className="text-center">{index + 1}</td>
                       <td>{item.email}</td>
                       <td>{item.mobile_number}</td>
                       <td>{item.car_make}</td>
@@ -93,8 +93,8 @@ function Admin() {
                       <td>{item.reg_number}</td>
                       <td>{item.service_type}</td>
                       <td>{item.driver_name}</td>
-                      <td>{dateFormatter(item.pickup_date)}</td>
-                      <td>
+                      <td className="text-center">{dateFormatter(item.pickup_date)}</td>
+                      <td className="text-center">
                         <button
                           className="btn btn-danger"
                           onClick={() => handleDeleteUser(item.id)}
