@@ -28,10 +28,21 @@ function HirerDetails() {
     navigate("/");
   };
 
+  // handleChange Function: This function updates the state based on the name and value parameters. The name parameter is the key in the hireFormState that we want to update, and the value is what we want to set it to.
+  /*  setHireFormState((prevState) => ({
+    // Copy all the existing state properties
+    ...prevState,
+
+    // Update the specific property
+    is_passenger_name: false,
+  })); */
   const handleChange = (name, value) => {
-    // const { name, value } = e.target;
     setHireFormState((prevState) => ({
+      // Copy all the existing state properties
       ...prevState,
+
+      // Update the specific property
+      // The name parameter is used as a dynamic key to update the corresponding property in the state. This is possible due to the square bracket notation [name], which allows you to dynamically update the state key based on the value of name.
       [name]: value,
     }));
   };
@@ -40,75 +51,105 @@ function HirerDetails() {
     const { name, value } = e.target;
     dispatch(updateHirerFormState({ [name]: value }));
     if (name === "passenger_name") {
-      if (!/^[A-Za-z]+$/.test(value)) {
-        handleChange(hireFormState.is_passenger_name, false)
-       /*  setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
-
-          // Update the specific property
-          is_passenger_name: false,
-        })); */
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_passenger_name", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_passenger_name", false);
       } else {
-        handleChange(hireFormState.is_passenger_name, true)
-        /* setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
-
-          // Update the specific property
-          is_passenger_name: true,
-        })); */
+        // If the input is valid, set validation to true
+        handleChange("is_passenger_name", true);
       }
     } else if (name === "car_make") {
-      if (!/^[A-Za-z]+$/.test(value)) {
-        setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
-
-          // Update the specific property
-          is_car_make: false,
-        }));
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_car_make", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_car_make", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_car_make", true);
       }
     } else if (name === "car_model") {
-      if (!/^[A-Za-z]+$/.test(value)) {
-        setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
-
-          // Update the specific property
-          is_car_model: false,
-        }));
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_car_model", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_car_model", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_car_model", true);
       }
     } else if (name === "mobile_number") {
-
       // Regular Expression: /^[0-9]*$/
       // ^: Asserts the position at the start of the string.
       // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
       // $: Asserts the position at the end of the string.
       // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
       //isValid = /^[0-9]*$/.test(value);
-      if (!/^\d+$/.test(value)) {
-        setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
+      // *: Quantifier that matches zero or more occurrences of the preceding element.
+      // +: Quantifier that matches one or more occurrences of the preceding element.
+      // /^[0-9]*$/: Matches any string that consists entirely of digits or is empty.
+      // /^\d+$/: Matches any string that consists entirely of one or more digits and does not allow an empty string.
 
-          // Update the specific property
-          is_mobile_number: false,
-        }));
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_mobile_number", true);
+      } else if (!/^\d+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_mobile_number", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_mobile_number", true);
       }
     } else if (name === "reg_number") {
-      if (!/^[A-Za-z0-9]+$/.test(value)) {
-        setHireFormState((prevState) => ({
-          // Copy all the existing state properties
-          ...prevState,
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_reg_number", true);
+      } else if (!/^[A-Za-z0-9]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_reg_number", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_reg_number", true);
+      }
+    } else if (name === "email") {
 
-          // Update the specific property
-          is_reg_number: false,
-        }));
+      // Regular expression to check for a valid email format
+      // john@gmail.com
+      // ^: This asserts the start of the string. Ensures that the match begins right from the start of the input, with no preceding characters.
+      // [^\s@]+
+        // [ and ]: Defines a character class, which matches any one of the characters contained within it.
+        // \s: Matches any whitespace character (like spaces, tabs, etc.).
+        // @: Matches the "@" character specifically.
+        // ^ inside [ and ]: When used inside a character class, it negates the class, meaning it matches any character except those specified.
+        // [^\s@]]+: It matches a sequence of one or more characters that are not whitespace and not the "@" symbol.
+        // + symbol: It is a quantifier that specifies that the preceding element must appear one or more times. This means that the pattern before the + must occur at least once but can repeat any number of times, including indefinitely.
+        // E.g., john
+      // @: Matches the "@" character specifically.
+      // [^\s@]+ (again): Matches one or more characters after the "@" symbol that are not whitespace and not "@".
+        // E.g., gmail
+      // \.: Matches a literal period '.' Ensures that there's a period in the domain part of the email, which is standard in most email formats (like example.com).
+      // [^\s@]+ (again): Matches one or more characters after the period, which typically represents the top-level domain (like com, org, etc.).
+        // E.g., com
+      // $: Asserts the end of the string. Ensures that the match extends to the end of the input, with no trailing characters.
+      // This pattern is designed to catch most common email formats, ensuring that the input looks like a valid email address (e.g., user@example.com). However, it may not catch every edge case or allow every valid email according to the full specification.
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_email", true);
+      } else if (!emailPattern.test(value)) {
+        // If the input is not a valid email, set validation to false
+        handleChange("is_email", false);
+      } else {
+        // If the input is a valid email, set validation to true
+        handleChange("is_email", true);
       }
     }
-    // dispatch(updateHirerFormState({ [name]: value }));
-
   };
 
   /*  const handleChange = (e) => {
