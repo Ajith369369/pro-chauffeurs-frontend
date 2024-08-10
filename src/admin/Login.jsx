@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginImage from "../assets/favicon.jpeg";
-import { updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
+import { updateLoginButtonState, updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
 import { ADMIN_USER } from "./constants";
 
 const Login = () => {
@@ -51,12 +51,13 @@ const Login = () => {
         console.log("Current User: ", show_currentUser);
 
         if (log_email_id === ADMIN_USER.email_id) {
-          loginFormState.logi
+          dispatch(updateLoginButtonState(false));
           toast.success("Administrator Login successful", {
             onClose: () => navigate("/admin"),
           });
         } else {
           // document.getElementById("outlined-basic-1").value = "";
+          dispatch(updateLoginButtonState(false));
           toast.success("Login successful", {
             onClose: () => navigate("/", { state: { loginFormState } }),
           });

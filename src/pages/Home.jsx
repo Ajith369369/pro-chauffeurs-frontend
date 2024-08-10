@@ -30,6 +30,7 @@ function Home() {
     dispatch(resetDriverFormState());
     dispatch(resetBookingFormState());
     localStorage.removeItem("currentUser");
+    toast.success("Logout successful")
   };
 
   const handleLoginClick_2 = () => {
