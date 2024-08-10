@@ -7,18 +7,22 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/favicon.jpeg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
+  const [reg_username, setRegUsername] = useState("");
   const [reg_email_id, setRegEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [reg_password, setRegPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push({ username, reg_email_id, password });
+    users.push({ reg_username, reg_email_id, reg_password });
     localStorage.setItem("users", JSON.stringify(users));
-    navigate("/login");
+    toast.success("Registration successful", {
+      onClose: () => navigate("/login"),
+    });
   };
 
   return (
@@ -47,6 +51,7 @@ const Register = () => {
             to={"/"}
             className="text-warning"
             style={{ textDecoration: "none" }}
+            onClick={() => localStorage.removeItem("currentUser")}
           >
             <h4 className="text-light">
               <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
@@ -78,7 +83,7 @@ const Register = () => {
                     <TextField
                       name="register_username"
                       // value={loginState.email || ""}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => setRegUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-3"
                       label="USERNAME"
@@ -168,7 +173,7 @@ const Register = () => {
                     <TextField
                       name="login_pswd"
                       // value={loginState.pswd || ""}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setRegPassword(e.target.value)}
                       className="w-100"
                       type="password"
                       id="outlined-basic-2"
@@ -233,6 +238,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 };

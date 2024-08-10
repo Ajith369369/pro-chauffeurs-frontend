@@ -1,37 +1,70 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import loginImage from "../assets/favicon.jpeg";
+import { updateLoginButtonState, updateLoginFormState } from "../redux/slices/hirerDetailsSlice";
 import { ADMIN_USER } from "./constants";
 
 const Login = () => {
-  const [email_id, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [log_email_id, setLogUsername] = useState("");
+  // const [log_password, setLogPassword] = useState("");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginFormState = useSelector(
+    (state) => state.hirerDetails.loginFormState
+  );
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateLoginFormState({ [name]: value }));
+  };
 
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
-      (user) => user.email_id === email_id && user.password === password
+      (user) =>
+        // user.reg_email_id === log_email_id && user.reg_password === log_password
+        user.reg_email_id === loginFormState.login_email &&
+        user.reg_password === loginFormState.login_pswd
     );
 
-    if (
-      user ||
-      (email_id === ADMIN_USER.email_id && password === ADMIN_USER.password)
-    ) {
-      localStorage.setItem("currentUser", JSON.stringify({ email_id }));
-      if (email_id === ADMIN_USER.email_id) {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
+    if (!loginFormState.login_email || !loginFormState.login_pswd) {
+      toast.info("Please fill the form completely");
     } else {
-      alert("Invalid credentials");
+      if (
+        user ||
+        (loginFormState.login_email === ADMIN_USER.email_id &&
+          loginFormState.login_pswd === ADMIN_USER.password)
+      ) {
+        const log_email_id = String(loginFormState.login_email);
+        // localStorage.setItem("currentUser", JSON.stringify({ log_email_id }));
+        localStorage.setItem("currentUser", log_email_id);
+        const show_currentUser = localStorage.getItem("currentUser");
+        console.log("Current User: ", show_currentUser);
+
+        if (log_email_id === ADMIN_USER.email_id) {
+          dispatch(updateLoginButtonState(false));
+          toast.success("Administrator Login successful", {
+            onClose: () => navigate("/admin"),
+          });
+        } else {
+          // document.getElementById("outlined-basic-1").value = "";
+          dispatch(updateLoginButtonState(false));
+          toast.success("Login successful", {
+            onClose: () => navigate("/", { state: { loginFormState } }),
+          });
+        }
+      } else {
+        toast.error("Invalid credentials");
+      }
     }
   };
 
@@ -61,6 +94,7 @@ const Login = () => {
             to={"/"}
             className="text-warning"
             style={{ textDecoration: "none" }}
+            onClick={() => localStorage.removeItem("currentUser")}
           >
             <h4 className="text-light">
               <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
@@ -91,8 +125,9 @@ const Login = () => {
                     /> */}
                     <TextField
                       name="login_email"
-                      // value={loginState.email || ""}
-                      onChange={(e) => setUsername(e.target.value)}
+                      value={loginFormState.login_email || ""}
+                      // onChange={(e) => setLogUsername(e.target.value)}
+                      onChange={handleChange}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
@@ -136,8 +171,9 @@ const Login = () => {
                     /> */}
                     <TextField
                       name="login_pswd"
-                      // value={loginState.pswd || ""}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={loginFormState.login_pswd || ""}
+                      // onChange={(e) => setLogPassword(e.target.value)}
+                      onChange={handleChange}
                       className="w-100"
                       id="outlined-basic-2"
                       label="PASSWORD"
@@ -186,7 +222,7 @@ const Login = () => {
                         className="mb-3 w-100 rounded-0"
                         style={{ width: "150px" }}
                       >
-                        Login
+                        Log In
                       </Button>
                       <p>
                         New User? Click Here to{" "}
@@ -202,6 +238,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 };
