@@ -1,7 +1,6 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
 
 function DriverCard({ selected_driver }) {
@@ -31,17 +30,7 @@ function DriverCard({ selected_driver }) {
     console.log(`unfilledStars: ${unfilledStars.length}`);
 
     return [...filledStars, ...unfilledStars];
-    // const validRating =[]
-    /* if (rating>0 && rating<=5) {
-      
-    } else {
-      console.log("Invalid rating.");
-    } */
   };
-
-  /*  const handleBackClick = () => {
-    navigate("/driverlist");
-  }; */
 
   return (
     <>

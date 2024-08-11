@@ -58,6 +58,8 @@ function DriverSelected() {
     // Array(rating): Creates an array with a length equal to the rating value. For instance, if rating is 5, it creates an array with 5 elements.
     // .fill(): Fills the array with undefined values, which are then used by .map() to generate the star components.
     // .map((_, i) => ...): Iterates over the array to create star components.
+    // _: Represents the currentValue parameter, but it is not used in the function. It's a common convention to use _ for unused parameters.
+    // i: Represents the index parameter, which is used in the function. It refers to the index of the current element in the array.
     // <FontAwesomeIcon key={filled-${i}} icon={faStar} style={{ color: "#FFD43B" }} />: Creates a FontAwesomeIcon component with the star icon (faStar) and a yellow color (#FFD43B) to represent filled stars.
     // key={filled-${i}}: Provides a unique key for each star element for efficient rendering by React.
     const filledStars = Array(rating)
