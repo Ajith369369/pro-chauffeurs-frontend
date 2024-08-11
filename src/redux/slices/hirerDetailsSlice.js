@@ -48,7 +48,10 @@ const initialState = {
 // updateBookingFormState: Updates bookingFormState with the payload from the action, merging it with the existing state.
 // resetBookingFormState: Resets bookingFormState to its initial state.
 const hirerDetailsSlice = createSlice({
+
   // Name of the slice.
+  // The name: "hirerDetails" in our Redux slice defines the name of the slice of the Redux state. The name property gives a unique identifier to this slice's state in the global Redux store. It ensures that actions are scoped correctly, preventing conflicts with other slices.
+  //For example, by setting name: "hirerDetails", all the states managed within this slice (loginFormState, bookingFormState, etc.) are grouped under the hirerDetails key in the global state object.
   // In Redux, a slice is a portion of the Redux store that manages a specific part of the application's state.
   // A slice typically contains Initial State, Reducers, and Actions.
   // We have a slice called hirerDetails (managed in hirerDetailsSlice.js) which includes several states like loginFormState, bookingFormState, driverFormState, and hirerFormState.
