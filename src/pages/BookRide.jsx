@@ -272,25 +272,39 @@ function BookRide() {
   };
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
+  // The handleChange function handles changes from form inputs, specifically dealing with both standard form inputs and DatePicker inputs.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
   // const newDate = dayjs(e.target.value); - Convert the string to a dayjs object
   const handleChange = (e) => {
     if (e.target) {
+
       // Standard form input
+      // e.target is typically available for standard form elements like text inputs, selects, etc.
       const { name, value } = e.target;
       if (name === "pickup_date") {
+
+        // If the field name is "pickup_date", convert the input value (a date string) into a dayjs object for date manipulation and formatting.
         const newDate = dayjs(e.target.value);
+
+        // Use dispatch to update the bookingFormState with the new pickup_date.
         dispatch(updateBookingFormState({ pickup_date: newDate }));
       } else {
+
+        // For all other fields, use the field's name as the key and value as the value in the updateBookingFormState action. This will update the state for the specific form field.
         dispatch(updateBookingFormState({ [name]: value }));
       }
+
+      // This condition checks if e has the $d property. This property is commonly used by date picker libraries to identify date-related events.
     } else if (e && e.$d) {
+
       // DatePicker input
-      const newDate = dayjs(e.target.value); // Convert the dayjs object to a JavaScript Date object
+      // Convert the value to a dayjs object.
+      const newDate = dayjs(e.target.value);
+
+      // Use dispatch to update the bookingFormState with the new pickup_date.
       dispatch(updateBookingFormState({ pickup_date: newDate }));
     }
-
   };
 
   const handleBackClick = () => {
@@ -298,10 +312,11 @@ function BookRide() {
   };
 
   const handleSubmit = async (e) => {
+
     // Prevents form from reloading the page
     e.preventDefault();
-    // console.log(bookingFormState);
 
+    // console.log(bookingFormState);
     // Check if service_type, pickup_date, pickup_location or dropoff_location is zero
     // name="pickup_location"
     // value={bookingFormState.pickup_location}
