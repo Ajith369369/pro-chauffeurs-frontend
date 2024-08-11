@@ -8,7 +8,6 @@ import dayjs from "dayjs";
 // initialState is an object containing four nested objects: loginFormState, bookingFormState, driverFormState, and hirerFormState.
 // The state, driverFormState has a single property.
 const initialState = {
-
   // Manages the state associated with the login form.
   loginFormState: {
     login_email: "",
@@ -49,7 +48,6 @@ const initialState = {
 // updateBookingFormState: Updates bookingFormState with the payload from the action, merging it with the existing state.
 // resetBookingFormState: Resets bookingFormState to its initial state.
 const hirerDetailsSlice = createSlice({
-
   // Name of the slice.
   // In Redux, a slice is a portion of the Redux store that manages a specific part of the application's state.
   // A slice typically contains Initial State, Reducers, and Actions.
@@ -141,8 +139,8 @@ export const {
 } = hirerDetailsSlice.actions;
 
 // Each action corresponds to one of the reducers. For example:
-  // updateLoginFormState: An action created to update the loginFormState.
-  // resetBookingFormState: An action created to reset bookingFormState to its initial state.
+// updateLoginFormState: An action created to update the loginFormState.
+// resetBookingFormState: An action created to reset bookingFormState to its initial state.
 
 // Action Creator
 // Action creators are functions that return action objects. They are used to simplify the creation and dispatching of actions.
@@ -151,21 +149,21 @@ export const {
 export default hirerDetailsSlice.reducer;
 
 // updateLoginButtonState is both an action and a reducer in the context of Redux Toolkit.
-  // As a reducer: It is a function defined within the reducers object inside the slice. This function specifies how the state should be updated when the corresponding action is dispatched.
+// As a reducer: It is a function defined within the reducers object inside the slice. This function specifies how the state should be updated when the corresponding action is dispatched.
 
-  /* updateLoginButtonState(state, action) {
+/* updateLoginButtonState(state, action) {
     state.loginFormState.login_button = action.payload;
   } */
-  
-  // As an action: When you define a reducer like updateLoginButtonState, Redux Toolkit automatically creates an action creator with the same name. This action creator, when called, returns an action object that can be dispatched to the store.
 
-  //export const { updateLoginButtonState } = hirerDetailsSlice.actions;
+// As an action: When you define a reducer like updateLoginButtonState, Redux Toolkit automatically creates an action creator with the same name. This action creator, when called, returns an action object that can be dispatched to the store.
 
-  // When you call updateLoginButtonState(payload), it returns an action like:
+//export const { updateLoginButtonState } = hirerDetailsSlice.actions;
 
-  /* {
+// When you call updateLoginButtonState(payload), it returns an action like:
+
+/* {
     type: 'hirerDetails/updateLoginButtonState',
     payload: ... // The payload you pass in
   } */
-  
-  // So, updateLoginButtonState refers to both the reducer function that updates the state and the action creator that generates the action object to trigger that state update.
+
+// So, updateLoginButtonState refers to both the reducer function that updates the state and the action creator that generates the action object to trigger that state update.
