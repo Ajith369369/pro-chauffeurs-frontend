@@ -49,6 +49,7 @@ function DriverList() {
                   {/* The onClick event handler is triggered when the div containing the DriverCard is clicked.
                 The handleDriverClick function is called, with the item (the current driver object) passed as an argument. This allows the function to know which driver was clicked.
                 When the user clicks on a DriverCard, the handleDriverClick function is executed, passing the specific item (driver) to it.
+                When you call <DriverCard selected_driver={item} />, React internally creates an object props with a property "selected_driver" that contains the value "item".
                 The DriverCard component is being rendered, with the item (the current driver object) passed as a prop called selected_driver.
                 The DriverCard component can then use selected_driver to display the specific details of the driver (such as name, rating, etc.).
                 The DriverCard component uses the selected_driver prop to render details specific to that driver.
