@@ -138,6 +138,18 @@ function BookRide() {
     // Haversine Formula Components
     // Calculates the value a using the Haversine formula. 'a' is an intermediate value that represents the square of half the chord length between the two points.
     // Chord length is a term used in geometry and specifically in the context of circles or spheres. It refers to the straight-line distance between two points on the circumference of a circle (or surface of a sphere). In other words, it's the distance across the circle or sphere directly connecting two points without following the curve.
+
+    // Math.sin(dLat / 2) * Math.sin(dLat / 2):
+      // dLat / 2: This is half of the difference in latitude between the two points, converted to radians.
+      // Math.sin(dLat / 2): Computes the sine of half the latitude difference. This value is then squared to account for the spherical shape in the formula.
+      //This part of the formula accounts for the effect of the latitude difference on the distance between the two points.
+    // Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)):
+      // lat1: Latitude of the first point.
+      // The product of these cosines accounts for the spherical trigonometric relationship between the two latitudes.
+    // Math.sin(dLon / 2) * Math.sin(dLon / 2):
+      // dLon / 2: This is half of the difference in longitude between the two points, converted to radians.
+      // This part of the formula accounts for the effect of the longitude difference on the distance between the two points.
+    // 'a' is an intermediate value that represents a combination of the effects of latitude and longitude differences on the distance.
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(lat1)) *
