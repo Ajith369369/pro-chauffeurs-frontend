@@ -19,7 +19,7 @@ import {
 } from "../services/pro_allApi";
 import "./BookRide.css";
 
-// libraries for date
+// Libraries for date
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
@@ -78,7 +78,11 @@ function BookRide() {
 
   // Update the fromPlace and toPlace states whenever the input values or places change
   useEffect(() => {
-    // Find the place object that matches the bookingFormState.pickup_location
+
+    // Calculates the distance and cost between two locations based on user input. 
+    // Find the place object that matches the bookingFormState.pickup_location.
+    // This searches through an array of place objects (places) to find one where the name property matches the user's input for pickup_location and dropoff_location.
+    // .toLowerCase(): Ensures that the search is case-insensitive by converting both the place name and user input to lowercase before comparison.
     const from = places.find(
       (p) =>
         p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
@@ -89,19 +93,33 @@ function BookRide() {
         p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
     );
     
-    // Calculate the distance and cost whenever the place objects are updated
+    // Calculate the distance and cost whenever the place objects are updated.
+    // from and to: These variables store the place objects corresponding to the pickup_location and dropoff_location, respectively. If no matching place is found, from or to will be undefined.
     if (from && to) {
+
+      // calculateDistance() computes the distance between the two places using their latitude and longitude values. The calculateDistance function uses the Haversine formula to determine the distance in kilometers.
       const dist = calculateDistance(
         from.latitude,
         from.longitude,
         to.latitude,
         to.longitude
       );
-      setDistance(dist.toFixed(1)); // Distance in kilometers
-      const calculatedCost = dist * 30; // Cost in rupees
-      setCost(Math.floor(calculatedCost)); // Cost rounded to 2 decimal places
+
+      // Formats the distance to one decimal place.
+      // Distance in kilometers
+      // distance = 123.45678
+      // distance.toFixed(1) = 123.5
+      setDistance(dist.toFixed(1));
+
+      // Computes the cost based on the distance. The cost is calculated by multiplying the distance by 30 (i.e., the cost per kilometer).
+      // Cost in Rupees.
+      const calculatedCost = dist * 30;
+
+      // Rounds down the calculated cost to the nearest integer and updates the state with this rounded cost.. 
+      setCost(Math.floor(calculatedCost));
     } else {
-      // Clear the distance and cost if one or both places are not selected
+
+      // Clears the distance and cost if one or both places are not selected.
       setDistance(0);
       setCost(0);
     }
@@ -111,22 +129,80 @@ function BookRide() {
     places,
   ]); // Dependency array includes input values and places
 
-  // Function to calculate the distance using the Haversine formula
+  // Function to calculate the distance using the Haversine formula.
+  // Haversine formula used to calculate the great-circle distance between two points on the surface of a sphere, such as the Earth.
+  // The Haversine formula provides an efficient way to calculate the distance between two points on a sphere (like Earth) based on their latitude and longitude. The formula takes into account the curvature of the Earth, making it accurate for most practical purposes.
+  // In this function:
+    // lat1, lon1 are the latitude and longitude of the first point.
+    // lat2, lon2 are the latitude and longitude of the second point.
+    // The function returns the distance in kilometers between these two points.
+  // This is a JavaScript function that calculates the distance between two points on the Earth's surface using the Haversine formula. This formula accounts for the spherical shape of the Earth and is commonly used for calculating distances between geographical coordinates.
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    // Convert degrees to radians
+
+    // Convert degrees to radians.
+    // Latitude and longitude are given in degrees, but trigonometric functions in JavaScript (like Math.sin and Math.cos) require input in radians. This function multiplies the degree value by (π/180) to convert it to radians.
     const toRad = (value) => (value * Math.PI) / 180;
 
-    const R = 6371; // Radius of the Earth in kilometers
+    // Radius of the Earth in kilometers.
+    // The Haversine formula requires the Earth's radius to calculate the actual distance on the surface.
+    // Value: 6371 is a commonly accepted average radius of the Earth in kilometers.
+    const R = 6371;
+
+    // Calculates the difference in latitude and longitude between the two points and converts them to radians.
+    // The differences dLat and dLon are essential for the Haversine formula as they represent the "arc" between the two points on the globe.
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
+
+    // Haversine Formula Components
+    // Calculates the value a using the Haversine formula. 'a' is an intermediate value that represents the square of half the chord length between the two points.
+    // Chord length is a term used in geometry and specifically in the context of circles or spheres. It refers to the straight-line distance between two points on the circumference of a circle (or surface of a sphere). In other words, it's the distance across the circle or sphere directly connecting two points without following the curve.
+
+    // Math.sin(dLat / 2) * Math.sin(dLat / 2):
+      // dLat / 2: This is half of the difference in latitude between the two points, converted to radians.
+      // Math.sin(dLat / 2): Computes the sine of half the latitude difference. This value is then squared to account for the spherical shape in the formula.
+      //This part of the formula accounts for the effect of the latitude difference on the distance between the two points.
+    // Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)):
+      // lat1: Latitude of the first point.
+      // The product of these cosines accounts for the spherical trigonometric relationship between the two latitudes.
+    // Math.sin(dLon / 2) * Math.sin(dLon / 2):
+      // dLon / 2: This is half of the difference in longitude between the two points, converted to radians.
+      // This part of the formula accounts for the effect of the longitude difference on the distance between the two points.
+    // 'a' is an intermediate value that represents a combination of the effects of latitude and longitude differences on the distance.
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(lat1)) *
         Math.cos(toRad(lat2)) *
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
+
+    // Calculates the angular distance 'c' in radians between the two points on the Earth.
+    // Angular distance refers to the angle between two points as seen from a particular reference point. In the context of circles or spheres, it measures the angle subtended by the arc or chord connecting these two points.
+
+    // Math.atan2 is a special arctangent function that takes two arguments and handles the division and quadrant identification to return the correct angle. This calculation gives the central angle between the two points.
+    // Arctangent, also known as the inverse tangent function, is a mathematical function used to determine the angle whose tangent is a given number. It is the inverse of the tangent function. The notation commonly used for the arctangent function is arctan or tan−1 (tan inverse).
+    // Math.atan2 is a JavaScript function used to compute the arctangent (inverse tangent) of the quotient of its arguments. It is often used to find the angle between the positive x-axis and the point (x, y) in a Cartesian coordinate system.
+    // Math.atan2 correctly identifies the quadrant in which the point (x, y) lies. The function returns the angle in radians between the positive x-axis and the point (x, y). The result ranges from −𝜋 to 𝜋 (or −180° to 180°).
+
+    // Math.sqrt(a): This computes the square root of a. The variable a is derived from the intermediate calculations in the Haversine formula and represents a function of the differences in latitude and longitude.
+    // Math.sqrt(1 - a): This computes the square root of (1 - a). This term is used to find the other component required for the calculation.
+    // Math.atan2(y, x): This is a standard mathematical function that calculates the arctangent of the quotient y / x, taking into account the signs of x and y to determine the correct quadrant of the angle.
+      // Math.atan2(y, x) returns the angle in radians between the positive x-axis and the point (x, y) on a plane.
+      // In this formula, y is Math.sqrt(a) and x is Math.sqrt(1 - a).
+    // 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)):
+    // The 2 * part scales the result of Math.atan2() by 2. This scaling is required because the Haversine formula involves a central angle that spans twice the angle computed from the atan2 function.
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
+
+    // Final distance in kilometers
+    // Converts the angular distance c into the actual distance by multiplying it by the Earth's radius R.
+    // The function returns the distance between the two points in kilometers.
+    // Arc length is the distance along the curve of a circle or a segment of a circle between two points. It represents the actual length of the curve, rather than a straight line between the two points.
+    // For a circle, the arc length, 𝐿 can be calculated using the angle subtended by the arc and the radius of the circle. The formula is:
+    // 𝐿 = 𝑟⋅𝜃, where:
+    // 𝑟 is the radius of the circle (here R).
+    // 𝜃 is the central angle subtended by the arc, measured in radians.
+    // If the angle, 𝜃 is given in degrees, it should be converted to radians first:
+    // 𝜃 (radians) = 𝜃 (degrees) × (𝜋/180) (here c)
+    return R * c; 
   };
 
   // ------------------------------------------------------------------------
@@ -186,7 +262,7 @@ function BookRide() {
       console.log(newDate);
       console.log(typeof newDate);
 
-      // When using Redux Toolkit and handling non-serializable data like Dayjs objects, we'll need to convert them to serializable formats before storing them in Redux state. Dayjs objects are not serializable, but ISO strings are
+      // When using Redux Toolkit and handling non-serializable data like Dayjs objects, we'll need to convert them to serializable formats before storing them in Redux state. Dayjs objects are not serializable, but ISO strings are.
       // Dayjs objects are not serializable, so you need to convert them to ISO strings (or another serializable format) before storing them in Redux state.
       // Convert Dayjs object to ISO string before dispatching. Converting Dayjs objects to ISO strings before dispatching ensures that your Redux state remains serializable and avoids any potential issues with non-serializable data.
       // Dispatching the action with the ISO string ensures that Redux state remains serializable. Our reducer then handles the conversion back to Dayjs if needed, but generally, we should only store ISO strings in Redux.
@@ -196,109 +272,51 @@ function BookRide() {
   };
 
   // Handling changes in the input fields. The handleChange function updates the bookingFormState.
+  // The handleChange function handles changes from form inputs, specifically dealing with both standard form inputs and DatePicker inputs.
   // handleChange is a function that updates the state in the Redux store whenever an input field changes.
   // It extracts the name and value from the event target (e.target) and dispatches the updateBookingFormState action with the new value.
   // const newDate = dayjs(e.target.value); - Convert the string to a dayjs object
   const handleChange = (e) => {
     if (e.target) {
+
       // Standard form input
+      // e.target is typically available for standard form elements like text inputs, selects, etc.
       const { name, value } = e.target;
       if (name === "pickup_date") {
+
+        // If the field name is "pickup_date", convert the input value (a date string) into a dayjs object for date manipulation and formatting.
         const newDate = dayjs(e.target.value);
+
+        // Use dispatch to update the bookingFormState with the new pickup_date.
         dispatch(updateBookingFormState({ pickup_date: newDate }));
       } else {
+
+        // For all other fields, use the field's name as the key and value as the value in the updateBookingFormState action. This will update the state for the specific form field.
         dispatch(updateBookingFormState({ [name]: value }));
       }
+
+      // This condition checks if e has the $d property. This property is commonly used by date picker libraries to identify date-related events.
     } else if (e && e.$d) {
+
       // DatePicker input
-      const newDate = dayjs(e.target.value); // Convert the dayjs object to a JavaScript Date object
+      // Convert the value to a dayjs object.
+      const newDate = dayjs(e.target.value);
+
+      // Use dispatch to update the bookingFormState with the new pickup_date.
       dispatch(updateBookingFormState({ pickup_date: newDate }));
     }
-
-    /* const { name, value } = e.target;
-    if (name === "pickup_date") {
-      const newDate = dayjs(e.target.value);
-      dispatch(updateBookingFormState({ pickup_date: newDate }));
-    } else {
-      dispatch(updateBookingFormState({ [name]: value }));
-    } */
-
-    /* 
-    if (name == "pickup_location") {
-      setFromPlaceName(value);
-    } else if (name == "dropoff_location") {
-      setToPlaceName(value);
-    } else if (name == "service_type") {
-      setSelectedService(value);
-    } */
   };
-  // console.log(bookingFormState.pickup_location);
-
-  /*   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }; */
 
   const handleBackClick = () => {
     navigate("/driverlist");
   };
 
-  // Handling the form submission. handleNext is a function that gets called when the form is submitted. The handleNext function handles form submission.
-  //It prevents the default form submission behavior (e.preventDefault()).
-  // If service_type is not filled, it alerts the user. Otherwise, it navigates to the /driverlist route.
-  /*     const handleBookNowClick = (e) => {
-      e.preventDefault();
-      if (!bookingFormState.service_type) {
-        alert("Please fill the form completely.");
-      } else {
-  
-        navigate("/");
-      }
-    }; */
-
-  /*  const validate = (e) => {
-     const data = e.target.value;
-     const name = e.target.name;
- 
-     if (data.match(/^[0-9]*$/)) {
-       if (name == "pickup_location") {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           ispickup_location: true,
-         }));
-       } else {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           isreg_number: true,
-         }));
-       }
-     } else {
-       if (name == "pickup_location") {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           ispickup_location: false,
-         }));
-       } else {
-         handleChange(e);
-         updateBookingFormState((prevState) => ({
-           ...prevState,
-           isreg_number: false,
-         }));
-       }
-     }
-   };
-  */
   const handleSubmit = async (e) => {
+
     // Prevents form from reloading the page
     e.preventDefault();
-    // console.log(bookingFormState);
 
+    // console.log(bookingFormState);
     // Check if service_type, pickup_date, pickup_location or dropoff_location is zero
     // name="pickup_location"
     // value={bookingFormState.pickup_location}
@@ -319,9 +337,7 @@ function BookRide() {
         combinedFormState
       );
       if (response_booking.status >= 200 && response_booking.status < 300) {
-        // dispatch(addBookingDetailsOfAUserApi(combinedFormState));
-
-        // const result = await addBookingDetailsOfAUserApi(combinedFormState);
+        
         // console.log(result);
         console.log(combinedFormState);
         

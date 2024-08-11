@@ -1,9 +1,38 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import "../components/DriverCard.css";
 
+// The DriverCard component, which receives the selected_driver prop, is responsible for displaying the details of a specific driver.
+// DriverCard is a functional React component that takes a single prop, selected_driver.
+// This prop contains the information about the driver that the parent component (e.g., DriverList) passes down.
+// { selected_driver } is a destructuring assignment that extracts the selected_driver prop from the component's props object.
+// Instead of accepting props and then accessing selected_driver as props.selected_driver, we directly destructure the selected_driver from the props object in the function's parameter list.
+// { selected_driver } is a destructuring assignment, which means that you're pulling out the selected_driver property from the props object and assigning it directly to a variable called selected_driver.
+// By using { selected_driver } in the function signature, you are telling JavaScript to take the selected_driver property from props and assign it to a variable named selected_driver.
+// We can directly use selected_driver without needing to access it through props, i. e., without using "props.selected_driver".
+
+// Without Destructuring
+  /* function DriverCard(props) {
+    return (
+      <div>
+        <h5>Name: {props.selected_driver.DriverName}</h5>
+        <h6>License: {props.selected_driver.DriverLicense}</h6>
+        <h6>Experience: {props.selected_driver.Experience}</h6>
+      </div>
+    );
+  } */
+
+// With Destructuring
+  /* function DriverCard({ selected_driver }) {
+    return (
+      <div>
+        <h5>Name: {selected_driver.DriverName}</h5>
+        <h6>License: {selected_driver.DriverLicense}</h6>
+        <h6>Experience: {selected_driver.Experience}</h6>
+      </div>
+    );
+  } */
 function DriverCard({ selected_driver }) {
 
   const renderStars = (rating) => {
@@ -31,17 +60,7 @@ function DriverCard({ selected_driver }) {
     console.log(`unfilledStars: ${unfilledStars.length}`);
 
     return [...filledStars, ...unfilledStars];
-    // const validRating =[]
-    /* if (rating>0 && rating<=5) {
-      
-    } else {
-      console.log("Invalid rating.");
-    } */
   };
-
-  /*  const handleBackClick = () => {
-    navigate("/driverlist");
-  }; */
 
   return (
     <>
