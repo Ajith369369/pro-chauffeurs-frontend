@@ -4,15 +4,19 @@ import dayjs from "dayjs";
 // This defines the initial state of the hirerDetails slice.
 // In our Redux setup, loginFormState, bookingFormState, driverFormState, and hirerFormState are pieces of the application state managed by Redux. They represent different parts of the form data used across our application.
 // loginFormState, bookingFormState, driverFormState, and hirerFormState are states that are part of the hirerDetails slice. They are states managed within the hirerDetails slice.
+// loginFormState, bookingFormState, driverFormState, and hirerFormState are parts (or sub-states) of the overall hirerDetails slice. Each of these sub-states holds specific data relevant to different parts of our application
 // initialState is an object containing four nested objects: loginFormState, bookingFormState, driverFormState, and hirerFormState.
-// loginFormState and driverFormState have a single property.
+// The state, driverFormState has a single property.
 const initialState = {
+
+  // Manages the state associated with the login form.
   loginFormState: {
     login_email: "",
     login_pswd: "",
     login_button: true,
   },
 
+  // Manages the state associated with booking details.
   bookingFormState: {
     service_type: "",
 
@@ -22,10 +26,12 @@ const initialState = {
     dropoff_location: "",
   },
 
+  // Manages the state associated with driver information.
   driverFormState: {
     driver_name: "",
   },
 
+  // Manages the state associated with hirer's details.
   hirerFormState: {
     passenger_name: "",
     email: "",
@@ -47,6 +53,7 @@ const hirerDetailsSlice = createSlice({
   // Name of the slice.
   // In Redux, a slice is a portion of the Redux store that manages a specific part of the application's state.
   // A slice typically contains Initial State, Reducers, and Actions.
+  // We have a slice called hirerDetails (managed in hirerDetailsSlice.js) which includes several states like loginFormState, bookingFormState, driverFormState, and hirerFormState.
   name: "hirerDetails",
 
   // Initial State: The default values for the part of the state that this slice manages.
