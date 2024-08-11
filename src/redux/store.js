@@ -14,8 +14,10 @@ const store = configureStore({
     hirerDetails: hirerDetailsReducer,
   },
 
+  // Redux Toolkit comes with a middleware that warns you if you attempt to include non-serializable data in your actions or state. You can customize this middleware to ignore specific paths or actions if necessary.
   // middleware: Middleware is a way to customize the dispatch process. Here, it's configured to ignore serialization checks for specific actions and state paths.
   // This is useful because certain parts of our state (like pickup_date, which is a Day.js object) may not be serializable by default, and Redux Toolkit expects state to be serializable.
+  // The serializableCheck middleware is customized to ignore certain actions or fields that may contain non-serializable values, allowing you to bypass the warnings if you know what you're doing.
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -34,7 +36,8 @@ const store = configureStore({
 // Serializable Values: Plain JavaScript objects, arrays, and primitives (like strings, numbers, and booleans).
 // Non-Serializable Values: Date objects, functions, class instances, and DOM elements.
 
-// While Date objects can technically be serialized (as strings), they are often not handled correctly by Redux due to their complex nature.
+// While Date objects can technically be serialized (as strings), they are often not handled correctly by Redux due to their complex nature. If you need to store something like a Date object, convert it to a serializable format (e.g., a timestamp or ISO string) before storing it in the state.
+
 // If you want to configure Redux Toolkit to allow non-serializable values in specific cases, you can disable the middleware warning for non-serializable values. However, it's generally best practice to avoid storing non-serializable values in Redux state to maintain consistency and avoid potential issues.
 // To configure Redux Toolkit to ignore serialization checks for specific actions or paths, we'll need to provide the actual action types and state paths we want to ignore.
 
