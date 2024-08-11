@@ -9,8 +9,11 @@ import hirerDetailsReducer from "./slices/hirerDetailsSlice";
 const store = configureStore({
   reducer: {
 
+    // The reducer property in the configureStore function is where we specify the root reducer for our Redux store. The root reducer is essentially an object that combines all of our individual slice reducers into one. Each slice reducer is responsible for managing a specific part of the state.
     // reducer: This key contains all the reducers responsible for managing different parts of the application state.
     // In this case, hirerDetailsReducer is handling the state slice named hirerDetails.
+    // Key (hirerDetails): This is the name of the slice of state that will be managed by the hirerDetailsReducer. This means that all state managed by hirerDetailsReducer will be stored under state.hirerDetails in the Redux store.
+    // Value (hirerDetailsReducer): This is the reducer function that will handle actions related to the hirerDetails slice of state. The hirerDetailsReducer was imported from hirerDetailsSlice.js, where it was created using createSlice().
     hirerDetails: hirerDetailsReducer,
   },
 
@@ -40,5 +43,6 @@ const store = configureStore({
 
 // If you want to configure Redux Toolkit to allow non-serializable values in specific cases, you can disable the middleware warning for non-serializable values. However, it's generally best practice to avoid storing non-serializable values in Redux state to maintain consistency and avoid potential issues.
 // To configure Redux Toolkit to ignore serialization checks for specific actions or paths, we'll need to provide the actual action types and state paths we want to ignore.
+// Ensuring that our Redux state and actions are serializable is crucial for maintaining a robust and maintainable application. It allows us to take full advantage of Redux's tooling and ensures that our application's state can be safely persisted, logged, and debugged.
 
 export default store;
