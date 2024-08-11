@@ -78,7 +78,11 @@ function BookRide() {
 
   // Update the fromPlace and toPlace states whenever the input values or places change
   useEffect(() => {
-    // Find the place object that matches the bookingFormState.pickup_location
+
+    // Calculates the distance and cost between two locations based on user input. 
+    // Find the place object that matches the bookingFormState.pickup_location.
+    // This searches through an array of place objects (places) to find one where the name property matches the user's input for pickup_location and dropoff_location.
+    // .toLowerCase(): Ensures that the search is case-insensitive by converting both the place name and user input to lowercase before comparison.
     const from = places.find(
       (p) =>
         p.name.toLowerCase() === bookingFormState.pickup_location.toLowerCase()
@@ -89,19 +93,33 @@ function BookRide() {
         p.name.toLowerCase() === bookingFormState.dropoff_location.toLowerCase()
     );
     
-    // Calculate the distance and cost whenever the place objects are updated
+    // Calculate the distance and cost whenever the place objects are updated.
+    // from and to: These variables store the place objects corresponding to the pickup_location and dropoff_location, respectively. If no matching place is found, from or to will be undefined.
     if (from && to) {
+
+      // calculateDistance() computes the distance between the two places using their latitude and longitude values. The calculateDistance function uses the Haversine formula to determine the distance in kilometers.
       const dist = calculateDistance(
         from.latitude,
         from.longitude,
         to.latitude,
         to.longitude
       );
-      setDistance(dist.toFixed(1)); // Distance in kilometers
-      const calculatedCost = dist * 30; // Cost in rupees
-      setCost(Math.floor(calculatedCost)); // Cost rounded to 2 decimal places
+
+      // Formats the distance to one decimal place.
+      // Distance in kilometers
+      // distance = 123.45678
+      // distance.toFixed(1) = 123.5
+      setDistance(dist.toFixed(1));
+
+      // Computes the cost based on the distance. The cost is calculated by multiplying the distance by 30 (i.e., the cost per kilometer).
+      // Cost in Rupees.
+      const calculatedCost = dist * 30;
+
+      // Rounds down the calculated cost to the nearest integer and updates the state with this rounded cost.. 
+      setCost(Math.floor(calculatedCost));
     } else {
-      // Clear the distance and cost if one or both places are not selected
+
+      // Clears the distance and cost if one or both places are not selected.
       setDistance(0);
       setCost(0);
     }
