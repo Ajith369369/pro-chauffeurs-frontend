@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card } from "react-bootstrap";
 import "../components/DriverCard.css";
 
+// The DriverCard component, which receives the selected_driver prop, is responsible for displaying the details of a specific driver.
+// DriverCard is a functional React component that takes a single prop, selected_driver.
+// This prop contains the information about the driver that the parent component (e.g., DriverList) passes down.
+// { selected_driver } is a destructuring assignment that extracts the selected_driver prop from the component's props object.
 function DriverCard({ selected_driver }) {
 
   const renderStars = (rating) => {

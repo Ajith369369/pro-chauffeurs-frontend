@@ -21,7 +21,6 @@ function DriverList() {
   }, []);
 
   const handleDriverClick = (driver) => {
-    
     // Log the selected driver data.
     console.log("selectedDriver in DriverList.jsx: ", driver);
 
@@ -47,6 +46,13 @@ function DriverList() {
                   className="col-md-4 mt-5"
                   onClick={() => handleDriverClick(item)}
                 >
+                  {/* The onClick event handler is triggered when the div containing the DriverCard is clicked.
+                The handleDriverClick function is called, with the item (the current driver object) passed as an argument. This allows the function to know which driver was clicked.
+                When the user clicks on a DriverCard, the handleDriverClick function is executed, passing the specific item (driver) to it.
+                The DriverCard component is being rendered, with the item (the current driver object) passed as a prop called selected_driver.
+                The DriverCard component can then use selected_driver to display the specific details of the driver (such as name, rating, etc.).
+                The DriverCard component uses the selected_driver prop to render details specific to that driver.
+                This setup allows us to render a grid of driver cards, where each card can be clicked to trigger further actions, such as navigating to a detailed driver page. */}
                   <DriverCard selected_driver={item} />
                 </div>
               ))
