@@ -19,7 +19,7 @@ import {
 } from "../services/pro_allApi";
 import "./BookRide.css";
 
-// libraries for date
+// Libraries for date
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
@@ -111,22 +111,46 @@ function BookRide() {
     places,
   ]); // Dependency array includes input values and places
 
-  // Function to calculate the distance using the Haversine formula
+  // Function to calculate the distance using the Haversine formula.
+  // The Haversine formula provides an efficient way to calculate the distance between two points on a sphere (like Earth) based on their latitude and longitude. The formula takes into account the curvature of the Earth, making it accurate for most practical purposes.
+  // In this function:
+    // lat1, lon1 are the latitude and longitude of the first point.
+    // lat2, lon2 are the latitude and longitude of the second point.
+    // The function returns the distance in kilometers between these two points.
+  // This is a JavaScript function that calculates the distance between two points on the Earth's surface using the Haversine formula. This formula accounts for the spherical shape of the Earth and is commonly used for calculating distances between geographical coordinates.
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    // Convert degrees to radians
+
+    // Convert degrees to radians.
+    // Latitude and longitude are given in degrees, but trigonometric functions in JavaScript (like Math.sin and Math.cos) require input in radians. This function multiplies the degree value by (π/180) to convert it to radians.
     const toRad = (value) => (value * Math.PI) / 180;
 
-    const R = 6371; // Radius of the Earth in kilometers
+    // Radius of the Earth in kilometers.
+    // The Haversine formula requires the Earth's radius to calculate the actual distance on the surface.
+    // Value: 6371 is a commonly accepted average radius of the Earth in kilometers.
+    const R = 6371;
+
+    // Calculates the difference in latitude and longitude between the two points and converts them to radians.
+    // The differences dLat and dLon are essential for the Haversine formula as they represent the "arc" between the two points on the globe.
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
+
+    // Haversine Formula Components
+    // Calculates the value a using the Haversine formula. 'a' is an intermediate value that represents the square of half the chord length between the two points.
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(lat1)) *
         Math.cos(toRad(lat2)) *
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
+
+    // Calculates the angular distance 'c' in radians between the two points on the Earth.
+    // Math.atan2 is a special arctangent function that takes two arguments and handles the division and quadrant identification to return the correct angle. This calculation gives the central angle between the two points.
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
+
+    // Final distance in kilometers
+    // Converts the angular distance c into the actual distance by multiplying it by the Earth's radius R.
+    // The function returns the distance between the two points in kilometers.
+    return R * c; 
   };
 
   // ------------------------------------------------------------------------
