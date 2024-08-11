@@ -4,15 +4,9 @@ import { useNavigate } from "react-router-dom";
 import DriverCard from "../components/DriverCard";
 import "../pages/DriverList.css";
 import { getDetailsOfAllDriversApi } from "../services/pro_allApi";
-// import { useDispatch, useSelector } from "react-redux";
-// import { updateDriverFormState } from "../redux/slices/hirerDetailsSlice";
 
 function DriverList() {
   const navigate = useNavigate();
-
-  // const dispatch = useDispatch()
-  // const hirerFormState = useSelector((state) => state.hirerDetails.hirerFormState);
-  // const driverFormState = useSelector((state) => state.hirerDetails.driverFormState);
 
   const [allDrivers, setAllDrivers] = useState([]);
   const getAllDrivers = async () => {
@@ -26,11 +20,8 @@ function DriverList() {
     getAllDrivers();
   }, []);
 
-  /* const handleDriverClick = () => {
-    navigate("/drivercard");
-  }; */
-
   const handleDriverClick = (driver) => {
+    
     // Log the selected driver data.
     console.log("selectedDriver in DriverList.jsx: ", driver);
 
