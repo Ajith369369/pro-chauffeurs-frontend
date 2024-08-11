@@ -112,6 +112,7 @@ function BookRide() {
   ]); // Dependency array includes input values and places
 
   // Function to calculate the distance using the Haversine formula.
+  // Haversine formula used to calculate the great-circle distance between two points on the surface of a sphere, such as the Earth.
   // The Haversine formula provides an efficient way to calculate the distance between two points on a sphere (like Earth) based on their latitude and longitude. The formula takes into account the curvature of the Earth, making it accurate for most practical purposes.
   // In this function:
     // lat1, lon1 are the latitude and longitude of the first point.
@@ -136,6 +137,7 @@ function BookRide() {
 
     // Haversine Formula Components
     // Calculates the value a using the Haversine formula. 'a' is an intermediate value that represents the square of half the chord length between the two points.
+    // Chord length is a term used in geometry and specifically in the context of circles or spheres. It refers to the straight-line distance between two points on the circumference of a circle (or surface of a sphere). In other words, it's the distance across the circle or sphere directly connecting two points without following the curve.
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(lat1)) *
@@ -144,12 +146,32 @@ function BookRide() {
         Math.sin(dLon / 2);
 
     // Calculates the angular distance 'c' in radians between the two points on the Earth.
+    // Angular distance refers to the angle between two points as seen from a particular reference point. In the context of circles or spheres, it measures the angle subtended by the arc or chord connecting these two points.
+
     // Math.atan2 is a special arctangent function that takes two arguments and handles the division and quadrant identification to return the correct angle. This calculation gives the central angle between the two points.
+    // Arctangent, also known as the inverse tangent function, is a mathematical function used to determine the angle whose tangent is a given number. It is the inverse of the tangent function. The notation commonly used for the arctangent function is arctan or tan−1 (tan inverse).
+    // Math.atan2 is a JavaScript function used to compute the arctangent (inverse tangent) of the quotient of its arguments. It is often used to find the angle between the positive x-axis and the point (x, y) in a Cartesian coordinate system.
+    // Math.atan2 correctly identifies the quadrant in which the point (x, y) lies. The function returns the angle in radians between the positive x-axis and the point (x, y). The result ranges from −𝜋 to 𝜋 (or −180° to 180°).
+
+    // Math.sqrt(a): This computes the square root of a. The variable a is derived from the intermediate calculations in the Haversine formula and represents a function of the differences in latitude and longitude.
+    // Math.sqrt(1 - a): This computes the square root of (1 - a). This term is used to find the other component required for the calculation.
+    // Math.atan2(y, x): This is a standard mathematical function that calculates the arctangent of the quotient y / x, taking into account the signs of x and y to determine the correct quadrant of the angle.
+      // Math.atan2(y, x) returns the angle in radians between the positive x-axis and the point (x, y) on a plane.
+      // In this formula, y is Math.sqrt(a) and x is Math.sqrt(1 - a).
+    // 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)):
+    // The 2 * part scales the result of Math.atan2() by 2. This scaling is required because the Haversine formula involves a central angle that spans twice the angle computed from the atan2 function.
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     // Final distance in kilometers
     // Converts the angular distance c into the actual distance by multiplying it by the Earth's radius R.
     // The function returns the distance between the two points in kilometers.
+    // Arc length is the distance along the curve of a circle or a segment of a circle between two points. It represents the actual length of the curve, rather than a straight line between the two points.
+    // For a circle, the arc length, 𝐿 can be calculated using the angle subtended by the arc and the radius of the circle. The formula is:
+    // 𝐿 = 𝑟⋅𝜃, where:
+    // 𝑟 is the radius of the circle (here R).
+    // 𝜃 is the central angle subtended by the arc, measured in radians.
+    // If the angle, 𝜃 is given in degrees, it should be converted to radians first:
+    // 𝜃 (radians) = 𝜃 (degrees) × (𝜋/180) (here c)
     return R * c; 
   };
 
