@@ -11,6 +11,7 @@ import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
+
   // State Initialization
   const [hireFormState, setHireFormState] = useState({
     is_passenger_name: true,
@@ -32,6 +33,16 @@ function HirerDetails() {
   };
 
   // handleChange Function: This function updates the state based on the name and value parameters. The name parameter is the key in the hireFormState that we want to update, and the value is what we want to set it to.
+
+  /* const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  }; */
+  
   /*  setHireFormState((prevState) => ({
     // Copy all the existing state properties
     ...prevState,
@@ -39,6 +50,10 @@ function HirerDetails() {
     // Update the specific property
     is_passenger_name: false,
   })); */
+
+  // When you use ...prevState in the context of updating state in React, it is typically used to preserve the existing state values while updating or adding new values.
+  // ...prevState ensures that all previous state properties are included in the new state object.
+  // [name]: value updates or adds the property corresponding to name with the new value.
   const handleChange = (name, value) => {
     setHireFormState((prevState) => ({
       // Copy all the existing state properties
@@ -160,8 +175,15 @@ function HirerDetails() {
     // dispatch(updateHirerFormState({ [name]: value }));
   }; */
 
-  // const handleSubmit = (e) => {
-  const handleSubmit = async (e) => {
+  // The handleSubmit function is used to handle form submission.
+  // It prevents the default form submission behavior.
+  // It validates that all required fields are filled.
+  // It navigates to a different route if the form is valid, passing form data as state.
+  // It handles and displays errors if anything goes wrong during the submission process.
+  // handleSubmit takes an event object e as its argument.
+  const handleSubmit = (e) => {
+
+    // Prevents the default behavior of the form submission event. Normally, submitting a form would cause a page reload, but this method prevents that from happening.
     e.preventDefault();
     if (
       !hirerFormState.passenger_name ||
@@ -174,9 +196,17 @@ function HirerDetails() {
       toast.info("Please fill the form completely.");
     } else {
       try {
+
+        // try { ... } catch (error) { ... }
+        // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
+        // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });
       } catch (error) {
+
+        // Logs an error message to the console if something goes wrong. This is useful for debugging.
         console.error("Failed to save booking details:", error);
+
+        // Displays an error message to the user if something goes wrong during the process. toast.error is used for error notifications.
         toast.error("Failed to save booking details. Please try again.");
       }
     }
