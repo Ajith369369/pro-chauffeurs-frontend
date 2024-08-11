@@ -1,4 +1,5 @@
 // The store is the centralized place where the entire state of your application is kept.
+// The store is the central hub for state in a Redux application. It holds the application's state, and provides methods to access the state, dispatch actions, and subscribe to state changes.
 // The Redux store is created using configureStore from @reduxjs/toolkit.
 // The store holds the state and allows the state to be accessed and updated by dispatching actions.
 
