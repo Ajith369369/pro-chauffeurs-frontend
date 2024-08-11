@@ -33,7 +33,7 @@ function Home() {
     toast.success("Logout successful")
   };
 
-  const handleLoginClick_2 = () => {
+  const handleBookNowClick = () => {
     if (localStorage.getItem("currentUser")) {
       navigate("/hirerdetails");
     } else {
@@ -100,7 +100,7 @@ function Home() {
             </p>
             <Button
               className="bookbtn mt-3 px-5 py-3"
-              onClick={handleLoginClick_2}
+              onClick={handleBookNowClick}
             >
               BOOK NOW
             </Button>
@@ -159,7 +159,7 @@ function Home() {
               <Col md={6} className="text-center text-md-end pe-md-5">
                 <Button
                   className="bookbtn px-5 py-3"
-                  onClick={handleLoginClick_2}
+                  onClick={handleBookNowClick}
                 >
                   BOOK NOW
                 </Button>
@@ -189,7 +189,7 @@ function Home() {
             <div className="d-flex justify-content-center align-items-center mt-5">
               <Button
                 className="bookbtn mt-3 px-5 py-3"
-                onClick={handleLoginClick_2}
+                onClick={handleBookNowClick}
               >
                 BOOK NOW
               </Button>

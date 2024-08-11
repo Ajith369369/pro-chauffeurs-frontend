@@ -1,14 +1,26 @@
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
-  let isValid = true;
+
+  // State Initialization
+  const [hireFormState, setHireFormState] = useState({
+    is_passenger_name: true,
+    is_car_make: true,
+    is_car_model: true,
+    is_mobile_number: true,
+    is_reg_number: true,
+    is_email: true,
+  });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,29 +32,158 @@ function HirerDetails() {
     navigate("/");
   };
 
-  const validate = (e) => {
+  // handleChange Function: This function updates the state based on the name and value parameters. The name parameter is the key in the hireFormState that we want to update, and the value is what we want to set it to.
+
+  /* const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "mobile_number") {
+  
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  }; */
+  
+  /*  setHireFormState((prevState) => ({
+    // Copy all the existing state properties
+    ...prevState,
+
+    // Update the specific property
+    is_passenger_name: false,
+  })); */
+
+  // When you use ...prevState in the context of updating state in React, it is typically used to preserve the existing state values while updating or adding new values.
+  // ...prevState ensures that all previous state properties are included in the new state object.
+  // [name]: value updates or adds the property corresponding to name with the new value.
+  const handleChange = (name, value) => {
+    setHireFormState((prevState) => ({
+      // Copy all the existing state properties
+      ...prevState,
+
+      // Update the specific property
+      // The name parameter is used as a dynamic key to update the corresponding property in the state. This is possible due to the square bracket notation [name], which allows you to dynamically update the state key based on the value of name.
+      [name]: value,
+    }));
+  };
+
+  const validateData = (e) => {
+    const { name, value } = e.target;
+    dispatch(updateHirerFormState({ [name]: value }));
+    if (name === "passenger_name") {
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_passenger_name", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_passenger_name", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_passenger_name", true);
+      }
+    } else if (name === "car_make") {
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_car_make", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_car_make", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_car_make", true);
+      }
+    } else if (name === "car_model") {
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_car_model", true);
+      } else if (!/^[A-Za-z]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_car_model", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_car_model", true);
+      }
+    } else if (name === "mobile_number") {
       // Regular Expression: /^[0-9]*$/
       // ^: Asserts the position at the start of the string.
       // [0-9]*: Matches zero or more (*) digits (0-9). This means the value can be any combination of digits or an empty string.
       // $: Asserts the position at the end of the string.
       // test(): A method of the Regular Expression (RegExp) object that tests if a string (value) matches the regular expression. If the value contains only digits (or is empty), .test(value) returns true. If there are any non-numeric characters, it returns false.
-      isValid = /^[0-9]*$/.test(value);
-    } else {
-      isValid = value.trim() !== "";
+      //isValid = /^[0-9]*$/.test(value);
+      // *: Quantifier that matches zero or more occurrences of the preceding element.
+      // +: Quantifier that matches one or more occurrences of the preceding element.
+      // /^[0-9]*$/: Matches any string that consists entirely of digits or is empty.
+      // /^\d+$/: Matches any string that consists entirely of one or more digits and does not allow an empty string.
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_mobile_number", true);
+      } else if (!/^\d+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_mobile_number", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_mobile_number", true);
+      }
+    } else if (name === "reg_number") {
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_reg_number", true);
+      } else if (!/^[A-Za-z0-9]+$/.test(value)) {
+        // If the input contains invalid characters, set validation to false
+        handleChange("is_reg_number", false);
+      } else {
+        // If the input is valid, set validation to true
+        handleChange("is_reg_number", true);
+      }
+    } else if (name === "email") {
+      // Regular expression to check for a valid email format
+      // john@gmail.com
+      // ^: This asserts the start of the string. Ensures that the match begins right from the start of the input, with no preceding characters.
+      // [^\s@]+
+      // [ and ]: Defines a character class, which matches any one of the characters contained within it.
+      // \s: Matches any whitespace character (like spaces, tabs, etc.).
+      // @: Matches the "@" character specifically.
+      // ^ inside [ and ]: When used inside a character class, it negates the class, meaning it matches any character except those specified.
+      // [^\s@]]+: It matches a sequence of one or more characters that are not whitespace and not the "@" symbol.
+      // + symbol: It is a quantifier that specifies that the preceding element must appear one or more times. This means that the pattern before the + must occur at least once but can repeat any number of times, including indefinitely.
+      // E.g., john
+      // @: Matches the "@" character specifically.
+      // [^\s@]+ (again): Matches one or more characters after the "@" symbol that are not whitespace and not "@".
+      // E.g., gmail
+      // \.: Matches a literal period '.' Ensures that there's a period in the domain part of the email, which is standard in most email formats (like example.com).
+      // [^\s@]+ (again): Matches one or more characters after the period, which typically represents the top-level domain (like com, org, etc.).
+      // E.g., com
+      // $: Asserts the end of the string. Ensures that the match extends to the end of the input, with no trailing characters.
+      // This pattern is designed to catch most common email formats, ensuring that the input looks like a valid email address (e.g., user@example.com). However, it may not catch every edge case or allow every valid email according to the full specification.
+      // When a user types just a single letter or number, it fails the emailPattern.test(value) check because it's not yet a valid email address. So, proper validation happens only after typing the entire email address.
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (value === "") {
+        // If the input is empty, reset the validation to true
+        handleChange("is_email", true);
+      } else if (!emailPattern.test(value)) {
+        // If the input is not a valid email, set validation to false
+        handleChange("is_email", false);
+      } else {
+        // If the input is a valid email, set validation to true
+        handleChange("is_email", true);
+      }
     }
-    dispatch(updateHirerFormState({ [name]: value }));
   };
 
-  const handleChange = (e) => {
+  /*  const handleChange = (e) => {
     // const { name, value } = e.target;
     validate(e);
     // dispatch(updateHirerFormState({ [name]: value }));
-  };
+  }; */
 
-  // const handleSubmit = (e) => {
-  const handleSubmit = async (e) => {
+  // The handleSubmit function is used to handle form submission.
+  // It prevents the default form submission behavior.
+  // It validates that all required fields are filled.
+  // It navigates to a different route if the form is valid, passing form data as state.
+  // It handles and displays errors if anything goes wrong during the submission process.
+  // handleSubmit takes an event object e as its argument.
+  const handleSubmit = (e) => {
+
+    // Prevents the default behavior of the form submission event. Normally, submitting a form would cause a page reload, but this method prevents that from happening.
     e.preventDefault();
     if (
       !hirerFormState.passenger_name ||
@@ -52,13 +193,21 @@ function HirerDetails() {
       !hirerFormState.car_model ||
       !hirerFormState.reg_number
     ) {
-      alert("Please fill the form completely.");
+      toast.info("Please fill the form completely.");
     } else {
       try {
+
+        // try { ... } catch (error) { ... }
+        // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
+        // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });
       } catch (error) {
+
+        // Logs an error message to the console if something goes wrong. This is useful for debugging.
         console.error("Failed to save booking details:", error);
-        alert("Failed to save booking details. Please try again.");
+
+        // Displays an error message to the user if something goes wrong during the process. toast.error is used for error notifications.
+        toast.error("Failed to save booking details. Please try again.");
       }
     }
   };
@@ -77,9 +226,9 @@ function HirerDetails() {
                   <TextField
                     name="passenger_name"
                     value={hirerFormState.passenger_name || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-1"
                     label="PASSENGER NAME"
                     variant="outlined"
                     sx={{
@@ -91,6 +240,10 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
+                        // Apply text-transform to the input element
+                        "& input": {
+                          textTransform: "uppercase",
+                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
@@ -112,14 +265,19 @@ function HirerDetails() {
                       },
                     }}
                   />
+                  {hireFormState.is_passenger_name == false && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
                 </div>
                 <div className="form-group my-4">
                   <TextField
                     name="email"
                     value={hirerFormState.email || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-2"
                     label="EMAIL"
                     variant="outlined"
                     sx={{
@@ -131,6 +289,10 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
+                        // Apply text-transform to the input element
+                        "& input": {
+                          textTransform: "lowercase",
+                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
@@ -152,14 +314,19 @@ function HirerDetails() {
                       },
                     }}
                   />
+                  {hireFormState.is_email == false && (
+                    <p className="text-danger fw-bold fs-5 me-auto">
+                      *Invalid Input
+                    </p>
+                  )}
                 </div>
                 <div className="form-group my-4">
                   <TextField
                     name="mobile_number"
                     value={hirerFormState.mobile_number || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-3"
                     label="MOBILE NUMBER"
                     variant="outlined"
                     sx={{
@@ -192,7 +359,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {isValid == false && (
+                  {hireFormState.is_mobile_number == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -202,9 +369,9 @@ function HirerDetails() {
                   <TextField
                     name="car_make"
                     value={hirerFormState.car_make || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-4"
                     label="CAR'S MAKE"
                     variant="outlined"
                     sx={{
@@ -216,6 +383,10 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
+                        // Apply text-transform to the input element
+                        "& input": {
+                          textTransform: "uppercase",
+                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
@@ -237,7 +408,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.iscar_make && (
+                  {hireFormState.is_car_make == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -247,9 +418,9 @@ function HirerDetails() {
                   <TextField
                     name="car_model"
                     value={hirerFormState.car_model || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-5"
                     label="CAR'S MODEL"
                     variant="outlined"
                     sx={{
@@ -261,6 +432,10 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
+                        // Apply text-transform to the input element
+                        "& input": {
+                          textTransform: "uppercase",
+                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
@@ -282,7 +457,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.iscar_model && (
+                  {hireFormState.is_car_model == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -292,9 +467,9 @@ function HirerDetails() {
                   <TextField
                     name="reg_number"
                     value={hirerFormState.reg_number || ""}
-                    onChange={handleChange}
+                    onChange={(e) => validateData(e)}
                     className="w-100"
-                    id="outlined-basic"
+                    id="outlined-basic-6"
                     label="CAR'S REGISTRATION NUMBER"
                     variant="outlined"
                     sx={{
@@ -306,6 +481,10 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
+                        // Apply text-transform to the input element
+                        "& input": {
+                          textTransform: "uppercase",
+                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
@@ -327,7 +506,7 @@ function HirerDetails() {
                       },
                     }}
                   />
-                  {!hirerFormState.isreg_number && (
+                  {hireFormState.is_reg_number == false && (
                     <p className="text-danger fw-bold fs-5 me-auto">
                       *Invalid Input
                     </p>
@@ -378,6 +557,7 @@ function HirerDetails() {
         </div>
         <Footer />
       </div>
+      <ToastContainer position="top-center" theme="colored" autoclose={1000} />
     </>
   );
 }

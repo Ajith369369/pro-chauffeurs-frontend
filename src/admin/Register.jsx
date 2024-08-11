@@ -17,9 +17,23 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
+
+    // This function first retrieves any existing users from local storage. It then adds the new user's details to this list and saves it back to local storage. Finally, it shows a success message and redirects the user to the login page.
+    
+    // localStorage.getItem("users") retrieves the users item from local storage, which is stored as a JSON string.
+    // JSON.parse(...) converts the JSON string back into a JavaScript array of user objects.
+    // If there are no users stored in local storage, localStorage.getItem("users") returns null, so the fallback (|| []) ensures users is initialized as an empty array.
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Adds a new user object to the users array, containing the values reg_username, reg_email_id, and reg_password. These variables hold the registration information entered by the user.
     users.push({ reg_username, reg_email_id, reg_password });
+
+    // JSON.stringify(users) converts the updated users array back into a JSON string.
+    // localStorage.setItem("users", ...) stores this JSON string in local storage under the key users, overwriting any previous value.
     localStorage.setItem("users", JSON.stringify(users));
+
+    // toast.success(...) displays a success message to the user, notifying them that the registration was successful.
+    // The onClose callback inside the toast is executed when the toast is closed, which triggers navigate("/login") to redirect the user to the login page.
     toast.success("Registration successful", {
       onClose: () => navigate("/login"),
     });
