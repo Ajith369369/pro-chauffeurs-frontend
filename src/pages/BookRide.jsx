@@ -262,7 +262,7 @@ function BookRide() {
       console.log(newDate);
       console.log(typeof newDate);
 
-      // When using Redux Toolkit and handling non-serializable data like Dayjs objects, we'll need to convert them to serializable formats before storing them in Redux state. Dayjs objects are not serializable, but ISO strings are
+      // When using Redux Toolkit and handling non-serializable data like Dayjs objects, we'll need to convert them to serializable formats before storing them in Redux state. Dayjs objects are not serializable, but ISO strings are.
       // Dayjs objects are not serializable, so you need to convert them to ISO strings (or another serializable format) before storing them in Redux state.
       // Convert Dayjs object to ISO string before dispatching. Converting Dayjs objects to ISO strings before dispatching ensures that your Redux state remains serializable and avoids any potential issues with non-serializable data.
       // Dispatching the action with the ISO string ensures that Redux state remains serializable. Our reducer then handles the conversion back to Dayjs if needed, but generally, we should only store ISO strings in Redux.
@@ -322,9 +322,7 @@ function BookRide() {
         combinedFormState
       );
       if (response_booking.status >= 200 && response_booking.status < 300) {
-        // dispatch(addBookingDetailsOfAUserApi(combinedFormState));
-
-        // const result = await addBookingDetailsOfAUserApi(combinedFormState);
+        
         // console.log(result);
         console.log(combinedFormState);
         
