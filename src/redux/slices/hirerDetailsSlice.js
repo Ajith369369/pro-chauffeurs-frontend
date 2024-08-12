@@ -3,9 +3,14 @@ import dayjs from "dayjs";
 
 // This defines the initial state of the hirerDetails slice.
 // Within the hirerDetails slice, there are multiple parts (or sub-states) representing different aspects of hirer-related data. These parts are loginFormState, bookingFormState, driverFormState, and hirerFormState.
-// In our Redux setup, loginFormState, bookingFormState, driverFormState, and hirerFormState are pieces of the application state managed by Redux. They represent different parts of the form data used across our application.
-// loginFormState, bookingFormState, driverFormState, and hirerFormState are states that are part of the hirerDetails slice. They are states managed within the hirerDetails slice.
-// loginFormState, bookingFormState, driverFormState, and hirerFormState are parts (or sub-states) of the overall hirerDetails slice. Each of these sub-states holds specific data relevant to different parts of our application
+// hirerDetails slice's state: This is the portion of the Redux store that is managed by the hirerDetails slice. It contains the loginFormState, bookingFormState, driverFormState, and hirerFormState as sub-states.
+// loginFormState, bookingFormState, driverFormState, and hirerFormState:
+  // These are specific states that are part of the overall state managed by the hirerDetails slice. They represent different aspects of the hirer-related data.
+  // They are parts of the overall hirerDetails slice, which itself is a part of the global Redux state.
+  // They are pieces of the application state managed by Redux. They represent different parts of the form data used across our application.
+  // They are states that are part of the hirerDetails slice. They are states managed within the hirerDetails slice.
+  // They are parts (or sub-states) of the overall hirerDetails slice. Each of these sub-states holds specific data relevant to different parts of our application
+  // These states are nested within the hirerDetails slice's state and are managed by the reducers defined within the hirerDetails slice.
 // initialState is an object containing four nested objects: loginFormState, bookingFormState, driverFormState, and hirerFormState.
 // The state, driverFormState has a single property.
 const initialState = {
