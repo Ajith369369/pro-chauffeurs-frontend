@@ -187,6 +187,7 @@ export const {
   updateBookingFormState,
   updateDriverFormState,
   updateHirerFormState,
+  updateHirerFormMobileNumberState,
   resetLoginFormState,
   resetBookingFormState,
   resetDriverFormState,

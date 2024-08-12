@@ -207,6 +207,7 @@ function HirerDetails() {
         // try { ... } catch (error) { ... }
 
         dispatch(updateHirerFormMobileNumberState(hirerFormState.mobile_number));
+        
         // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
         // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });
