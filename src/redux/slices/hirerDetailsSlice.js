@@ -66,13 +66,46 @@ const hirerDetailsSlice = createSlice({
   // In hirerDetailsSlice.js, the slice hirerDetailsSlice contains multiple reducers.
   reducers: {
 
-    // updateLoginButtonState and updateLoginFormState: These reducers modify parts of the loginFormState slice of the state.
+    // updateLoginButtonState and updateLoginFormState: These reducers modify parts of the loginFormState state of the state.
+
+    // This reducer is designed to update the login_button property in the loginFormState slice of our state.
+    // state: Represents the current state of the hirerDetails slice, specifically the loginFormState part of that state.
+    // action: An object that contains the type of action and any additional data (called the payload). It contains the type of action and the payload, which is an object with one or more properties to update.
     updateLoginButtonState(state, action) {
+
+      // state.loginFormState.login_button is directly modified by setting it equal to action.payload.
+      // action.payload is the new value that we want to assign to login_button. This value is passed when the action is dispatched.
       state.loginFormState.login_button = action.payload;
     },
+
+    // If login_button was initially true and you dispatch an action like this:
+      // dispatch(updateLoginButtonState(false));
+      // Then, action.payload would be false, and after the reducer runs, login_button would be updated to false in the state.
+
+    // This reducer is responsible for updating multiple properties within the loginFormState state of the hirerDetails slice, depending on what is provided in action.payload.
+    // updateLoginFormState: Updates one or more properties within loginFormState based on the object provided in the action's payload.
     updateLoginFormState(state, action) {
+
+      // state.loginFormState is spread into a new object { ...state.loginFormState }, which copies all existing properties.
+      // ...action.payload spreads the properties of the payload object into this new state, overriding any existing properties with the same name.
       state.loginFormState = { ...state.loginFormState, ...action.payload };
     },
+
+    // Suppose loginFormState initially looks like this:
+      /* {
+        login_email: "user@example.com",
+        login_pswd: "password123",
+        login_button: true
+      } */
+    // And you dispatch an action like this:
+      //dispatch(updateLoginFormState({ login_email: "newuser@example.com", login_pswd: "newpassword" }));
+      // action.payload would be { login_email: "newuser@example.com", login_pswd: "newpassword" }.
+    // The reducer would update login_email and login_pswd, while login_button would remain unchanged. After the reducer runs, loginFormState would look like this:
+      /* {
+        login_email: "newuser@example.com",
+        login_pswd: "newpassword",
+        login_button: true
+      } */
 
     // The pickup_date field in the bookingFormState contains a date object that cannot be serialized by Redux. Redux expects all state values to be serializable for purposes like time-travel debugging and persistence. Date objects are inherently non-serializable because they include methods and internal properties that cannot be represented as plain JSON. When we attempt to store a date object directly in our Redux state, we encounter this issue.
     // We can address this issue by converting the date object to a serializable format before storing it in the Redux state, and converting it back to a date object when needed.
@@ -90,7 +123,7 @@ const hirerDetailsSlice = createSlice({
       // The spread operator (...) is used to copy all properties from state.bookingFormState and action.payload into a new object. If there are properties with the same name in both objects, the values from action.payload will overwrite those from state.bookingFormState. This effectively combines the existing state with any updates from the action payload.
       const newState = { ...state.bookingFormState, ...action.payload };
 
-      // // Check if the 'pickup_date' in newState, exists in the payload and if it is a valid dayjs object (i.e., an instance of dayjs).
+      // Check if the 'pickup_date' in newState, exists in the payload and if it is a valid dayjs object (i.e., an instance of dayjs).
       if (
         action.payload.pickup_date &&
         dayjs.isDayjs(action.payload.pickup_date)
