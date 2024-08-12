@@ -344,10 +344,11 @@ function BookRide() {
         dispatch(resetLoginFormState());
         dispatch(resetHirerFormState());
         dispatch(resetDriverFormState());
-        dispatch(resetBookingFormState());
+        // dispatch(resetBookingFormState());
         localStorage.removeItem("currentUser");
         toast.success("Booking Confirmed", {
           onClose: () => navigate('/')});
+        dispatch(resetBookingFormState());
       } else {
         toast.error("Failed to save booking details. Please try again.");
       }
