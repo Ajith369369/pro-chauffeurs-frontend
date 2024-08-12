@@ -1,3 +1,4 @@
+// In a Redux store, the entire application's state is represented by a single JavaScript object, often called the "global state" or "store." This global state is usually divided into smaller sections, or slices, each managed by a different reducer. Each slice represents a distinct part of the application’s state. In our application, hirerDetails is one of those slices of the global state.
 // The store is the centralized place where the entire state of your application is kept.
 // The store is the central hub for state in a Redux application. It holds the application's state, and provides methods to access the state, dispatch actions, and subscribe to state changes.
 // The Redux store is created using configureStore from @reduxjs/toolkit.

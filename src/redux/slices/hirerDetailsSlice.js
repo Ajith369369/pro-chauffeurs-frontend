@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
 // This defines the initial state of the hirerDetails slice.
+// Within the hirerDetails slice, there are multiple parts (or sub-states) representing different aspects of hirer-related data. These parts are loginFormState, bookingFormState, driverFormState, and hirerFormState.
 // In our Redux setup, loginFormState, bookingFormState, driverFormState, and hirerFormState are pieces of the application state managed by Redux. They represent different parts of the form data used across our application.
 // loginFormState, bookingFormState, driverFormState, and hirerFormState are states that are part of the hirerDetails slice. They are states managed within the hirerDetails slice.
 // loginFormState, bookingFormState, driverFormState, and hirerFormState are parts (or sub-states) of the overall hirerDetails slice. Each of these sub-states holds specific data relevant to different parts of our application
@@ -69,7 +70,7 @@ const hirerDetailsSlice = createSlice({
     // updateLoginButtonState and updateLoginFormState: These reducers modify parts of the loginFormState state of the state.
 
     // This reducer is designed to update the login_button property in the loginFormState slice of our state.
-    // state: Represents the current state of the hirerDetails slice, specifically the loginFormState part of that state.
+    // state: Represents the current state of the hirerDetails slice, specifically the loginFormState part of that state. This represents the current state of the entire hirerDetails slice. When you define a reducer like updateLoginFormState, the state parameter inside that function represents the current state of the hirerDetails slice at the time the action is dispatched.
     // action: An object that contains the type of action and any additional data (called the payload). It contains the type of action and the payload, which is an object with one or more properties to update.
     updateLoginButtonState(state, action) {
 
