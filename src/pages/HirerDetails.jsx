@@ -11,7 +11,6 @@ import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
-
   // State Initialization
   const [hireFormState, setHireFormState] = useState({
     is_passenger_name: true,
@@ -42,7 +41,7 @@ function HirerDetails() {
       [name]: value
     }));
   }; */
-  
+
   /*  setHireFormState((prevState) => ({
     // Copy all the existing state properties
     ...prevState,
@@ -67,7 +66,15 @@ function HirerDetails() {
 
   const validateData = (e) => {
     const { name, value } = e.target;
-    dispatch(updateHirerFormState({ [name]: value }));
+
+    // Convert the value to uppercase
+    if (name === "car_make" || name === "car_model" || name === "reg_number") {
+      const upperCaseValue = value.toUpperCase();
+      dispatch(updateHirerFormState({ [name]: upperCaseValue }));
+    } else {
+      dispatch(updateHirerFormState({ [name]: value }));
+    }
+
     if (name === "passenger_name") {
       if (value === "") {
         // If the input is empty, reset the validation to true
@@ -182,7 +189,6 @@ function HirerDetails() {
   // It handles and displays errors if anything goes wrong during the submission process.
   // handleSubmit takes an event object e as its argument.
   const handleSubmit = (e) => {
-
     // Prevents the default behavior of the form submission event. Normally, submitting a form would cause a page reload, but this method prevents that from happening.
     e.preventDefault();
     if (
@@ -196,13 +202,11 @@ function HirerDetails() {
       toast.info("Please fill the form completely.");
     } else {
       try {
-
         // try { ... } catch (error) { ... }
         // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
         // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });
       } catch (error) {
-
         // Logs an error message to the console if something goes wrong. This is useful for debugging.
         console.error("Failed to save booking details:", error);
 
