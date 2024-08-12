@@ -293,10 +293,6 @@ function HirerDetails() {
                         height: "60px",
                         alignItems: "center",
                         paddingLeft: "5px",
-                        // Apply text-transform to the input element
-                        "& input": {
-                          textTransform: "lowercase",
-                        },
                         // Class for the border around the input field
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#000000",
