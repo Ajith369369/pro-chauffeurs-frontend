@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 // Within the hirerDetails slice, there are multiple parts (or sub-states) representing different aspects of hirer-related data. These parts are loginFormState, bookingFormState, driverFormState, and hirerFormState.
 // hirerDetails slice's state: This is the portion of the Redux store that is managed by the hirerDetails slice. It contains the loginFormState, bookingFormState, driverFormState, and hirerFormState as sub-states.
 // loginFormState, bookingFormState, driverFormState, and hirerFormState:
+  // These are individual pieces of state within the hirerDetails slice. Each of them represents a distinct part of the state that is managed within the hirerDetails slice.
   // These are specific states that are part of the overall state managed by the hirerDetails slice. They represent different aspects of the hirer-related data.
   // They are parts of the overall hirerDetails slice, which itself is a part of the global Redux state.
   // They are pieces of the application state managed by Redux. They represent different parts of the form data used across our application.
