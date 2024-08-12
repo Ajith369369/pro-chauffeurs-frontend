@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { updateHirerFormState } from "../redux/slices/hirerDetailsSlice";
+import { updateHirerFormState, updateHirerFormMobileNumberState } from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
@@ -72,12 +72,7 @@ function HirerDetails() {
       // Convert the value to uppercase
       const upperCaseValue = value.toUpperCase();
       dispatch(updateHirerFormState({ [name]: upperCaseValue }));
-    } else if(name === "mobile_number") {
-
-      // Prepend "+91" to the mobile_number if the name is "mobile_number"
-      const processedValue = `+91 ${value}`;
-      dispatch(updateHirerFormState({ [name]: processedValue }));
-    }
+    } 
     else {
       dispatch(updateHirerFormState({ [name]: value }));
     }
@@ -210,6 +205,8 @@ function HirerDetails() {
     } else {
       try {
         // try { ... } catch (error) { ... }
+
+        dispatch(updateHirerFormMobileNumberState(hirerFormState.mobile_number));
         // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
         // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });

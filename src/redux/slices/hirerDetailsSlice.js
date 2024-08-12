@@ -148,6 +148,17 @@ const hirerDetailsSlice = createSlice({
     updateHirerFormState(state, action) {
       state.hirerFormState = { ...state.hirerFormState, ...action.payload };
     },
+    updateHirerFormMobileNumberState(state, action) {
+
+      // Extract the value from the action payload
+      const value = action.payload;
+
+      // Prepend "+91 " to the mobile number
+      const processedValue = `+91 ${value}`;
+
+      // Update the state with the processed value
+      state.hirerFormState.mobile_number = processedValue;
+    },
     resetLoginFormState(state) {
       state.loginFormState = initialState.loginFormState;
     },
