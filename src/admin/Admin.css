@@ -12,3 +12,7 @@
 .table-container {
   overflow-x: auto;
 }
+
+td {
+  white-space: nowrap;
+}
