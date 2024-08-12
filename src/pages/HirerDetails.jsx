@@ -67,11 +67,18 @@ function HirerDetails() {
   const validateData = (e) => {
     const { name, value } = e.target;
 
-    // Convert the value to uppercase
     if (name === "car_make" || name === "car_model" || name === "reg_number") {
+
+      // Convert the value to uppercase
       const upperCaseValue = value.toUpperCase();
       dispatch(updateHirerFormState({ [name]: upperCaseValue }));
-    } else {
+    } else if(name === "mobile_number") {
+
+      // Prepend "+91" to the mobile_number if the name is "mobile_number"
+      const processedValue = `+91 ${value}`;
+      dispatch(updateHirerFormState({ [name]: processedValue }));
+    }
+    else {
       dispatch(updateHirerFormState({ [name]: value }));
     }
 
