@@ -1,5 +1,5 @@
 .admin-container {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('/src/assets/car_bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
