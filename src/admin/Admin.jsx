@@ -115,10 +115,10 @@ function Admin() {
       <div className="admin-container row w-100 my-5 d-flex flex-column justify-content-start align-items-center">
         <div className="dash-home d-flex justify-content-between p-md-5">
           <h1 className="text-light dash">Dashboard</h1>
-          <h5 className="mt-1 home">
+          <h5 className="mt-1 home d-flex justify-content-center align-items-center">
             <Link
               to={"/"}
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "white" }} 
               onClick={() => {
                 localStorage.removeItem("currentUser");
                 dispatch(updateLoginButtonState(true));
