@@ -114,8 +114,8 @@ function Admin() {
     <>
       <div className="admin-container row w-100 my-5 d-flex flex-column justify-content-start align-items-center">
         <div className="dash-home d-flex justify-content-between p-md-5">
-          <h1 className="text-light ms-5">Dashboard</h1>
-          <h5 className="mt-1 me-5">
+          <h1 className="text-light dash">Dashboard</h1>
+          <h5 className="mt-1 home">
             <Link
               to={"/"}
               style={{ textDecoration: "none", color: "white" }}
@@ -131,7 +131,7 @@ function Admin() {
         </div>
         <div className="row w-100">
           <div className="col-sm-0 col-md-1"></div>
-          <div className="col-sm-12 col-md-10 table-container">
+          <div className="col-sm-12 col-md-10 table-container mx-2 my-2">
             <table className="table table-dark table-striped table-hover align-middle table-responsive">
               <thead className="text-center align-middle">
                 <tr>
