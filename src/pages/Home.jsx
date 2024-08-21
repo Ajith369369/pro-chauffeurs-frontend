@@ -118,8 +118,8 @@ function Home() {
               </h1>
             </Row>
             <Row>
-              <Col md={6} className="pb-5 mb-5 pe-5 smallscreen">
-                <h2 className="Htitle">
+              <Col md={6} className="row smallscreen">
+                <h2 className="Htitle text-center">
                   Let us take the weight off your shoulders by planning your
                   ride—from start to end
                 </h2>
@@ -179,7 +179,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
+              <h1 className="Htitle text-center mb-4">
                 3 Reasons to book ProChauffeur for your ride
               </h1>
             </Row>
@@ -201,8 +201,8 @@ function Home() {
 
       <div className="container-fluid" id="contact">
         <Row className="BkGrnd2">
-          <Col md={1}></Col>
-          <Col md={10}>
+          <Col xs={0} sm={0} md={1} lg={1}></Col>
+          <Col xs={12} sm={12} md={10} lg={10}>
             <Row>
               <h1 className="Htitle d-flex justify-content-center align-items-center mb-4 text-center">
                 Don&apos;t believe us, <br />
@@ -213,7 +213,7 @@ function Home() {
               <ClientRating />
             </Row>
           </Col>
-          <Col md={1}></Col>
+          <Col xs={0} sm={0} md={1} lg={1}></Col>
         </Row>
       </div>
       <ToastContainer position="top-center" theme="colored" autoclose={1000} />

@@ -8,25 +8,25 @@ function About() {
   };
   return (
     <>
-    <div className="container-fluid" id="about">
+      <div className="container-fluid" id="about">
         <Row className="BkGrnd">
-          <Col md={1}></Col>
-          <Col md={10}>
-            <Row>
-              <h1
-                className="Htitle d-flex justify-content-center align-items-center mb-4"
-              >
-                About
-              </h1>
+          <Col xs={0} sm={0} md={1}></Col>
+          <Col xs={12} sm={12} md={10}>
+            <Row xs={12} sm={12} md={12}>
+              <Col xs={12} sm={12} md={12} className="smallscreen">
+                <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
+                  About
+                </h1>
+              </Col>
             </Row>
             <Row>
-              <Col md={6} className="pb-5 mb-5 pe-5 smallscreen">
+              <Col xs={12} sm={12} md={6} className="pb-5 mb-5 pe-5 smallscreen">
                 <h2 className="Htitle">
                   Let us take the weight off your shoulders by planning your
                   ride—from start to end
                 </h2>
               </Col>
-              <Col md={6} className="ps-2 smallscreen">
+              <Col xs={12} sm={12} md={6} className="ps-2 smallscreen">
                 <Row className="fs-5 pb-4" style={{ fontWeight: "100" }}>
                   <p>
                     ProChauffeurs specializes in hassle-free, discrete, and
@@ -68,11 +68,11 @@ function About() {
               </Col>
             </Row>
           </Col>
-          <Col md={1}></Col>
+          <Col xs={0} sm={0} md={1}></Col>
         </Row>
       </div>
     </>
-  )
+  );
 }
 
-export default About
+export default About;
