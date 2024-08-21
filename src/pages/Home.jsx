@@ -119,7 +119,7 @@ function Home() {
             </Row>
             <Row>
               <Col md={6} className="row smallscreen">
-                <h2 className="Htitle">
+                <h2 className="Htitle text-center">
                   Let us take the weight off your shoulders by planning your
                   ride—from start to end
                 </h2>
@@ -179,7 +179,7 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 className="Htitle d-flex justify-content-center align-items-center mb-4">
+              <h1 className="Htitle text-center mb-4">
                 3 Reasons to book ProChauffeur for your ride
               </h1>
             </Row>
