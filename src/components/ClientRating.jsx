@@ -12,10 +12,10 @@ function ClientRating() {
   return (
     <div className="container-fluid">
       <Row>
-        <Col xs={0} sm={0} md={1}></Col>
-        <Col xs={12} sm={12} md={10}>
+        <Col xs={0} sm={0} md={1} lg={1}></Col>
+        <Col xs={12} sm={12} md={10} lg={10}>
           <Row className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
-            <Col xs={12} sm={12} md={3} className="text-center">
+            <Col xs={12} sm={12} md={3} lg={3} className="text-center">
               <Card style={{ width: "100%", borderRadius: "20px" }}>
                 <Card.Img
                   className="rounded-circle mt-4 py-2 px-5"
@@ -46,7 +46,7 @@ function ClientRating() {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} sm={12} md={3} className="text-center">
+            <Col xs={12} sm={12} md={3} lg={3} className="text-center">
               <Card style={{ width: "100%", borderRadius: "20px" }}>
                 <Card.Img
                   className="rounded-circle mt-4 py-2 px-5"
@@ -75,7 +75,7 @@ function ClientRating() {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} sm={12} md={3} className="text-center">
+            <Col xs={12} sm={12} md={3} lg={3} className="text-center">
               <Card style={{ width: "100%", borderRadius: "20px" }}>
                 <Card.Img
                   className="rounded-circle mt-4 py-2 px-5"
@@ -103,7 +103,7 @@ function ClientRating() {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} sm={12} md={3} className="text-center">
+            <Col xs={12} sm={12} md={3} lg={3} className="text-center">
               <Card style={{ width: "100%", borderRadius: "20px" }}>
                 <Card.Img
                   className="rounded-circle mt-4 py-2 px-5"
@@ -135,7 +135,7 @@ function ClientRating() {
             </Col>
           </Row>
         </Col>
-        <Col xs={0} sm={0} md={1}></Col>
+        <Col xs={0} sm={0} md={1} lg={1}></Col>
       </Row>
     </div>
   );
