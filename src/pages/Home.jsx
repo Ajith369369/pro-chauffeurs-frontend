@@ -118,7 +118,7 @@ function Home() {
               </h1>
             </Row>
             <Row>
-              <Col md={6} className="pb-5 mb-5 pe-5 smallscreen">
+              <Col md={6} className="row smallscreen">
                 <h2 className="Htitle">
                   Let us take the weight off your shoulders by planning your
                   ride—from start to end
