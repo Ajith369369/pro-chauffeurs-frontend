@@ -132,8 +132,8 @@
     > div.col-lg-10.col-md-10.col-sm-12.col-12
     > div
     > div {
-    width: 440px;
-    height: 590px;
+    width: 206px;
+    margin: 10px;
   }
 
   #contact > div > div.col-lg-10.col-md-10.col-sm-12.col-12 > div:nth-child(2) > div > div > div.col-lg-10.col-md-10.col-sm-12.col-12 > div > div > div {
@@ -226,6 +226,5 @@
     > div
     > div {
     width: 440px;
-    height: 490px;
   }
 }
