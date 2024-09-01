@@ -73,7 +73,7 @@ const hirerDetailsSlice = createSlice({
   // In hirerDetailsSlice.js, the slice hirerDetailsSlice contains multiple reducers.
   reducers: {
 
-    // updateLoginButtonState and updateLoginFormState: These reducers modify parts of the loginFormState state of the state.
+    // updateLoginButtonState and updateLoginFormState: These reducers modify parts of the loginFormState part of the state.
 
     // This reducer is designed to update the login_button property in the loginFormState slice of our state.
     // state: Represents the current state of the hirerDetails slice, specifically the loginFormState part of that state. This represents the current state of the entire hirerDetails slice. When you define a reducer like updateLoginFormState, the state parameter inside that function represents the current state of the hirerDetails slice at the time the action is dispatched.
