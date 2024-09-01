@@ -118,13 +118,13 @@ function Home() {
               </h1>
             </Row>
             <Row>
-              <Col md={6} className="row smallscreen">
+              <Col xs={12} sm={12} md={6} className="row smallscreen">
                 <h2 className="Htitle text-center">
                   Let us take the weight off your shoulders by planning your
                   ride—from start to end
                 </h2>
               </Col>
-              <Col md={6} className="ps-2 smallscreen">
+              <Col xs={12} sm={12} md={6} className="ps-2 smallscreen">
                 <Row className="fs-5 pb-4" style={{ fontWeight: "100" }}>
                   <p>
                     ProChauffeurs specializes in hassle-free, discrete, and
@@ -151,12 +151,12 @@ function Home() {
               </Col>
             </Row>
             <Row className="booktransfer d-flex justify-content-center align-items-center p-md-5">
-              <Col md={6} className="text-center text-md-start ps-md-5">
+              <Col xs={12} sm={12} md={6} className="text-center text-md-start ps-md-5 my-2">
                 <p className="Htitle">
                   Book your elite transfer, <br /> in minutes
                 </p>
               </Col>
-              <Col md={6} className="text-center text-md-end pe-md-5">
+              <Col xs={12} sm={12} md={6} className="text-center text-md-end pe-md-5 my-2">
                 <Button
                   className="bookbtn px-5 py-3"
                   onClick={handleBookNowClick}
@@ -179,8 +179,8 @@ function Home() {
           <Col md={1}></Col>
           <Col md={10}>
             <Row>
-              <h1 className="Htitle text-center mb-4">
-                3 Reasons to book ProChauffeur for your ride
+              <h1 className="Htitle text-center mb-4"> 
+                3 Reasons to book ProChauffeurs for your ride
               </h1>
             </Row>
             <Row>
