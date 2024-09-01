@@ -26,7 +26,7 @@ function Admin() {
   const getBookingDetails = async () => {
     // Calls the API function getBookingDetailsOfAllUsersApi to fetch booking details and waits for the response. The await keyword pauses execution until the promise resolves.
     const result = await getBookingDetailsOfAllUsersApi();
-    console.log('result: ', result)
+    console.log("result: ", result);
 
     if (result.status >= 200 && result.status < 300) {
       // Updates the allUsers state with the data fetched from the API.
@@ -118,7 +118,7 @@ function Admin() {
           <h5 className="mt-1 home d-flex justify-content-center align-items-center">
             <Link
               to={"/"}
-              style={{ textDecoration: "none", color: "white" }} 
+              style={{ textDecoration: "none", color: "white" }}
               onClick={() => {
                 localStorage.removeItem("currentUser");
                 dispatch(updateLoginButtonState(true));
