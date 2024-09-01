@@ -7,7 +7,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { updateHirerFormState, updateHirerFormMobileNumberState } from "../redux/slices/hirerDetailsSlice";
+import {
+  updateHirerFormMobileNumberState,
+  updateHirerFormState,
+} from "../redux/slices/hirerDetailsSlice";
 import "./HirerDetails.css";
 
 function HirerDetails() {
@@ -22,6 +25,9 @@ function HirerDetails() {
   });
 
   const navigate = useNavigate();
+
+  // useDispatch() is a hook provided by React-Redux. It returns a reference to the dispatch function from the Redux store.
+  // By calling useDispatch(), we can dispatch actions from within our React component.
   const dispatch = useDispatch();
   const hirerFormState = useSelector(
     (state) => state.hirerDetails.hirerFormState
@@ -68,12 +74,10 @@ function HirerDetails() {
     const { name, value } = e.target;
 
     if (name === "car_make" || name === "car_model" || name === "reg_number") {
-
       // Convert the value to uppercase
       const upperCaseValue = value.toUpperCase();
       dispatch(updateHirerFormState({ [name]: upperCaseValue }));
-    } 
-    else {
+    } else {
       dispatch(updateHirerFormState({ [name]: value }));
     }
 
@@ -206,8 +210,10 @@ function HirerDetails() {
       try {
         // try { ... } catch (error) { ... }
 
-        dispatch(updateHirerFormMobileNumberState(hirerFormState.mobile_number));
-        
+        dispatch(
+          updateHirerFormMobileNumberState(hirerFormState.mobile_number)
+        );
+
         // The try block attempts to navigate to the /driverlist route, passing the hirerFormState as state. If navigation fails, the catch block catches the error and handles it.
         // Uses the navigate function to redirect the user to the /driverlist page. The hirerFormState is passed as state, which allows the DriverList component to receive the form data.
         navigate("/driverlist", { state: { hirerFormState } });
