@@ -14,7 +14,7 @@ function ClientRating() {
       <Row>
         <Col xs={0} sm={0} md={1} lg={1}></Col>
         <Col xs={12} sm={12} md={10} lg={10}>
-          <Row className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
+          <Row className="mt-5 d-flex flex-wrap justify-content-center align-items-stretch">
             <Col xs={12} sm={12} md={3} lg={3} className="text-center">
               <Card style={{ width: "100%", borderRadius: "20px" }}>
                 <Card.Img

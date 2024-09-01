@@ -124,21 +124,30 @@
 }
 
 #contact
-    > div
-    > div.col-lg-10.col-md-10.col-sm-12.col-12
-    > div:nth-child(2)
-    > div
-    > div
-    > div.col-lg-10.col-md-10.col-sm-12.col-12
-    > div
-    > div {
-    width: 440px;
-    height: 590px;
-  }
+  > div
+  > div.col-lg-10.col-md-10.col-sm-12.col-12
+  > div:nth-child(2)
+  > div
+  > div
+  > div.col-lg-10.col-md-10.col-sm-12.col-12
+  > div
+  > div {
+  width: 206px;
+  margin: 10px;
+}
 
-  #contact > div > div.col-lg-10.col-md-10.col-sm-12.col-12 > div:nth-child(2) > div > div > div.col-lg-10.col-md-10.col-sm-12.col-12 > div > div > div {
-    height: 100%;
-  }
+#contact
+  > div
+  > div.col-lg-10.col-md-10.col-sm-12.col-12
+  > div:nth-child(2)
+  > div
+  > div
+  > div.col-lg-10.col-md-10.col-sm-12.col-12
+  > div
+  > div
+  > div {
+  height: 100%;
+}
 
 /* Media query for tablets and smaller screens */
 @media (max-width: 992px) {
@@ -190,7 +199,7 @@
     padding: 130px 25px 50px 25px;
   }
   .smallscreen {
-    margin: 0px 15px;
+    margin: 0px 10px;
   }
 
   .custom-navbar .navbar-collapse {
@@ -206,6 +215,69 @@
   .custom-navbar .navbar-nav .nav-link {
     margin: 10px 0;
     font-size: 18px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.row.smallscreen.col-md-6.col-sm-12.col-12 {
+    margin: 0px 0px 48px 0px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12 {
+    padding: 0px 8px 48px 8px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12 {
+    margin: 0px 0px 48px 0px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12
+    > div.fs-5.pb-4.row {
+    margin: 0px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12
+    > div {
+    padding: 0px 10px;
+    margin: 0px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12
+    > div:nth-child(2)
+    > div:nth-child(1) {
+    padding-right: 10px;
+  }
+
+  #about
+    > div
+    > div.col-md-10
+    > div:nth-child(2)
+    > div.ps-2.smallscreen.col-md-6.col-sm-12.col-12
+    > div:nth-child(2)
+    > div:nth-child(2) {
+    padding-left: 10px;
   }
 
   #about > div > div.col-md-10 > div:nth-child(2) > div.smallscreen.col-md-6 {
@@ -226,6 +298,5 @@
     > div
     > div {
     width: 440px;
-    height: 490px;
   }
 }
