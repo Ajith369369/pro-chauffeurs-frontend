@@ -35,8 +35,7 @@ const Login = () => {
   // handleChange is a function that gets triggered whenever an input field changes in a form (e.g., when a user types something in a text field).
   // handleChange handles changes in form input fields.
   // It extracts the name and value from the input field that triggered the change.
-  // It dispatches an action to update the Redux store with the new input value, keeping the form state in sync with user interactions.
-  
+  // It dispatches an action to update the Redux store with the new input value, keeping the form state in sync with user interactions. 
   const handleChange = (e) => {
 
     // e is the event object passed to the function when an input field changes.
@@ -62,7 +61,7 @@ const Login = () => {
 
     // Retrieves a list of registered users from the browser's localStorage.
     // localStorage.getItem("users") fetches the stored users (if any) as a JSON string.
-    // JSON.parse() converts this string back into a JavaScript array.
+    // JSON.parse() converts this string into a JavaScript array.
     // If there are no users in localStorage, it defaults to an empty array [].
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
