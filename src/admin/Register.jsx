@@ -24,6 +24,17 @@ const Register = () => {
     // If there are no users stored in local storage, localStorage.getItem("users") returns null, so the fallback (|| []) ensures users is initialized as an empty array.
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Delete unwanted data from users array in localStorage
+    // Remove the 1 item at index 1
+      // array.splice(startIndex, deleteCount, item1, item2, ..., itemN)
+        // startIndex: The index at which to start changing the array.
+        // deleteCount: The number of elements to remove from the array, starting at startIndex.
+        // item1, item2, ..., itemN: Optional. The elements to add to the array, starting from startIndex.
+        // users.splice(1, 1); Removes 1 item at index 1
+    // users.splice(3, 1);
+    // Stringify the updated array and store it back in localStorage
+    // localStorage.setItem("users", JSON.stringify(users));
+
     if (!reg_username || !reg_email_id || !reg_password) {
       toast.info("Please fill the form completely");
     } else {
