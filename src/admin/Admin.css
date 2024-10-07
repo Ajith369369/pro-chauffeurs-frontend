@@ -13,9 +13,8 @@
   overflow-x: auto;
 }
 
-#root > div > div.row.w-100 > div.col-sm-12.col-md-10.d-flex.flex-column.justify-content-center.align-items-center.table-container.mx-2.my-2 > table {
+#root > div > div.row.w-100 > div.col-sm-12.col-md-10.d-flex.flex-column.justify-content-center.table-container.mx-2.my-2 > table {
   margin-bottom: 0px;
-  max-width: 340px;
 }
 
 td {

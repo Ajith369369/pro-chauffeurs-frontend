@@ -23,7 +23,7 @@ const Register = () => {
     // JSON.parse(...) converts the JSON string back into a JavaScript array of user objects.
     // If there are no users stored in local storage, localStorage.getItem("users") returns null, so the fallback (|| []) ensures users is initialized as an empty array.
     const users = JSON.parse(localStorage.getItem("users")) || [];
-
+    
     // Delete unwanted data from users array in localStorage
     // Remove the 1 item at index 1
     // array.splice(startIndex, deleteCount, item1, item2, ..., itemN)

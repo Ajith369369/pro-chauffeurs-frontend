@@ -131,8 +131,8 @@ function Admin() {
         </div>
         <div className="row w-100">
           <div className="col-sm-0 col-md-1"></div>
-          <div className="col-sm-12 col-md-10 d-flex flex-column justify-content-center align-items-center table-container mx-2 my-2">
-            <table className="table table-dark table-striped table-hover align-middle table-responsive">
+          <div className="col-sm-12 col-md-10 d-flex flex-column justify-content-center table-container mx-2 my-2  table-responsive">
+            <table className="table table-dark table-striped table-hover align-middle">
               <thead className="text-center align-middle">
                 <tr>
                   <th>Sl. No.</th>
