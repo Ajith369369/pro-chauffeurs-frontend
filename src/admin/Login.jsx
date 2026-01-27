@@ -204,6 +204,9 @@ const Login = () => {
                       id="outlined-basic-1"
                       label="EMAIL ID"
                       variant="outlined"
+                      InputLabelProps={{
+                        shrink: !!loginFormState.login_email,
+                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
@@ -251,6 +254,9 @@ const Login = () => {
                       label="PASSWORD"
                       type="password"
                       variant="outlined"
+                      InputLabelProps={{
+                        shrink: !!loginFormState.login_pswd,
+                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
