@@ -125,6 +125,25 @@ const Register = () => {
                           height: "60px",
                           alignItems: "center",
                           paddingLeft: "5px",
+                          backgroundColor: "#000000",
+                          // Override Chrome autofill background
+                          "& input:-webkit-autofill": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                            caretColor: "#ffffff",
+                          },
+                          "& input:-webkit-autofill:hover": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:focus": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:active": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
                           // Class for the border around the input field
                           "& .MuiOutlinedInput-notchedOutline": {
                             borderColor: "#000000",
@@ -170,6 +189,25 @@ const Register = () => {
                           height: "60px",
                           alignItems: "center",
                           paddingLeft: "5px",
+                          backgroundColor: "#000000",
+                          // Override Chrome autofill background
+                          "& input:-webkit-autofill": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                            caretColor: "#ffffff",
+                          },
+                          "& input:-webkit-autofill:hover": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:focus": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:active": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
                           // Class for the border around the input field
                           "& .MuiOutlinedInput-notchedOutline": {
                             borderColor: "#000000",
@@ -216,6 +254,25 @@ const Register = () => {
                           height: "60px",
                           alignItems: "center",
                           paddingLeft: "5px",
+                          backgroundColor: "#000000",
+                          // Override Chrome autofill background
+                          "& input:-webkit-autofill": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                            caretColor: "#ffffff",
+                          },
+                          "& input:-webkit-autofill:hover": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:focus": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
+                          "& input:-webkit-autofill:active": {
+                            WebkitBoxShadow: "0 0 0 1000px #000000 inset !important",
+                            WebkitTextFillColor: "#ffffff !important",
+                          },
                           // Class for the border around the input field
                           "& .MuiOutlinedInput-notchedOutline": {
                             borderColor: "#000000",
