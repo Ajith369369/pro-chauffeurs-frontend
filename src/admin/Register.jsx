@@ -110,12 +110,15 @@ const Register = () => {
                     /> */}
                     <TextField
                       name="register_username"
-                      // value={loginState.email || ""}
+                      value={reg_username || ""}
                       onChange={(e) => setRegUsername(e.target.value)}
                       className="w-100"
                       id="outlined-basic-3"
                       label="USERNAME"
                       variant="outlined"
+                      InputLabelProps={{
+                        shrink: !!reg_username,
+                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
@@ -174,12 +177,15 @@ const Register = () => {
                     /> */}
                     <TextField
                       name="login_email"
-                      // value={loginState.email || ""}
+                      value={reg_email_id || ""}
                       onChange={(e) => setRegEmailId(e.target.value)}
                       className="w-100"
                       id="outlined-basic-1"
                       label="EMAIL ID"
                       variant="outlined"
+                      InputLabelProps={{
+                        shrink: !!reg_email_id,
+                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
@@ -238,13 +244,16 @@ const Register = () => {
                     /> */}
                     <TextField
                       name="login_pswd"
-                      // value={loginState.pswd || ""}
+                      value={reg_password || ""}
                       onChange={(e) => setRegPassword(e.target.value)}
                       className="w-100"
                       type="password"
                       id="outlined-basic-2"
                       label="PASSWORD"
                       variant="outlined"
+                      InputLabelProps={{
+                        shrink: !!reg_password,
+                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
