@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField";
+import { Paper, Box, Typography, Container } from "@mui/material";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -229,202 +230,365 @@ function HirerDetails() {
 
   return (
     <>
-      <div id="hirer_details" className="container-fluid w-100">
+      <div id="hirer_details" className="container-fluid w-100" style={{ backgroundColor: "#0a0a0a", minHeight: "100vh" }}>
         <Header />
-        <div className="row">
-          <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-          <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center border border-light cp">
-              <h4 className="text-center my-5">Hirer Details</h4>
+        <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "calc(100vh - 200px)",
+            }}
+          >
+            <Paper
+              elevation={24}
+              sx={{
+                width: "100%",
+                maxWidth: "800px",
+                backgroundColor: "#1a1a1a",
+                border: "1px solid #333333",
+                borderRadius: "16px",
+                padding: { xs: 3, md: 5 },
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset",
+              }}
+            >
+              <Typography
+                variant="h4"
+                component="h1"
+                sx={{
+                  textAlign: "center",
+                  color: "#ffffff",
+                  fontWeight: 600,
+                  mb: 1,
+                  fontSize: { xs: "1.75rem", md: "2rem" },
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Hirer Details
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  textAlign: "center",
+                  color: "#b0b0b0",
+                  mb: 4,
+                  fontSize: "0.9rem",
+                }}
+              >
+                Please provide your information to proceed
+              </Typography>
               <form onSubmit={handleSubmit}>
-                <div className="form-group my-4">
+                <Box sx={{ mb: 3 }}>
                   <TextField
                     name="passenger_name"
                     value={hirerFormState.passenger_name || ""}
                     onChange={(e) => validateData(e)}
-                    className="w-100"
+                    fullWidth
                     id="outlined-basic-1"
                     label="PASSENGER NAME"
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: !!hirerFormState.passenger_name,
+                    }}
                     sx={{
-                      // Root class for the input field
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Apply text-transform to the input element
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         "& input": {
                           textTransform: "uppercase",
+                          padding: "16.5px 14px",
                         },
-                        // Class for the border around the input field
+                        "& input:-webkit-autofill": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                          caretColor: "#ffffff",
+                        },
+                        "& input:-webkit-autofill:hover": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:focus": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:active": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
                         "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
                         },
-                        // Change border color when focused
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#ffffff",
+                          borderWidth: "2px",
                         },
                       },
-                      // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
                       },
-                      // Change label color when focused
                       "& .MuiInputLabel-outlined.Mui-focused": {
-                        color: "white",
+                        color: "#ffffff",
                       },
                     }}
                   />
                   {hireFormState.is_passenger_name == false && (
-                    <p className="text-danger fw-bold fs-5 me-auto">
+                    <Typography
+                      sx={{
+                        color: "#ff4444",
+                        fontSize: "0.875rem",
+                        mt: 1,
+                        ml: 1.5,
+                        fontWeight: 500,
+                      }}
+                    >
                       *Invalid Input
-                    </p>
+                    </Typography>
                   )}
-                </div>
-                <div className="form-group my-4">
+                </Box>
+                <Box sx={{ mb: 3 }}>
                   <TextField
                     name="email"
                     value={hirerFormState.email || ""}
                     onChange={(e) => validateData(e)}
-                    className="w-100"
+                    fullWidth
                     id="outlined-basic-2"
                     label="EMAIL"
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: !!hirerFormState.email,
+                    }}
                     sx={{
-                      // Root class for the input field
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Class for the border around the input field
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        "& input": {
+                          padding: "16.5px 14px",
                         },
-                        // Change border color when focused
+                        "& input:-webkit-autofill": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                          caretColor: "#ffffff",
+                        },
+                        "& input:-webkit-autofill:hover": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:focus": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:active": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#ffffff",
+                          borderWidth: "2px",
                         },
                       },
-                      // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
                       },
-                      // Change label color when focused
                       "& .MuiInputLabel-outlined.Mui-focused": {
-                        color: "white",
+                        color: "#ffffff",
                       },
                     }}
                   />
                   {hireFormState.is_email == false && (
-                    <p className="text-danger fw-bold fs-5 me-auto">
+                    <Typography
+                      sx={{
+                        color: "#ff4444",
+                        fontSize: "0.875rem",
+                        mt: 1,
+                        ml: 1.5,
+                        fontWeight: 500,
+                      }}
+                    >
                       *Invalid Input
-                    </p>
+                    </Typography>
                   )}
-                </div>
-                <div className="form-group my-4">
+                </Box>
+                <Box sx={{ mb: 3 }}>
                   <TextField
                     name="mobile_number"
                     value={hirerFormState.mobile_number || ""}
                     onChange={(e) => validateData(e)}
-                    className="w-100"
+                    fullWidth
                     id="outlined-basic-3"
                     label="MOBILE NUMBER"
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: !!hirerFormState.mobile_number,
+                    }}
                     sx={{
-                      // Root class for the input field
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Class for the border around the input field
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        "& input": {
+                          padding: "16.5px 14px",
                         },
-                        // Change border color when focused
+                        "& input:-webkit-autofill": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                          caretColor: "#ffffff",
+                        },
+                        "& input:-webkit-autofill:hover": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:focus": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:active": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#ffffff",
+                          borderWidth: "2px",
                         },
                       },
-                      // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
                       },
-                      // Change label color when focused
                       "& .MuiInputLabel-outlined.Mui-focused": {
-                        color: "white",
+                        color: "#ffffff",
                       },
                     }}
                   />
                   {hireFormState.is_mobile_number == false && (
-                    <p className="text-danger fw-bold fs-5 me-auto">
+                    <Typography
+                      sx={{
+                        color: "#ff4444",
+                        fontSize: "0.875rem",
+                        mt: 1,
+                        ml: 1.5,
+                        fontWeight: 500,
+                      }}
+                    >
                       *Invalid Input
-                    </p>
+                    </Typography>
                   )}
-                </div>
-                <div className="form-group my-4">
+                </Box>
+                <Box sx={{ mb: 3 }}>
                   <TextField
                     name="car_make"
                     value={hirerFormState.car_make || ""}
                     onChange={(e) => validateData(e)}
-                    className="w-100"
+                    fullWidth
                     id="outlined-basic-4"
                     label="CAR'S MAKE"
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: !!hirerFormState.car_make,
+                    }}
                     sx={{
-                      // Root class for the input field
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Apply text-transform to the input element
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         "& input": {
                           textTransform: "uppercase",
+                          padding: "16.5px 14px",
                         },
-                        // Class for the border around the input field
+                        "& input:-webkit-autofill": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                          caretColor: "#ffffff",
+                        },
+                        "& input:-webkit-autofill:hover": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:focus": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:active": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
                         "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
                         },
-                        // Change border color when focused
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#ffffff",
+                          borderWidth: "2px",
                         },
                       },
-                      // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
                       },
-                      // Change label color when focused
                       "& .MuiInputLabel-outlined.Mui-focused": {
-                        color: "white",
+                        color: "#ffffff",
                       },
                     }}
                   />
                   {hireFormState.is_car_make == false && (
-                    <p className="text-danger fw-bold fs-5 me-auto">
+                    <Typography
+                      sx={{
+                        color: "#ff4444",
+                        fontSize: "0.875rem",
+                        mt: 1,
+                        ml: 1.5,
+                        fontWeight: 500,
+                      }}
+                    >
                       *Invalid Input
-                    </p>
+                    </Typography>
                   )}
-                </div>
+                </Box>
                 <div className="form-group my-4">
                   <TextField
                     name="car_model"
@@ -474,55 +638,84 @@ function HirerDetails() {
                     </p>
                   )}
                 </div>
-                <div className="form-group my-4">
+                <Box sx={{ mb: 3 }}>
                   <TextField
                     name="reg_number"
                     value={hirerFormState.reg_number || ""}
                     onChange={(e) => validateData(e)}
-                    className="w-100"
+                    fullWidth
                     id="outlined-basic-6"
                     label="CAR'S REGISTRATION NUMBER"
                     variant="outlined"
+                    InputLabelProps={{
+                      shrink: !!hirerFormState.reg_number,
+                    }}
                     sx={{
-                      // Root class for the input field
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
-                        fontFamily: "Arial",
-                        fontWeight: "bold",
-                        height: "60px",
-                        alignItems: "center",
-                        paddingLeft: "5px",
-                        // Apply text-transform to the input element
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         "& input": {
                           textTransform: "uppercase",
+                          padding: "16.5px 14px",
                         },
-                        // Class for the border around the input field
+                        "& input:-webkit-autofill": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                          caretColor: "#ffffff",
+                        },
+                        "& input:-webkit-autofill:hover": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:focus": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
+                        "& input:-webkit-autofill:active": {
+                          WebkitBoxShadow: "0 0 0 1000px #0a0a0a inset !important",
+                          WebkitTextFillColor: "#ffffff !important",
+                        },
                         "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "#000000",
-                          borderWidth: "1px",
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
                         },
-                        // Change border color when focused
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "#ffffff",
+                          borderWidth: "2px",
                         },
                       },
-                      // Class for the label of the input field
                       "& .MuiInputLabel-outlined": {
-                        color: "white",
-                        fontSize: "16px",
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
                       },
-                      // Change label color when focused
                       "& .MuiInputLabel-outlined.Mui-focused": {
-                        color: "white",
+                        color: "#ffffff",
                       },
                     }}
                   />
                   {hireFormState.is_reg_number == false && (
-                    <p className="text-danger fw-bold fs-5 me-auto">
+                    <Typography
+                      sx={{
+                        color: "#ff4444",
+                        fontSize: "0.875rem",
+                        mt: 1,
+                        ml: 1.5,
+                        fontWeight: 500,
+                      }}
+                    >
                       *Invalid Input
-                    </p>
+                    </Typography>
                   )}
-                </div>
+                </Box>
                 {/* <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
                     <Form.Select
@@ -543,29 +736,77 @@ function HirerDetails() {
                   <div className="ms-2">
                   </div>
                 </div> */}
-                <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 3,
+                    mt: 5,
+                    flexWrap: "wrap",
+                  }}
+                >
                   <Button
                     onClick={handleBackClick}
                     variant="light"
                     size="lg"
-                    className="mb-5 back"
+                    sx={{
+                      minWidth: "140px",
+                      height: "48px",
+                      backgroundColor: "#2a2a2a",
+                      color: "#ffffff",
+                      border: "1.5px solid #4a4a4a",
+                      borderRadius: "8px",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      textTransform: "none",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        backgroundColor: "#3a3a3a",
+                        borderColor: "#6a6a6a",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+                      },
+                      "&:active": {
+                        transform: "translateY(0)",
+                      },
+                    }}
                   >
                     Back
                   </Button>
                   <Button
                     variant="light"
                     size="lg"
-                    className="mb-5 book"
                     type="submit"
+                    sx={{
+                      minWidth: "140px",
+                      height: "48px",
+                      backgroundColor: "#ffffff",
+                      color: "#0a0a0a",
+                      border: "1.5px solid #ffffff",
+                      borderRadius: "8px",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      textTransform: "none",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        backgroundColor: "#f0f0f0",
+                        borderColor: "#ffffff",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
+                      },
+                      "&:active": {
+                        transform: "translateY(0)",
+                      },
+                    }}
                   >
                     Next
                   </Button>
-                </div>
+                </Box>
               </form>
-            </div>
-          </div>
-          <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-        </div>
+            </Paper>
+          </Box>
+        </Container>
         <Footer />
       </div>
       <ToastContainer position="top-center" theme="colored" autoclose={1000} />
