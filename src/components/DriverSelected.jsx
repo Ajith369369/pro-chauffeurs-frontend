@@ -105,59 +105,70 @@ function DriverSelected() {
 
   return (
     <>
-      <Card
-        style={{ width: "100%", backgroundColor: "black" }}
-        className="mt-3  p-4 rounded-4 card"
-      >
-        <div className="d-flex  align-items-center">
-          <img
-            src={`${selectedDriver?.Profile}`}
-            alt=""
-            width={130}
-            style={{ borderRadius: "50%" }}
-          />
-          <div className="ms-3">
-            <h5 className="text-white">Name: {selectedDriver?.DriverName}</h5>
-            <h6 className="text-white">
-              License : {selectedDriver?.DriverLicense}
-            </h6>
-            <h6 className="text-white">
-              Experience : {selectedDriver?.Experience}
-            </h6>
-            <div className="d-flex justify-content-between mt-3">
-              {renderStars(selectedDriver?.DriverRating)}
-              {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
-            </div>
-          </div>
-        </div>
-        <Card.Body>
-          <Card.Text
-            className="text-light mt-3"
-            style={{ textAlign: "justify" }}
+      <div  style={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "2rem",
+          backgroundColor: "#0a0a0a",
+        }}>
+        <div style={{ width: "100%", maxWidth: "800px" }}>
+          <Card
+            style={{ width: "100%", backgroundColor: "black" }}
+            className="mt-3  p-4 rounded-4 card"
           >
-            {selectedDriver?.About}
-          </Card.Text>
-          <div className="d-flex align-items-center justify-content-center mt-4 px-4">
-            {/* <Button
-              onClick={handleBackClick}
-              variant="light"
-              className="px-4 me-5"
-              style={{ backgroundColor: "white", width: "150px" }}
-            >
-              Back
-            </Button> */}
-            <Button
-              onClick={handleSelectDriverClick}
-              variant="light"
-              className="px-4"
-              style={{ backgroundColor: "white", width: "150px" }}
-            >
-              Select Driver
-            </Button>
-          </div>
-        </Card.Body>
-      </Card>
+            <div className="d-flex  align-items-center">
+              <img
+                src={`${selectedDriver?.Profile}`}
+                alt=""
+                width={130}
+                style={{ borderRadius: "50%" }}
+              />
+              <div className="ms-3">
+                <h5 className="text-white">Name: {selectedDriver?.DriverName}</h5>
+                <h6 className="text-white">
+                  License : {selectedDriver?.DriverLicense}
+                </h6>
+                <h6 className="text-white">
+                  Experience : {selectedDriver?.Experience}
+                </h6>
+                <div className="d-flex justify-content-between mt-3">
+                  {renderStars(selectedDriver?.DriverRating)}
+                  {/* <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
+                  <FontAwesomeIcon icon={faStar} style={{ color: "white" }} /> */}
+                </div>
+              </div>
+            </div>
+            <Card.Body>
+              <Card.Text
+                className="text-light mt-3"
+                style={{ textAlign: "justify" }}
+              >
+                {selectedDriver?.About}
+              </Card.Text>
+              <div className="d-flex align-items-center justify-content-center mt-4 px-4">
+                {/* <Button
+                  onClick={handleBackClick}
+                  variant="light"
+                  className="px-4 me-5"
+                  style={{ backgroundColor: "white", width: "150px" }}
+                >
+                  Back
+                </Button> */}
+                <Button
+                  onClick={handleSelectDriverClick}
+                  variant="light"
+                  className="px-4"
+                  style={{ backgroundColor: "white", width: "150px" }}
+                >
+                  Select Driver
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
     </>
   );
 }
