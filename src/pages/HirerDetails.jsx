@@ -724,11 +724,11 @@ function HirerDetails() {
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-evenly",
                     alignItems: "center",
-                    gap: 3,
+                    gap: 1,
                     mt: 5,
-                    flexWrap: "wrap",
+                    width: "100%",
                   }}
                 >
                   <Button
@@ -736,7 +736,8 @@ function HirerDetails() {
                     variant="light"
                     size="lg"
                     sx={{
-                      minWidth: "140px",
+                      // flex: 1,
+                      width: "80px",
                       height: "48px",
                       backgroundColor: "#2a2a2a",
                       color: "#ffffff",
@@ -764,7 +765,8 @@ function HirerDetails() {
                     size="lg"
                     type="submit"
                     sx={{
-                      minWidth: "140px",
+                      // flex: 1,
+                      width: "80px",
                       height: "48px",
                       backgroundColor: "#ffffff",
                       color: "#0a0a0a",
