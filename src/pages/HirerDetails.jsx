@@ -288,9 +288,6 @@ function HirerDetails() {
                     id="outlined-basic-1"
                     label="PASSENGER NAME"
                     variant="outlined"
-                    InputLabelProps={{
-                      shrink: !!hirerFormState.passenger_name,
-                    }}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
@@ -366,9 +363,6 @@ function HirerDetails() {
                     id="outlined-basic-2"
                     label="EMAIL"
                     variant="outlined"
-                    InputLabelProps={{
-                      shrink: !!hirerFormState.email,
-                    }}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
@@ -443,9 +437,6 @@ function HirerDetails() {
                     id="outlined-basic-3"
                     label="MOBILE NUMBER"
                     variant="outlined"
-                    InputLabelProps={{
-                      shrink: !!hirerFormState.mobile_number,
-                    }}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
@@ -520,9 +511,6 @@ function HirerDetails() {
                     id="outlined-basic-4"
                     label="CAR'S MAKE"
                     variant="outlined"
-                    InputLabelProps={{
-                      shrink: !!hirerFormState.car_make,
-                    }}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",
@@ -647,9 +635,6 @@ function HirerDetails() {
                     id="outlined-basic-6"
                     label="CAR'S REGISTRATION NUMBER"
                     variant="outlined"
-                    InputLabelProps={{
-                      shrink: !!hirerFormState.reg_number,
-                    }}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         color: "#ffffff",

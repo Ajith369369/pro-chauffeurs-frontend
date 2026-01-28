@@ -116,9 +116,6 @@ const Register = () => {
                       id="outlined-basic-3"
                       label="USERNAME"
                       variant="outlined"
-                      InputLabelProps={{
-                        shrink: !!reg_username,
-                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
@@ -183,9 +180,6 @@ const Register = () => {
                       id="outlined-basic-1"
                       label="EMAIL ID"
                       variant="outlined"
-                      InputLabelProps={{
-                        shrink: !!reg_email_id,
-                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
@@ -251,9 +245,6 @@ const Register = () => {
                       id="outlined-basic-2"
                       label="PASSWORD"
                       variant="outlined"
-                      InputLabelProps={{
-                        shrink: !!reg_password,
-                      }}
                       sx={{
                         // Root class for the input field
                         "& .MuiOutlinedInput-root": {
