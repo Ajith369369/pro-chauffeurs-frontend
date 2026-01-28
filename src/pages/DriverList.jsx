@@ -38,13 +38,14 @@ function DriverList() {
       <div className="driverlist px-3 px-md-5 py-5">
         <div className="container">
           <h1 className="text-light text-center  ">List Of Drivers</h1>
-          <div className="row ">
+          <div className="row align-items-stretch">
             {allDrivers ? (
               allDrivers?.map((item) => (
                 <div
                   key={item.id}
                   className="col-md-4 mt-5"
                   onClick={() => handleDriverClick(item)}
+                  style={{ display: "flex"}}
                 >
                   {/* The onClick event handler is triggered when the div containing the DriverCard is clicked.
                 The handleDriverClick function is called, with the item (the current driver object) passed as an argument. This allows the function to know which driver was clicked.

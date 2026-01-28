@@ -65,7 +65,7 @@ function DriverCard({ selected_driver }) {
   return (
     <>
       <Card
-        style={{ width: "100%", backgroundColor: "black" }}
+        style={{ width: "100%", backgroundColor: "black", height: "100%", display: "flex", flexDirection: "column" }}
         className="mt-3  p-4 rounded-4 card"
       >
         <div className="d-flex  align-items-center">
@@ -90,14 +90,14 @@ function DriverCard({ selected_driver }) {
             </div>
           </div>
         </div>
-        <Card.Body>
+        <Card.Body style={{ display: "flex", flexDirection: "column", flex: 1 }}>
           <Card.Text
             className="text-light mt-3"
-            style={{ textAlign: "justify" }}
+            style={{ textAlign: "justify", flex: 1 }}
           >
             {selected_driver?.About}
           </Card.Text>
-          <div className="d-flex align-items-center justify-content-center mt-4 px-4">
+          <div className="d-flex align-items-center justify-content-center mt-4 px-4" style={{ marginTop: "auto" }}>
             {/* <Button
               onClick={handleBackClick}
               variant="light"
