@@ -4,6 +4,19 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  Container,
+  Box,
+  Typography,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  IconButton,
+} from "@mui/material";
 import { updateLoginButtonState } from "../redux/slices/hirerDetailsSlice";
 import {
   addBookingDetailsOfAUserApi,
@@ -112,88 +125,235 @@ function Admin() {
 
   return (
     <>
-      <div className="admin-container row w-100 my-5 d-flex flex-column justify-content-start align-items-center">
-        <div className="dash-home d-flex justify-content-between p-md-5">
-          <h1 className="text-light dash">Dashboard</h1>
-          <h5 className="mt-1 home d-flex justify-content-center align-items-center">
+      <Box
+        sx={{
+          backgroundColor: "#0a0a0a",
+          minHeight: "100vh",
+          width: "100%",
+          py: { xs: 3, md: 5 },
+        }}
+      >
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: { xs: 3, md: 4 },
+              flexWrap: "wrap",
+              gap: 2,
+            }}
+          >
+            <Typography
+              variant="h3"
+              component="h1"
+              sx={{
+                color: "#ffffff",
+                fontWeight: 600,
+                fontSize: { xs: "1.75rem", md: "2.5rem" },
+                letterSpacing: "0.5px",
+              }}
+            >
+              Dashboard
+            </Typography>
             <Link
               to={"/"}
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none" }}
               onClick={() => {
                 localStorage.removeItem("currentUser");
                 dispatch(updateLoginButtonState(true));
               }}
             >
-              <FontAwesomeIcon icon={faHouse} className="me-2" />
-              <span className="hide">Back Home</span>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  color: "#ffffff",
+                  fontSize: { xs: "0.9rem", md: "1.1rem" },
+                  fontWeight: 500,
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    color: "#b0b0b0",
+                  },
+                }}
+              >
+                <FontAwesomeIcon icon={faHouse} />
+                <span className="hide">Back Home</span>
+              </Box>
             </Link>
-          </h5>
-        </div>
-        <div className="row w-100">
-          <div className="col-sm-0 col-md-1"></div>
-          <div className="col-sm-12 col-md-10 d-flex flex-column justify-content-center table-container mx-2 my-2  table-responsive">
-            <table className="table table-dark table-striped table-hover align-middle">
-              <thead className="text-center align-middle">
-                <tr>
-                  <th>Sl. No.</th>
-                  <th>Email</th>
-                  <th>Mobile No.</th>
-                  <th>Car Make</th>
-                  <th>Car Model</th>
-                  <th>Registration No.</th>
-                  <th>Service Type</th>
-                  <th>Driver</th>
-                  <th>Pick-Up Date</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              {allUsers.length > 0 && (
-                <tbody className="table-group-divider">
-                  {allUsers?.map((item, index) => (
-                    <tr key={item.id}>
-                      <td className="text-center">{index + 1}</td>
-                      <td>{item.email}</td>
-                      <td>{item.mobile_number}</td>
-                      <td>{item.car_make}</td>
-                      <td>{item.car_model}</td>
-                      <td>{item.reg_number}</td>
-                      <td>{item.service_type}</td>
-                      <td>{item.driver_name}</td>
-                      <td className="text-center">
-                        {dateFormatter(item.pickup_date)}
-                      </td>
-                      <td className="text-center">
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => handleDeleteUser(item.id)}
-                        >
-                          <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              )}
-            </table>
-            {allUsers.length == 0 && (
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <p className="text-danger text-center fs-3 fw-bolder w-100">
+          </Box>
+
+          <Paper
+            elevation={24}
+            sx={{
+              width: "100%",
+              backgroundColor: "#1a1a1a",
+              border: "1px solid #333333",
+              borderRadius: "16px",
+              padding: { xs: 2, md: 3 },
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset",
+              overflow: "hidden",
+            }}
+          >
+            {allUsers.length > 0 ? (
+              <TableContainer
+                sx={{
+                  maxHeight: "70vh",
+                  "&::-webkit-scrollbar": {
+                    width: "8px",
+                    height: "8px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    backgroundColor: "#0a0a0a",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#4a4a4a",
+                    borderRadius: "4px",
+                    "&:hover": {
+                      backgroundColor: "#6a6a6a",
+                    },
+                  },
+                }}
+              >
+                <Table
+                  stickyHeader
+                  sx={{
+                    "& .MuiTableCell-root": {
+                      borderColor: "#2a2a2a",
+                      color: "#ffffff",
+                      fontFamily: "'Inter', 'Arial', sans-serif",
+                    },
+                  }}
+                >
+                  <TableHead>
+                    <TableRow
+                      sx={{
+                        backgroundColor: "#2a2a2a",
+                        "& .MuiTableCell-head": {
+                          backgroundColor: "#2a2a2a",
+                          color: "#ffffff",
+                          fontWeight: 600,
+                          fontSize: { xs: "0.75rem", md: "0.9rem" },
+                          padding: { xs: "8px 4px", md: "12px 8px" },
+                          textAlign: "center",
+                        },
+                      }}
+                    >
+                      <TableCell>Sl. No.</TableCell>
+                      <TableCell>Email</TableCell>
+                      <TableCell>Mobile No.</TableCell>
+                      <TableCell>Car Make</TableCell>
+                      <TableCell>Car Model</TableCell>
+                      <TableCell>Registration No.</TableCell>
+                      <TableCell>Service Type</TableCell>
+                      <TableCell>Driver</TableCell>
+                      <TableCell>Pick-Up Date</TableCell>
+                      <TableCell>Delete</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {allUsers?.map((item, index) => (
+                      <TableRow
+                        key={item.id}
+                        sx={{
+                          backgroundColor: index % 2 === 0 ? "#1a1a1a" : "#222222",
+                          transition: "background-color 0.2s ease",
+                          "&:hover": {
+                            backgroundColor: "#2a2a2a",
+                          },
+                          "& .MuiTableCell-body": {
+                            color: "#d0d0d0",
+                            fontSize: { xs: "0.8rem", md: "0.9rem" },
+                            padding: { xs: "8px 4px", md: "12px 8px" },
+                            textAlign: "center",
+                          },
+                        }}
+                      >
+                        <TableCell>{index + 1}</TableCell>
+                        <TableCell>{item.email}</TableCell>
+                        <TableCell>{item.mobile_number}</TableCell>
+                        <TableCell>{item.car_make}</TableCell>
+                        <TableCell>{item.car_model}</TableCell>
+                        <TableCell>{item.reg_number}</TableCell>
+                        <TableCell>{item.service_type}</TableCell>
+                        <TableCell>{item.driver_name}</TableCell>
+                        <TableCell>{dateFormatter(item.pickup_date)}</TableCell>
+                        <TableCell>
+                          <IconButton
+                            onClick={() => handleDeleteUser(item.id)}
+                            sx={{
+                              color: "#ff4444",
+                              backgroundColor: "rgba(255, 68, 68, 0.1)",
+                              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                              "&:hover": {
+                                backgroundColor: "rgba(255, 68, 68, 0.2)",
+                                transform: "scale(1.1)",
+                              },
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faTrashCan} />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  py: 8,
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#ff4444",
+                    fontSize: { xs: "1.5rem", md: "2rem" },
+                    fontWeight: 600,
+                    mb: 3,
+                    textAlign: "center",
+                  }}
+                >
                   No Booking Details
-                </p>
+                </Typography>
                 <Button
                   onClick={loadDefaultBookingDetails}
                   variant="light"
-                  className="px-4"
-                  style={{ backgroundColor: "white", width: "150px" }}
+                  size="lg"
+                  sx={{
+                    minWidth: "180px",
+                    height: "48px",
+                    backgroundColor: "#ffffff",
+                    color: "#0a0a0a",
+                    border: "1.5px solid #ffffff",
+                    borderRadius: "8px",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    textTransform: "none",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    "&:hover": {
+                      backgroundColor: "#f0f0f0",
+                      borderColor: "#ffffff",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
+                    },
+                    "&:active": {
+                      transform: "translateY(0)",
+                    },
+                  }}
                 >
                   Load Default Data
                 </Button>
-              </div>
+              </Box>
             )}
-          </div>
-          <div className="col-sm-0 col-md-1"></div>
-        </div>
-      </div>
+          </Paper>
+        </Container>
+      </Box>
     </>
   );
 }
