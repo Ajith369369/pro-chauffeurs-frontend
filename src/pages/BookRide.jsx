@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Container, Box, Typography, Paper, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {
@@ -357,35 +358,129 @@ function BookRide() {
 
   return (
     <>
-      <div id="book_ride" className="container-fluid w-100">
+      <div id="book_ride" className="container-fluid w-100" style={{ backgroundColor: "#0a0a0a", minHeight: "100vh" }}>
         <Header />
-        <div className="row">
-          <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-          <div className="col-sm-12 col-md-10 col-lg-10 col-xl-10 col-xxl-10 d-flex flex-column justify-content-start align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center border border-light cp">
-              <h4 className="text-center my-5">Booking Details</h4>
+        <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "calc(100vh - 200px)",
+            }}
+          >
+            <Paper
+              elevation={24}
+              sx={{
+                width: "100%",
+                maxWidth: "800px",
+                backgroundColor: "#1a1a1a",
+                border: "1px solid #333333",
+                borderRadius: "16px",
+                padding: { xs: 3, md: 5 },
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset",
+              }}
+            >
+              <Typography
+                variant="h4"
+                component="h1"
+                sx={{
+                  textAlign: "center",
+                  color: "#ffffff",
+                  fontWeight: 600,
+                  mb: 1,
+                  fontSize: { xs: "1.75rem", md: "2rem" },
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Booking Details
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  textAlign: "center",
+                  color: "#b0b0b0",
+                  mb: 4,
+                  fontSize: "0.9rem",
+                }}
+              >
+                Complete your booking information
+              </Typography>
               <form onSubmit={handleSubmit}>
-                <div className="form-group my-4">
-                  <div className="dropdown-input-container w-100 mb-3">
-                    <select
-                      className="dropdown-input"
-                      value={bookingFormState.service_type}
-                      onChange={(e) => handleChange(e)}
-                      name="service_type"
+                <Box sx={{ mb: 3 }}>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      id="service-type-label"
+                      sx={{
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        "&.Mui-focused": {
+                          color: "#ffffff",
+                        },
+                      }}
                     >
-                      <option value="" disabled>
-                        Select Service Type
-                      </option>
-                      <option value="Hourly Booking">Hourly Booking</option>
-                      <option value="Airport Transfer">Airport Transfer</option>
-                      <option value="City Transfer">City Transfer</option>
-                      <option value="Corporate Transport">
+                      SERVICE TYPE
+                    </InputLabel>
+                    <Select
+                      labelId="service-type-label"
+                      name="service_type"
+                      value={bookingFormState.service_type || ""}
+                      onChange={(e) => handleChange(e)}
+                      label="SERVICE TYPE"
+                      sx={{
+                        color: "#ffffff",
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                          borderWidth: "2px",
+                        },
+                        "& .MuiSvgIcon-root": {
+                          color: "#ffffff",
+                        },
+                      }}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            backgroundColor: "#1a1a1a",
+                            border: "1px solid #2a2a2a",
+                            "& .MuiMenuItem-root": {
+                              color: "#ffffff",
+                              "&:hover": {
+                                backgroundColor: "#2a2a2a",
+                              },
+                              "&.Mui-selected": {
+                                backgroundColor: "#3a3a3a",
+                                "&:hover": {
+                                  backgroundColor: "#4a4a4a",
+                                },
+                              },
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem value="Hourly Booking">Hourly Booking</MenuItem>
+                      <MenuItem value="Airport Transfer">Airport Transfer</MenuItem>
+                      <MenuItem value="City Transfer">City Transfer</MenuItem>
+                      <MenuItem value="Corporate Transport">
                         Corporate Transport
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div className="form-group my-4">
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Box sx={{ mb: 3 }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoItem>
                       <DatePicker
@@ -393,74 +488,204 @@ function BookRide() {
                         value={pickupDate}
                         label="PICKUP DATE"
                         onChange={handleDateChange}
+                        format="DD/MM/YYYY"
+                        slotProps={{
+                          textField: {
+                            fullWidth: true,
+                            InputLabelProps: {
+                              shrink: !!pickupDate,
+                            },
+                          },
+                        }}
                         sx={{
+                          width: "100%",
                           "& .MuiInputBase-input": {
-                            color: "white", // Text color
+                            color: "#ffffff",
+                            fontFamily: "'Inter', 'Arial', sans-serif",
+                            fontWeight: 500,
+                            padding: "16.5px 14px",
                           },
                           "& .MuiOutlinedInput-root": {
+                            height: "56px",
+                            backgroundColor: "#0a0a0a",
+                            borderRadius: "8px",
+                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                             "& fieldset": {
-                              borderColor: "white", // Border color
+                              borderColor: "#2a2a2a",
+                              borderWidth: "1.5px",
                             },
                             "&:hover fieldset": {
-                              borderColor: "white", // Border color on hover
+                              borderColor: "#4a4a4a",
                             },
                             "&.Mui-focused fieldset": {
-                              borderColor: "white", // Border color when focused
+                              borderColor: "#ffffff",
+                              borderWidth: "2px",
                             },
                           },
                           "& .MuiInputLabel-root": {
-                            color: "white", // Label color
+                            color: "#b0b0b0",
+                            fontSize: "14px",
+                            fontWeight: 500,
+                          },
+                          "& .MuiInputLabel-root.Mui-focused": {
+                            color: "#ffffff",
                           },
                           "& .MuiSvgIcon-root": {
-                            color: "white", // Icon color
+                            color: "#ffffff",
                           },
                         }}
                       />
                     </DemoItem>
                   </LocalizationProvider>
-                </div>
-                <div className="form-group my-4">
-                  <div className="dropdown-input-container w-100 mb-3">
-                    <select
-                      className="dropdown-input"
-                      value={bookingFormState.pickup_location}
-                      onChange={(e) => handleChange(e)}
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      id="pickup-location-label"
+                      sx={{
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        "&.Mui-focused": {
+                          color: "#ffffff",
+                        },
+                      }}
+                    >
+                      PICKUP LOCATION
+                    </InputLabel>
+                    <Select
+                      labelId="pickup-location-label"
                       name="pickup_location"
-                    >
-                      <option value="" disabled>
-                        PICKUP LOCATION
-                      </option>
-                      {places.map((option) => {
-                        return (
-                          <option key={option.id} value={option.name}>
-                            {option.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </div>
-                <div className="form-group my-4">
-                  <div className="dropdown-input-container w-100 mb-3">
-                    <select
-                      className="dropdown-input"
-                      value={bookingFormState.dropoff_location}
+                      value={bookingFormState.pickup_location || ""}
                       onChange={(e) => handleChange(e)}
-                      name="dropoff_location"
+                      label="PICKUP LOCATION"
+                      sx={{
+                        color: "#ffffff",
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                          borderWidth: "2px",
+                        },
+                        "& .MuiSvgIcon-root": {
+                          color: "#ffffff",
+                        },
+                      }}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            backgroundColor: "#1a1a1a",
+                            border: "1px solid #2a2a2a",
+                            "& .MuiMenuItem-root": {
+                              color: "#ffffff",
+                              "&:hover": {
+                                backgroundColor: "#2a2a2a",
+                              },
+                              "&.Mui-selected": {
+                                backgroundColor: "#3a3a3a",
+                                "&:hover": {
+                                  backgroundColor: "#4a4a4a",
+                                },
+                              },
+                            },
+                          },
+                        },
+                      }}
                     >
-                      <option value="" disabled>
-                        DROPOFF LOCATION
-                      </option>
                       {places.map((option) => {
                         return (
-                          <option key={option.id} value={option.name}>
+                          <MenuItem key={option.id} value={option.name}>
                             {option.name}
-                          </option>
+                          </MenuItem>
                         );
                       })}
-                    </select>
-                  </div>
-                </div>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      id="dropoff-location-label"
+                      sx={{
+                        color: "#b0b0b0",
+                        fontSize: "14px",
+                        fontWeight: 500,
+                        "&.Mui-focused": {
+                          color: "#ffffff",
+                        },
+                      }}
+                    >
+                      DROPOFF LOCATION
+                    </InputLabel>
+                    <Select
+                      labelId="dropoff-location-label"
+                      name="dropoff_location"
+                      value={bookingFormState.dropoff_location || ""}
+                      onChange={(e) => handleChange(e)}
+                      label="DROPOFF LOCATION"
+                      sx={{
+                        color: "#ffffff",
+                        height: "56px",
+                        backgroundColor: "#0a0a0a",
+                        borderRadius: "8px",
+                        fontFamily: "'Inter', 'Arial', sans-serif",
+                        fontWeight: 500,
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#2a2a2a",
+                          borderWidth: "1.5px",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#4a4a4a",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#ffffff",
+                          borderWidth: "2px",
+                        },
+                        "& .MuiSvgIcon-root": {
+                          color: "#ffffff",
+                        },
+                      }}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            backgroundColor: "#1a1a1a",
+                            border: "1px solid #2a2a2a",
+                            "& .MuiMenuItem-root": {
+                              color: "#ffffff",
+                              "&:hover": {
+                                backgroundColor: "#2a2a2a",
+                              },
+                              "&.Mui-selected": {
+                                backgroundColor: "#3a3a3a",
+                                "&:hover": {
+                                  backgroundColor: "#4a4a4a",
+                                },
+                              },
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      {places.map((option) => {
+                        return (
+                          <MenuItem key={option.id} value={option.name}>
+                            {option.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Box>
                 {/* <div className="form-group ps-2 pe-2 my-4 d-flex justify-content-center align-items-center">
                   <div className="me-2">
                     <Form.Select
@@ -493,12 +718,42 @@ function BookRide() {
                     </div>
                   </div>
                 </div>
-                <div className="form-group ps-2 pe-2 my-5 d-flex flex-wrap justify-content-center align-items-center">
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 1,
+                    mt: 5,
+                    width: "100%",
+                  }}
+                >
                   <Button
                     onClick={handleBackClick}
                     variant="light"
                     size="lg"
-                    className="mb-5 back"
+                    sx={{
+                      flex: "1 1 50%",
+                      maxWidth: "50%",
+                      height: "48px",
+                      backgroundColor: "#2a2a2a",
+                      color: "#ffffff",
+                      border: "1.5px solid #4a4a4a",
+                      borderRadius: "8px",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      textTransform: "none",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        backgroundColor: "#3a3a3a",
+                        borderColor: "#6a6a6a",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+                      },
+                      "&:active": {
+                        transform: "translateY(0)",
+                      },
+                    }}
                   >
                     Back
                   </Button>
@@ -506,17 +761,42 @@ function BookRide() {
                     type="submit"
                     variant="light"
                     size="lg"
-                    className="mb-5 book"
                     disabled={distance ? false : true}
+                    sx={{
+                      flex: "1 1 50%",
+                      maxWidth: "50%",
+                      height: "48px",
+                      backgroundColor: distance ? "#ffffff" : "#4a4a4a",
+                      color: distance ? "#0a0a0a" : "#808080",
+                      border: distance ? "1.5px solid #ffffff" : "1.5px solid #4a4a4a",
+                      borderRadius: "8px",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      textTransform: "none",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      "&:hover": {
+                        backgroundColor: distance ? "#f0f0f0" : "#4a4a4a",
+                        borderColor: distance ? "#ffffff" : "#4a4a4a",
+                        transform: distance ? "translateY(-2px)" : "none",
+                        boxShadow: distance ? "0 4px 16px rgba(255, 255, 255, 0.2)" : "none",
+                      },
+                      "&:active": {
+                        transform: "translateY(0)",
+                      },
+                      "&:disabled": {
+                        backgroundColor: "#4a4a4a",
+                        color: "#808080",
+                        borderColor: "#4a4a4a",
+                      },
+                    }}
                   >
                     PAY Now
                   </Button>
-                </div>
+                </Box>
               </form>
-            </div>
-          </div>
-          <div className="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-        </div>
+            </Paper>
+          </Box>
+        </Container>
         <Footer />
       </div>
       <ToastContainer position="top-center" theme="colored" autoclose={3000} />
